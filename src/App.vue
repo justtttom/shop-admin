@@ -1,11 +1,13 @@
-<script setup>
-
-</script>
+<script setup></script>
 
 <template>
-  <button class=" bg-purple-600 text-indigo-50 px-4 py-2 rounded-full transition-all duration-500 hover:(bg-purple-900)">按钮</button>
+  <button
+    class="btn"
+  >
+    按钮
+  </button>
 
-   <!-- <el-row class="mb-4">
+  <!-- <el-row class="mb-4">
     <el-button>Default</el-button>
     <el-button type="primary">Primary</el-button>
     <el-button type="success">Success</el-button>
@@ -16,4 +18,7 @@
 </template>
 
 <style scoped>
+  .btn{
+    @apply bg-purple-600 text-indigo-50 px-4 py-2 m-100 rounded-full transition-all duration-100 hover:(bg-purple-900) focus:(ring-20);
+  }
 </style>
