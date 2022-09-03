@@ -1,7 +1,12 @@
+import { IndexKind } from 'typescript';
 import {createRouter,createWebHashHistory} from 'vue-router';
 
+import Index from '~/pages/index.vue'
 
-const routes = [];
+const routes = [{
+  path:'/',
+  component:Index
+}];
 
 const  router = createRouter({
   history:createWebHashHistory(),
