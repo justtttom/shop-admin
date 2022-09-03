@@ -23,10 +23,10 @@
       <div>
         <el-form :model="form" >
           <el-form-item label="账号：" >
-            <el-input  v-model="form.name"  placeholder="请输入您的账号"/>
+            <el-input  v-model="form.name"  placeholder="请输入用户名"/>
           </el-form-item>
           <el-form-item label="密码：" >
-            <el-input  v-model="form.password"  placeholder="请输入您的密码"/>
+            <el-input  v-model="form.password"  placeholder="请输入密码"/>
           </el-form-item>
           <el-form-item >
             <el-button type="primary" @click="onSubmit">登录</el-button>
