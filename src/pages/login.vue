@@ -5,7 +5,7 @@
         <div class="font-bold text-6xl text-light-100 mb-5">
           欢迎来到 hello 学习平台 👏🏻
         </div>
-        <div class="text-2xl text-light-50">
+        <div class="text-2xl text-gray-300">
           此站点是为了学习《vite + vue3实战商城后台开发》
         </div>
       </div>
@@ -14,16 +14,15 @@
       :span="8"
       class="bg-indigo-50 flex items-center justify-center flex-col"
     >
-      <h2>欢迎回来！</h2>
+      <h1 class="text-5xl mb-5 text-dark-50">欢迎回来！</h1>
       <div>
         <span></span>
-        <span>账号密码登录</span>
         <span></span>
       </div>
       <div>
         <el-form :model="form" >
           <el-form-item label="账号：" >
-            <el-input  v-model="form.name"  placeholder="请输入用户名"/>
+            <el-input  v-model="form.username"  placeholder="请输入用户名"/>
           </el-form-item>
           <el-form-item label="密码：" >
             <el-input  v-model="form.password"  placeholder="请输入密码"/>
@@ -43,14 +42,8 @@ import { reactive } from 'vue'
 
 // do not use same name with ref
 const form = reactive({
-  name: '',
-  region: '',
-  date1: '',
-  date2: '',
-  delivery: false,
-  type: [],
-  resource: '',
-  desc: ''
+ username:"",
+ password:""
 })
 
 const onSubmit = () => {
