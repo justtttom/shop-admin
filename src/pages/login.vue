@@ -51,7 +51,7 @@
           <el-form-item>
             <el-button
               round
-              color=" #626aef"
+              color=" #626aefc9"
               class="w-[250px]"
               type="primary"
               @click="onSubmit"
