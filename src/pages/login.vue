@@ -14,11 +14,11 @@
       :span="8"
       class="bg-indigo-50 flex items-center justify-center flex-col"
     >
-      <h1 class="text-4xl  text-dark-50 font-bold">欢迎回来</h1>
-      <div class="flex it justify-center my-5 text-gray-400">
-        <span>--</span>
+      <h2 class="text-4xl  text-dark-50 font-bold">欢迎回来</h2>
+      <div class="flex items-center justify-center my-5 text-gray-400 space-x-2">
+        <span class="h-[1px] w-16  bg-gray-400"></span>
         <span>账号密码登录</span>
-        <span>--</span>
+        <span class="h-[1px] w-16 bg-gray-400"></span>
       </div>
       <div>
         <el-form :model="form" >
@@ -28,7 +28,7 @@
           <el-form-item label="密码：" >
             <el-input  v-model="form.password"  placeholder="请输入密码"/>
           </el-form-item>
-          <el-form-item >
+          <el-form-item>
             <el-button type="primary" @click="onSubmit">登录</el-button>
             <el-button>注册</el-button>
           </el-form-item>
