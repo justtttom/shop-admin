@@ -14,10 +14,11 @@
       :span="8"
       class="bg-indigo-50 flex items-center justify-center flex-col"
     >
-      <h1 class="text-5xl mb-5 text-dark-50">欢迎回来！</h1>
-      <div>
-        <span></span>
-        <span></span>
+      <h1 class="text-4xl  text-dark-50 font-bold">欢迎回来</h1>
+      <div class="flex it justify-center my-5 text-gray-400">
+        <span>--</span>
+        <span>账号密码登录</span>
+        <span>--</span>
       </div>
       <div>
         <el-form :model="form" >
