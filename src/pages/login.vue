@@ -2,26 +2,22 @@
   <el-row class="login-container">
     <el-col :lg="16" :md="12" class="left">
       <div>
-        <div class="font-bold text-6xl text-light-100 mb-5">
+        <div class="title">
           欢迎来到 hello 学习平台 👏🏻
         </div>
-        <div class="text-2xl text-gray-300">
+        <div class="description">
           此站点是为了学习《vite + vue3实战商城后台开发》
         </div>
       </div>
     </el-col>
-    <el-col
-      :lg="8"
-      :md="12"
-      class=" right "
-    >
-      <h2 class="text-4xl text-dark-50 font-bold">欢迎回来</h2>
+    <el-col :lg="8" :md="12" class="right">
+      <h2 class="title">欢迎回来</h2>
       <div
-        class="flex items-center justify-center my-5 text-gray-400 space-x-2"
+        class="container"
       >
-        <span class="h-[1px] w-16 bg-gray-400"></span>
+        <span class="span-line"></span>
         <span>账号密码登录</span>
-        <span class="h-[1px] w-16 bg-gray-400"></span>
+        <span class="span-line"></span>
       </div>
       <div>
         <el-form :model="form" class="w-[250px]">
@@ -79,14 +75,31 @@ const onSubmit = () => {
 }
 </script>
 
+
 <style>
 .login-container {
   @apply min-h-screen bg-indigo-400;
 }
-.login-container .left,.login-container .right {
+.login-container .left,
+.login-container .right {
   @apply flex items-center justify-center;
 }
-.login-container .right{
-  @apply bg-indigo-50 flex-col
+.login-container .right {
+  @apply bg-indigo-50 flex-col;
+}
+.left .title{
+  @apply font-bold text-6xl text-light-100 mb-5
+}
+.left .description{
+  @apply text-2xl text-gray-300
+}
+.right .title{
+  @apply text-4xl text-dark-50 font-bold
+}
+.right .container{
+  @apply flex items-center justify-center my-5 text-gray-400 space-x-2
+}
+.right .span-line{
+  @apply h-[1px] w-16 bg-gray-400
 }
 </style>
