@@ -20,8 +20,8 @@
         <span class="span-line"></span>
       </div>
       <div>
-        <el-form :model="form" class="w-[250px]">
-          <el-form-item label="账号：">
+        <el-form :rules="rules" :model="form" class="w-[250px]">
+          <el-form-item prop="username" label="账号：">
             <el-input v-model="form.username" placeholder="请输入用户名">
               <template #prefix>
                 <el-icon class="el-input__icon"
@@ -30,7 +30,7 @@
               </template>
             </el-input>
           </el-form-item>
-          <el-form-item label="密码：">
+          <el-form-item prop="password"  label="密码：">
             <el-input
               type="password"
               show-password
@@ -69,6 +69,17 @@ const form = reactive({
   username: '',
   password: ''
 })
+
+const rules = {
+  username:[
+    {required: true, message: '用户名不能为空', trigger: 'blur' },
+    { min: 3, max: 5, message: '用户名长度必须是3-5个字符', trigger: 'blur' },
+  ],
+  password:[
+    {required: true, message: '密码不能为空', trigger: 'blur' },
+    { min: 3, max: 5, message: '用户名长度必须是3-5个字符', trigger: 'blur' },
+  ]
+}
 
 const onSubmit = () => {
   console.log('submit!')
