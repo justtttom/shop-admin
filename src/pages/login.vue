@@ -2,9 +2,7 @@
   <el-row class="login-container">
     <el-col :lg="16" :md="12" class="left">
       <div>
-        <div class="title">
-          欢迎来到 hello 学习平台 👏🏻
-        </div>
+        <div class="title">欢迎来到 hello 学习平台 👏🏻</div>
         <div class="description">
           此站点是为了学习《vite + vue3实战商城后台开发》
         </div>
@@ -12,9 +10,7 @@
     </el-col>
     <el-col :lg="8" :md="12" class="right">
       <h2 class="title">欢迎回来</h2>
-      <div
-        class="container"
-      >
+      <div class="container">
         <span class="span-line"></span>
         <span>账号密码登录</span>
         <span class="span-line"></span>
@@ -30,7 +26,7 @@
               </template>
             </el-input>
           </el-form-item>
-          <el-form-item prop="password"  label="密码：">
+          <el-form-item prop="password" label="密码：">
             <el-input
               type="password"
               show-password
@@ -62,7 +58,8 @@
 </template>
 
 <script setup>
-import { ref,reactive } from 'vue'
+import { ref, reactive } from 'vue'
+import { login } from '~/api/manager'
 
 // do not use same name with ref
 const form = reactive({
@@ -71,28 +68,33 @@ const form = reactive({
 })
 
 const rules = {
-  username:[
-    {required: true, message: '用户名不能为空', trigger: 'blur' },
-    { min: 3, max: 5, message: '用户名长度必须是3-5个字符', trigger: 'blur' },
+  username: [
+    { required: true, message: '用户名不能为空', trigger: 'blur' },
+    { min: 3, max: 5, message: '用户名长度必须是3-5个字符', trigger: 'blur' }
   ],
-  password:[
-    {required: true, message: '密码不能为空', trigger: 'blur' },
-    { min: 8, max: 16, message: '用户名长度必须是8-16个字符', trigger: 'blur' },
+  password: [
+    { required: true, message: '密码不能为空', trigger: 'blur' },
+    { min: 8, max: 16, message: '用户名长度必须是8-16个字符', trigger: 'blur' }
   ]
 }
 
 const formRef = ref(null)
 
 const onSubmit = () => {
-  formRef.value.validate((valid)=>{
-    if(!valid){
+  formRef.value.validate((valid) => {
+    if (!valid) {
       return false
     }
-    console.log("验证通过")
+    login(form.username, form.password)
+      .then((res) => {
+        console.log(res)
+      })
+      .catch((err) => {
+        console.log(err.response.data.msg)
+      })
   })
 }
 </script>
-
 
 <style>
 .login-container {
@@ -105,19 +107,19 @@ const onSubmit = () => {
 .login-container .right {
   @apply bg-indigo-50 flex-col;
 }
-.left .title{
-  @apply font-bold text-6xl text-light-100 mb-5
+.left .title {
+  @apply font-bold text-6xl text-light-100 mb-5;
 }
-.left .description{
-  @apply text-2xl text-gray-300
+.left .description {
+  @apply text-2xl text-gray-300;
 }
-.right .title{
-  @apply text-4xl text-dark-50 font-bold
+.right .title {
+  @apply text-4xl text-dark-50 font-bold;
 }
-.right .container{
-  @apply flex items-center justify-center my-5 text-gray-400 space-x-2
+.right .container {
+  @apply flex items-center justify-center my-5 text-gray-400 space-x-2;
 }
-.right .span-line{
-  @apply h-[1px] w-16 bg-gray-400
+.right .span-line {
+  @apply h-[1px] w-16 bg-gray-400;
 }
 </style>
