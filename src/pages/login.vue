@@ -1,6 +1,6 @@
 <template>
-  <el-row class="min-h-screen bg-indigo-400">
-    <el-col :lg="16" :md="12" class="flex items-center justify-center">
+  <el-row class="login-container">
+    <el-col :lg="16" :md="12" class="left">
       <div>
         <div class="font-bold text-6xl text-light-100 mb-5">
           欢迎来到 hello 学习平台 👏🏻
@@ -13,7 +13,7 @@
     <el-col
       :lg="8"
       :md="12"
-      class="bg-indigo-50 flex items-center justify-center flex-col"
+      class=" right "
     >
       <h2 class="text-4xl text-dark-50 font-bold">欢迎回来</h2>
       <div
@@ -67,7 +67,6 @@
 
 <script setup>
 import { reactive } from 'vue'
-import { User, Lock } from '@element-plus/icons-vue'
 
 // do not use same name with ref
 const form = reactive({
@@ -80,4 +79,14 @@ const onSubmit = () => {
 }
 </script>
 
-<style></style>
+<style>
+.login-container {
+  @apply min-h-screen bg-indigo-400;
+}
+.login-container .left,.login-container .right {
+  @apply flex items-center justify-center;
+}
+.login-container .right{
+  @apply bg-indigo-50 flex-col
+}
+</style>
