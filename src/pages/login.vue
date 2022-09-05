@@ -20,7 +20,7 @@
         <span class="span-line"></span>
       </div>
       <div>
-        <el-form :rules="rules" :model="form" class="w-[250px]">
+        <el-form ref="formRef" :rules="rules" :model="form" class="w-[250px]">
           <el-form-item prop="username" label="账号：">
             <el-input v-model="form.username" placeholder="请输入用户名">
               <template #prefix>
@@ -62,7 +62,7 @@
 </template>
 
 <script setup>
-import { reactive } from 'vue'
+import { ref,reactive } from 'vue'
 
 // do not use same name with ref
 const form = reactive({
@@ -77,12 +77,19 @@ const rules = {
   ],
   password:[
     {required: true, message: '密码不能为空', trigger: 'blur' },
-    { min: 3, max: 5, message: '用户名长度必须是3-5个字符', trigger: 'blur' },
+    { min: 8, max: 16, message: '用户名长度必须是8-16个字符', trigger: 'blur' },
   ]
 }
 
+const formRef = ref(null)
+
 const onSubmit = () => {
-  console.log('submit!')
+  formRef.value.validate((valid)=>{
+    if(!valid){
+      return false
+    }
+    console.log("验证通过")
+  })
 }
 </script>
 
