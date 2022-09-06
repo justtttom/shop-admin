@@ -57,7 +57,7 @@
 
 <script setup>
 import { ref, reactive } from "vue";
-import { login } from "~/api/manager";
+import { login,getInfo } from "~/api/manager";
 import { ElNotification } from "element-plus";
 import { useRouter } from "vue-router";
 import { useCookies } from "@vueuse/integrations/useCookies";
@@ -88,31 +88,28 @@ const onSubmit = () => {
     if (!valid) {
       return false;
     }
-    login(form.username, form.password)
-      .then((res) => {
-        // 提示成功
-        ElNotification({
-          // title: 'Success',
-          message: res.data.msg || "登录成功",
-          type: "success",
-          duration: 2000,
-        });
-
-        // 存储用户的token和用户相关信息
-        const cookie = useCookies();
-        cookie.set("admin-token", res.data.data.token);
-
-        // 跳转到后台首页
-        router.push("/");
-      })
-      .catch((err) => {
-        ElNotification({
-          // title: 'Error',
-          message: err.response.data.msg || "请求失败",
-          type: "error",
-          duration: 2000,
-        });
+    login(form.username, form.password).then((res) => {
+      console.log(res);
+      // 提示成功
+      ElNotification({
+        // title: 'Success',
+        message: res.msg || "登录成功",
+        type: "success",
+        duration: 2000,
       });
+
+      // 存储用户的token和用户相关信息
+      const cookie = useCookies();
+      cookie.set("admin-token", res.token);
+
+      //获取用户相关信息
+      getInfo().then(res2=>{
+        console.log(res2)
+      })
+
+      // 跳转到后台首页
+      router.push("/");
+    });
   });
 };
 </script>
