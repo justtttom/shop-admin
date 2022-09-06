@@ -3,9 +3,7 @@
     <el-col :lg="16" :md="12" class="left">
       <div>
         <div class="title">欢迎来到 hello 学习平台 👏🏻</div>
-        <div class="description">
-          此站点是为了学习《vite + vue3实战商城后台开发》
-        </div>
+        <div class="description">此站点是为了学习《vite + vue3实战商城后台开发》</div>
       </div>
     </el-col>
     <el-col :lg="8" :md="12" class="right">
@@ -58,63 +56,65 @@
 </template>
 
 <script setup>
-import { ref, reactive } from 'vue'
-import { login } from '~/api/manager'
-import { ElNotification } from 'element-plus'
-import {useRouter} from 'vue-router'
+import { ref, reactive } from "vue";
+import { login } from "~/api/manager";
+import { ElNotification } from "element-plus";
+import { useRouter } from "vue-router";
+import { useCookies } from "@vueuse/integrations/useCookies";
 
-const router = useRouter()
+const router = useRouter();
 
 // do not use same name with ref
 const form = reactive({
-  username: '',
-  password: ''
-})
+  username: "",
+  password: "",
+});
 
 const rules = {
   username: [
-    { required: true, message: '用户名不能为空', trigger: 'blur' }
+    { required: true, message: "用户名不能为空", trigger: "blur" },
     // { min: 3, max: 5, message: '用户名长度必须是3-5个字符', trigger: 'blur' }
   ],
   password: [
-    { required: true, message: '密码不能为空', trigger: 'blur' }
+    { required: true, message: "密码不能为空", trigger: "blur" },
     // { min: 8, max: 16, message: '用户名长度必须是8-16个字符', trigger: 'blur' }
-  ]
-}
+  ],
+};
 
-const formRef = ref(null)
+const formRef = ref(null);
 
 const onSubmit = () => {
   formRef.value.validate((valid) => {
     if (!valid) {
-      return false
+      return false;
     }
     login(form.username, form.password)
       .then((res) => {
         // 提示成功
         ElNotification({
           // title: 'Success',
-          message: res.data.msg || '登录成功',
-          type: 'success',
-          duration: 2000
-        })
-        
+          message: res.data.msg || "登录成功",
+          type: "success",
+          duration: 2000,
+        });
 
         // 存储用户的token和用户相关信息
+        const cookie = useCookies();
+        cookie.set("admin-token", res.data.data.token);
 
         // 跳转到后台首页
-      router.push('/')
+        router.push("/");
       })
       .catch((err) => {
         ElNotification({
           // title: 'Error',
-          message: err.response.data.msg || '请求失败',
-          type: 'error',
-          duration: 2000
-        })
-      })
-  })
-}
+          message: err.response.data.msg || "请求失败",
+          type: "error",
+          duration: 2000,
+        });
+      });
+  });
+};
 </script>
 
 <style>
