@@ -70,11 +70,11 @@ const form = reactive({
 const rules = {
   username: [
     { required: true, message: '用户名不能为空', trigger: 'blur' },
-    { min: 3, max: 5, message: '用户名长度必须是3-5个字符', trigger: 'blur' }
+    // { min: 3, max: 5, message: '用户名长度必须是3-5个字符', trigger: 'blur' }
   ],
   password: [
     { required: true, message: '密码不能为空', trigger: 'blur' },
-    { min: 8, max: 16, message: '用户名长度必须是8-16个字符', trigger: 'blur' }
+    // { min: 8, max: 16, message: '用户名长度必须是8-16个字符', trigger: 'blur' }
   ]
 }
 
@@ -87,10 +87,10 @@ const onSubmit = () => {
     }
     login(form.username, form.password)
       .then((res) => {
-        console.log(res)
+        // console.log(res)
       })
       .catch((err) => {
-        console.log(err.response.data.msg)
+        console.log(err.response)
       })
   })
 }
