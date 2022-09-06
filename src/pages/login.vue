@@ -60,6 +60,10 @@
 <script setup>
 import { ref, reactive } from 'vue'
 import { login } from '~/api/manager'
+import { ElNotification } from 'element-plus'
+import {useRouter} from 'vue-router'
+
+const router = useRouter()
 
 // do not use same name with ref
 const form = reactive({
@@ -69,11 +73,11 @@ const form = reactive({
 
 const rules = {
   username: [
-    { required: true, message: '用户名不能为空', trigger: 'blur' },
+    { required: true, message: '用户名不能为空', trigger: 'blur' }
     // { min: 3, max: 5, message: '用户名长度必须是3-5个字符', trigger: 'blur' }
   ],
   password: [
-    { required: true, message: '密码不能为空', trigger: 'blur' },
+    { required: true, message: '密码不能为空', trigger: 'blur' }
     // { min: 8, max: 16, message: '用户名长度必须是8-16个字符', trigger: 'blur' }
   ]
 }
@@ -87,10 +91,27 @@ const onSubmit = () => {
     }
     login(form.username, form.password)
       .then((res) => {
-        // console.log(res)
+        // 提示成功
+        ElNotification({
+          // title: 'Success',
+          message: res.data.msg || '登录成功',
+          type: 'success',
+          duration: 2000
+        })
+        
+
+        // 存储用户的token和用户相关信息
+
+        // 跳转到后台首页
+      router.push('/')
       })
       .catch((err) => {
-        console.log(err.response)
+        ElNotification({
+          // title: 'Error',
+          message: err.response.data.msg || '请求失败',
+          type: 'error',
+          duration: 2000
+        })
       })
   })
 }
