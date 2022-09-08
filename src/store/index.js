@@ -8,6 +8,11 @@ const store = createStore({
     }
   },
   mutations: {
-    
+    // 记录用户信息
+    SET_USERINFO(state,user){
+      state.user = user
+    }
   }
 })
+
+export default store

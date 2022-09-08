@@ -5,7 +5,9 @@ import 'virtual:windi.css'
 // import './style.css'
 import App from './App.vue'
 import router from './router/index'
+import  Store  from './store'
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
+import store from './store'
 
 
 
@@ -18,5 +20,7 @@ for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
 app.use(router)
 
 app.use(ElementPlus)
+
+app.use(store)
 
 app.mount('#app')

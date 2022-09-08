@@ -62,10 +62,13 @@
 import { ref, reactive } from 'vue'
 import { login, getInfo } from '~/api/manager'
 import { useRouter } from 'vue-router'
+import {useStore} from 'vuex'
 import { setToken } from '~/composables/auth'
 import { toast } from '~/composables/util'
 
 const router = useRouter()
+
+const store = useStore()
 
 // do not use same name with ref
 const form = reactive({
@@ -104,6 +107,7 @@ const onSubmit = () => {
 
         //获取用户相关信息
         getInfo().then((res2) => {
+          store.commit("SET_USERINFO",res2)
           console.log(res2)
         })
 
