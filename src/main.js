@@ -23,4 +23,6 @@ app.use(ElementPlus)
 
 app.use(store)
 
+import  './permission'
+
 app.mount('#app')
