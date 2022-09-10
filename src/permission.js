@@ -11,5 +11,11 @@ router.beforeEach((to, from,next) => {
     toast("请先登录","error")
     return next({path:"/login"})
   }
+
+  // 防止重新登陆
+  if(token && to.path=="/login"){
+    toast("请勿重复登录","error")
+    return next({path:from.path ? from.path: "/"})
+  }
   next()
 })
