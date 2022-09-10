@@ -1,4 +1,5 @@
 import { createStore } from 'vuex'
+import { login, getInfo } from '~/api/manager'
 
 const store = createStore({
   state () {
@@ -11,6 +12,13 @@ const store = createStore({
     // 记录用户信息
     SET_USERINFO(state,user){
       state.user = user
+    }
+  },
+  actions:{
+    getInfo({commit}){
+      getInfo().then(res=>{
+        commit("SET_USERINFO",res)
+      })
     }
   }
 })
