@@ -15,9 +15,13 @@ const store = createStore({
     }
   },
   actions:{
+    // 获取当前登录用户信息
     getInfo({commit}){
-      getInfo().then(res=>{
-        commit("SET_USERINFO",res)
+      return new Promise((resolve,reject)=>{
+        getInfo().then(res=>{
+          commit("SET_USERINFO",res)
+          resolve(res)
+        }).catch(err=>{reject(err)})
       })
     }
   }
