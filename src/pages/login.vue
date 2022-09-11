@@ -110,12 +110,19 @@ const onSubmit = () => {
 
 // 监听回车事件
 function onKeyUp(e) {
-  console.log(e)
+  if(e.key == "Enter"){
+    onSubmit()
+  }
 }
 
 // 添加键盘监听事件
-document.addEventListener("keyup",onKeyUp)
-
+onMounted(() => {
+  document.addEventListener("keyup",onKeyUp)
+})
+// 移除键盘监听
+onBeforeMount(()=>{
+  document.removeEventListener("keyup",onKeyUp)
+})
 </script>
 
 <style>
