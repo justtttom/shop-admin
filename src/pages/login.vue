@@ -59,11 +59,9 @@
 </template>
 
 <script setup>
-import { ref, reactive } from 'vue'
-import { login } from '~/api/manager'
+import { ref, reactive,onMounted,onBeforeMount } from 'vue'
 import { useRouter } from 'vue-router'
 import { useStore } from 'vuex'
-import { setToken } from '~/composables/auth'
 import { toast } from '~/composables/util'
 
 const router = useRouter()
@@ -96,15 +94,11 @@ const onSubmit = () => {
       return false
     }
     loading.value = true
-    login(form.username, form.password)
+    store
+      .dispatch('login', form)
       .then((res) => {
-        console.log(res)
         // 提示成功
         toast('登录成功')
-
-        // 存储用户的token和用户相关信息
-        setToken(res.token)
-
         // 跳转到后台首页
         router.push('/')
       })
@@ -113,6 +107,15 @@ const onSubmit = () => {
       })
   })
 }
+
+// 监听回车事件
+function onKeyUp(e) {
+  console.log(e)
+}
+
+// 添加键盘监听事件
+document.addEventListener("keyup",onKeyUp)
+
 </script>
 
 <style>
