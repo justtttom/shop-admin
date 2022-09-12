@@ -1,8 +1,8 @@
-import { ElNotification,ElMessage, ElMessageBox } from "element-plus";
+import { ElNotification, ElMessage, ElMessageBox } from "element-plus";
 
 
 // 消息提示
-export function toast(message,type="success",dangerouslyUseHTMLString=false) {
+export function toast(message, type = "success", dangerouslyUseHTMLString = false) {
   ElNotification({
     // title: 'Success',
     message,
@@ -12,26 +12,15 @@ export function toast(message,type="success",dangerouslyUseHTMLString=false) {
   })
 }
 
-const open = () => {
-  ElMessageBox.confirm(
-    'proxy will permanently delete the file. Continue?',
-    'Warning',
+// 弹出提示框
+export function showModal(content="提示内容",type="warning",title="") {
+  return ElMessageBox.confirm(
+    content,
+    title,
     {
-      confirmButtonText: 'OK',
-      cancelButtonText: 'Cancel',
-      type: 'warning',
+      confirmButtonText: '确定',
+      cancelButtonText: '取消',
+      type,
     }
   )
-    .then(() => {
-      ElMessage({
-        type: 'success',
-        message: 'Delete completed',
-      })
-    })
-    .catch(() => {
-      ElMessage({
-        type: 'info',
-        message: 'Delete canceled',
-      })
-    })
 }
