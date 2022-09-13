@@ -8,16 +8,19 @@
 <script setup>
 import { showModal,toast } from '~/composables/util'
 import { logout } from '~/api/manager'
-import { removeToken } from '~/composables/auth'
-import router from '../router';
+import { useRouter } from 'vue-router'
+import { useStore } from 'vuex'
+
+
+const router = useRouter()
+const store = useStore()
 
 function handleLogout() {
   showModal('是否退出登录？').then((res) => {
     logout().finally(() => {
-      // 移除cookie里的 token
-      removeToken()
+   
       // 清除用户状态 vuex
-
+      store.dispatch('logout')
       // 跳转回登录页
       router.push('/login')
       // 提示登录成功
