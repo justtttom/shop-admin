@@ -23,7 +23,7 @@ const routes = [{
   name: 'NotFound',
   component: NotFound,
   meta:{
-    title:'404'
+    title:'你的页面走丢了'
   }
 },
 ];
