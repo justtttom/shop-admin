@@ -25,4 +25,6 @@ app.use(store)
 
 import  './permission'
 
+import '../node_modules/nprogress/nprogress.css'
+
 app.mount('#app')
