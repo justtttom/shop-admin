@@ -25,6 +25,12 @@ router.beforeEach(async (to, from, next) => {
   if (token) {
     await store.dispatch("getInfo")
   }
+
+  // 设置页面标题
+  let title = (to.meta.title ? to.meta.title : "") //  + "-商城管理后台"
+  
+  document.title = title
+
   next()
 })
 

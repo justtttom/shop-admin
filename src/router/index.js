@@ -7,11 +7,25 @@ import Login from '~/pages/login.vue'
 
 const routes = [{
   path: '/',
-  component: Index
+  component: Index,
+  meta: {
+    title: '首页'
+  }
 }, {
   path: '/login',
-  component: Login
-}, { path: '/:pathMatch(.*)*', name: 'NotFound', component: NotFound },
+  component: Login,
+  meta:{
+    title:'登录页'
+  }
+},
+{
+  path: '/:pathMatch(.*)*',
+  name: 'NotFound',
+  component: NotFound,
+  meta:{
+    title:'404'
+  }
+},
 ];
 
 const router = createRouter({
