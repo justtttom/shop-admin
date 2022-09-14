@@ -1,7 +1,7 @@
 <template>
   <div class="common-layout">
     <el-container>
-      <el-header class="bg-indigo-500 text-yellow-50">
+      <el-header>
         <f-header />
       </el-header>
       <el-container>
