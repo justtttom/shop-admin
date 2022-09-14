@@ -12,3 +12,9 @@
     </el-container>
   </div>
 </template>
+
+<script setup>
+  import {FHeader} from './FHeader.vue'
+  import {FMenu} from './FMenu.vue'
+  import {FTagList} from './FTagList.vue'
+</script>
