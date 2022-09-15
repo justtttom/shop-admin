@@ -32,7 +32,7 @@ import { ArrowDown } from '@element-plus/icons-vue'
 </script>
 <style>
 .f-header {
-  @apply flex items-center  bg-indigo-400 text-white fixed top-0 left-0 right-0;
+  @apply flex items-center  bg-indigo-400s text-white fixed top-0 left-0 right-0;
   height: 64px;
 }
 .logo {
