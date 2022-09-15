@@ -39,6 +39,14 @@ import { showModal, toast } from '~/composables/util'
 import { logout } from '~/api/manager'
 import { useRouter } from 'vue-router'
 import { useStore } from 'vuex'
+import { useFullscreen } from '@vueuse/core'
+
+const {
+  // 是否全屏状态
+   isFullscreen, 
+   toggle
+   } = useFullscreen()
+
 
 const router = useRouter()
 const store = useStore()
