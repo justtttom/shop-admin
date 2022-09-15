@@ -8,7 +8,7 @@
       <el-icon class="icon-btn"><Fold /></el-icon>
     </el-tooltip>
     <el-tooltip effect="dark" content="刷新" placement="bottom-start">
-      <el-icon class="icon-btn"><Refresh /></el-icon>
+      <el-icon class="icon-btn" @click="handleRefresh"><Refresh /></el-icon>
     </el-tooltip>
     <div class="ml-auto flex justify-center items-center">
       <el-tooltip effect="dark" content="全屏" placement="bottom-start">
@@ -52,6 +52,9 @@ const handleCommand = (c) => {
       break
   }
 }
+
+// 刷新页面
+const handleRefresh = () => location.reload()
 
 function handleLogout() {
   showModal('是否退出登录？').then((res) => {
