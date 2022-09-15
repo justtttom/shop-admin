@@ -19,7 +19,7 @@
         <template #dropdown>
           <el-dropdown-menu>
             <el-dropdown-item>修改密码</el-dropdown-item>
-            <el-dropdown-item>退出登录</el-dropdown-item>
+            <el-dropdown-item @click="handleLogout">退出登录</el-dropdown-item>
           </el-dropdown-menu>
         </template>
       </el-dropdown>
@@ -29,10 +29,32 @@
 
 <script setup>
 import { ArrowDown } from '@element-plus/icons-vue'
+import { showModal,toast } from '~/composables/util'
+import { logout } from '~/api/manager'
+import { useRouter } from 'vue-router'
+import { useStore } from 'vuex'
+
+
+const router = useRouter()
+const store = useStore()
+
+function handleLogout() {
+  showModal('是否退出登录？').then((res) => {
+    logout().finally(() => {
+   
+      // 清除用户状态 vuex
+      store.dispatch('logout')
+      // 跳转回登录页
+      router.push('/login')
+      // 提示登录成功
+      toast('退出登录成功！')
+    })
+  })
+}
 </script>
 <style>
 .f-header {
-  @apply flex items-center  bg-indigo-400s text-white fixed top-0 left-0 right-0;
+  @apply flex items-center  bg-indigo-400 text-white fixed top-0 left-0 right-0;
   height: 64px;
 }
 .logo {
