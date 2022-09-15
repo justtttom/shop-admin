@@ -8,7 +8,7 @@
     <el-icon class="icon-btn"><Refresh /></el-icon>
     <div class="ml-auto flex justify-center items-center">
       <el-icon class="icon-btn"><FullScreen /></el-icon>
-      <el-dropdown class="dropdown">
+      <el-dropdown class="dropdown" @command="handleCommand">
         <span class="flex justify-center items-center">
           <el-avatar class="mr-2" :size="25" :src="$store.state.user.avatar" />
           {{ $store.state.user.username }}
@@ -18,8 +18,8 @@
         </span>
         <template #dropdown>
           <el-dropdown-menu>
-            <el-dropdown-item>修改密码</el-dropdown-item>
-            <el-dropdown-item @click="handleLogout">退出登录</el-dropdown-item>
+            <el-dropdown-item command="rePassword">修改密码</el-dropdown-item>
+            <el-dropdown-item command="logout">退出登录</el-dropdown-item>
           </el-dropdown-menu>
         </template>
       </el-dropdown>
@@ -29,19 +29,27 @@
 
 <script setup>
 import { ArrowDown } from '@element-plus/icons-vue'
-import { showModal,toast } from '~/composables/util'
+import { showModal, toast } from '~/composables/util'
 import { logout } from '~/api/manager'
 import { useRouter } from 'vue-router'
 import { useStore } from 'vuex'
 
-
 const router = useRouter()
 const store = useStore()
+const handleCommand = (c) => {
+  switch (c) {
+    case 'logout':
+      handleLogout()
+      break
+    case 'rePassword':
+      console.log("修改密码")
+      break
+  }
+}
 
 function handleLogout() {
   showModal('是否退出登录？').then((res) => {
     logout().finally(() => {
-   
       // 清除用户状态 vuex
       store.dispatch('logout')
       // 跳转回登录页
@@ -67,11 +75,11 @@ function handleLogout() {
   height: 64px;
   cursor: pointer;
 }
-.icon-btn:hover{
-  @apply bg-indigo-300
+.icon-btn:hover {
+  @apply bg-indigo-300;
 }
 
-.f-header .dropdown{
+.f-header .dropdown {
   height: 64px;
   cursor: pointer;
   @apply flex justify-center items-center text-white mx-5;
