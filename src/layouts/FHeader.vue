@@ -4,10 +4,16 @@
       <el-icon class="mr-3"><ElemeFilled /></el-icon>
       justin program
     </span>
-    <el-icon class="icon-btn"><Fold /></el-icon>
-    <el-icon class="icon-btn"><Refresh /></el-icon>
+    <el-tooltip effect="dark" content="折叠菜单" placement="bottom-start">
+      <el-icon class="icon-btn"><Fold /></el-icon>
+    </el-tooltip>
+    <el-tooltip effect="dark" content="刷新" placement="bottom-start">
+      <el-icon class="icon-btn"><Refresh /></el-icon>
+    </el-tooltip>
     <div class="ml-auto flex justify-center items-center">
-      <el-icon class="icon-btn"><FullScreen /></el-icon>
+      <el-tooltip effect="dark" content="全屏" placement="bottom-start">
+        <el-icon class="icon-btn"><FullScreen /></el-icon>
+      </el-tooltip>
       <el-dropdown class="dropdown" @command="handleCommand">
         <span class="flex justify-center items-center">
           <el-avatar class="mr-2" :size="25" :src="$store.state.user.avatar" />
@@ -42,7 +48,7 @@ const handleCommand = (c) => {
       handleLogout()
       break
     case 'rePassword':
-      console.log("修改密码")
+      console.log('修改密码')
       break
   }
 }
@@ -62,7 +68,7 @@ function handleLogout() {
 </script>
 <style>
 .f-header {
-  @apply flex items-center  bg-indigo-400 text-white fixed top-0 left-0 right-0;
+  @apply flex items-center  bg-indigo-500 text-white fixed top-0 left-0 right-0;
   height: 64px;
 }
 .logo {
@@ -76,7 +82,7 @@ function handleLogout() {
   cursor: pointer;
 }
 .icon-btn:hover {
-  @apply bg-indigo-300;
+  @apply bg-indigo-400;
 }
 
 .f-header .dropdown {
