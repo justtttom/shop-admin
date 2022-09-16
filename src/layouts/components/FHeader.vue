@@ -81,14 +81,12 @@
         >
         </el-input>
       </el-form-item>
-      <el-form-item>
+      <el-row>
         <el-button type="primary" @click="onSubmit" :loading="loading"
           >提交</el-button
         >
-      </el-form-item>
-      <el-form-item>
-        <el-button type="info">取消</el-button>
-      </el-form-item>
+        <el-button type=" info" :loading="loading">取消</el-button>
+      </el-row>
     </el-form>
   </el-drawer>
 </template>
