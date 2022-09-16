@@ -18,7 +18,7 @@
 </template>
 
 <script setup>
-import FHeader from './FHeader.vue'
-import FMenu from './FMenu.vue'
-import FTagList from './FTagList.vue'
+import FHeader from './components/FHeader.vue'
+import FMenu from './components/FMenu.vue'
+import FTagList from './components/FTagList.vue'
 </script>
