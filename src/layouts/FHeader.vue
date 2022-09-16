@@ -12,7 +12,10 @@
     </el-tooltip>
     <div class="ml-auto flex justify-center items-center">
       <el-tooltip effect="dark" content="全屏" placement="bottom-start">
-        <el-icon class="icon-btn" @click="toggle"><FullScreen /></el-icon>
+        <el-icon class="icon-btn" @click="toggle">
+          <FullScreen v-if="!isFullscreen"/>
+          <Aim v-else/>
+        </el-icon>
       </el-tooltip>
       <el-dropdown class="dropdown" @command="handleCommand">
         <span class="flex justify-center items-center">
@@ -43,11 +46,10 @@ import { useFullscreen } from '@vueuse/core'
 
 const {
   // 是否全屏状态
-   isFullscreen, 
+  isFullscreen,
   // 切换全屏
-   toggle
-   } = useFullscreen()
-
+  toggle
+} = useFullscreen()
 
 const router = useRouter()
 const store = useStore()
