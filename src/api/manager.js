@@ -15,6 +15,6 @@ export function logout() {
   return axios.post("/admin/logout")
 }
 
-export function password(data) {
+export function updatepassword(data) {
   return axios.post('/admin/updatepassword',data)
 }

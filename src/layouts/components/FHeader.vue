@@ -13,8 +13,8 @@
     <div class="ml-auto flex justify-center items-center">
       <el-tooltip effect="dark" content="全屏" placement="bottom-start">
         <el-icon class="icon-btn" @click="toggle">
-          <FullScreen v-if="!isFullscreen"/>
-          <Aim v-else/>
+          <FullScreen v-if="!isFullscreen" />
+          <Aim v-else />
         </el-icon>
       </el-tooltip>
       <el-dropdown class="dropdown" @command="handleCommand">
@@ -34,15 +34,104 @@
       </el-dropdown>
     </div>
   </div>
+  <el-drawer
+    v-model="showDrawer"
+    title="修改密码"
+    size="35%"
+    close-on-press-escape="false"
+  >
+    <input type="text" />
+    <el-form
+      ref="formRef"
+      :rules="rules"
+      :model="form"
+      label-width="85px"
+      size="small"
+    >
+      <el-form-item prop="oldpassword" label="旧密码：">
+        <el-input
+          v-model="form.oldpassword"
+          type="password"
+          placeholder="请输入旧密码"
+          show-password
+        >
+        </el-input>
+      </el-form-item>
+      <el-form-item prop="password" label="新密码：">
+        <el-input
+          type="password"
+          v-model="form.password"
+          placeholder="请输入新密码"
+          show-password
+        >
+        </el-input>
+      </el-form-item>
+      <el-form-item prop="repassword" label="确认密码：">
+        <el-input
+          type="password"
+          v-model="form.repassword"
+          placeholder="请输入确认密码"
+          show-password
+        >
+        </el-input>
+      </el-form-item>
+      <el-form-item>
+        <el-button type="primary" @click="onSubmit" :loading="loading"
+          >提交</el-button
+        >
+        <el-button type=" info" @click="onSubmit" :loading="loading"
+          >取消</el-button
+        >
+      </el-form-item>
+    </el-form>
+  </el-drawer>
 </template>
 
 <script setup>
-import { ArrowDown } from '@element-plus/icons-vue'
 import { showModal, toast } from '~/composables/util'
 import { logout } from '~/api/manager'
 import { useRouter } from 'vue-router'
 import { useStore } from 'vuex'
 import { useFullscreen } from '@vueuse/core'
+import { ref, reactive } from 'vue'
+import {updatepassword} from '~/api/manager.js'
+
+const showDrawer = ref(false)
+
+// do not use same name with ref
+const form = reactive({
+  oldpassword: '',
+  password: '',
+  repassword: ''
+})
+
+const rules = {
+  oldpassword: [{ required: true, message: '旧密码不能为空', trigger: 'blur' }],
+  password: [{ required: true, message: '新密码不能为空', trigger: 'blur' }],
+  repassword: [
+    { required: true, message: '确认密码不能为空', trigger: 'blur' }
+    // { min: 8, max: 16, message: '用户名长度必须是8-16个字符', trigger: 'blur' }
+  ]
+}
+
+const formRef = ref(null)
+const loading = ref(false)
+
+const onSubmit = () => {
+  formRef.value.validate((valid) => {
+    if (!valid) {
+      return false
+
+    }
+    loading.value = true
+    updatepassword(form)
+    .then(res=>{
+      toast("修改密码成功")
+    }).finally(()=>{
+      loading.value = false
+    })
+  })
+}
 
 const {
   // 是否全屏状态
@@ -59,7 +148,7 @@ const handleCommand = (c) => {
       handleLogout()
       break
     case 'rePassword':
-      console.log('修改密码')
+      showDrawer.value = true
       break
   }
 }
