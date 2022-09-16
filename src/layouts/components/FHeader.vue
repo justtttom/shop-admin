@@ -1,14 +1,20 @@
 <template>
   <div class="f-header">
     <span class="logo">
-      <el-icon class="mr-3"><ElemeFilled /></el-icon>
+      <el-icon class="mr-3">
+        <ElemeFilled />
+      </el-icon>
       justin program
     </span>
     <el-tooltip effect="dark" content="折叠菜单" placement="bottom-start">
-      <el-icon class="icon-btn"><Fold /></el-icon>
+      <el-icon class="icon-btn">
+        <Fold />
+      </el-icon>
     </el-tooltip>
     <el-tooltip effect="dark" content="刷新" placement="bottom-start">
-      <el-icon class="icon-btn" @click="handleRefresh"><Refresh /></el-icon>
+      <el-icon class="icon-btn" @click="handleRefresh">
+        <Refresh />
+      </el-icon>
     </el-tooltip>
     <div class="ml-auto flex justify-center items-center">
       <el-tooltip effect="dark" content="全屏" placement="bottom-start">
@@ -38,7 +44,7 @@
     v-model="showDrawer"
     title="修改密码"
     size="35%"
-    close-on-press-escape="false"
+    :close-on-click-modal="false"
   >
     <input type="text" />
     <el-form
@@ -50,8 +56,8 @@
     >
       <el-form-item prop="oldpassword" label="旧密码：">
         <el-input
-          v-model="form.oldpassword"
           type="password"
+          v-model="form.oldpassword"
           placeholder="请输入旧密码"
           show-password
         >
@@ -79,9 +85,9 @@
         <el-button type="primary" @click="onSubmit" :loading="loading"
           >提交</el-button
         >
-        <el-button type=" info" @click="onSubmit" :loading="loading"
-          >取消</el-button
-        >
+      </el-form-item>
+      <el-form-item>
+        <el-button type="info">取消</el-button>
       </el-form-item>
     </el-form>
   </el-drawer>
@@ -94,11 +100,10 @@ import { useRouter } from 'vue-router'
 import { useStore } from 'vuex'
 import { useFullscreen } from '@vueuse/core'
 import { ref, reactive } from 'vue'
-import {updatepassword} from '~/api/manager.js'
+import { updatepassword } from '~/api/manager.js'
 
 const showDrawer = ref(false)
 
-// do not use same name with ref
 const form = reactive({
   oldpassword: '',
   password: '',
@@ -108,10 +113,7 @@ const form = reactive({
 const rules = {
   oldpassword: [{ required: true, message: '旧密码不能为空', trigger: 'blur' }],
   password: [{ required: true, message: '新密码不能为空', trigger: 'blur' }],
-  repassword: [
-    { required: true, message: '确认密码不能为空', trigger: 'blur' }
-    // { min: 8, max: 16, message: '用户名长度必须是8-16个字符', trigger: 'blur' }
-  ]
+  repassword: [{ required: true, message: '确认密码不能为空', trigger: 'blur' }]
 }
 
 const formRef = ref(null)
@@ -121,15 +123,17 @@ const onSubmit = () => {
   formRef.value.validate((valid) => {
     if (!valid) {
       return false
-
     }
     loading.value = true
     updatepassword(form)
-    .then(res=>{
-      toast("修改密码成功")
-    }).finally(()=>{
-      loading.value = false
-    })
+      .then((res) => {
+        toast('修改密码成功,请退出登录')
+        store.dispatch('logout')
+        router.push('/login')
+      })
+      .finally(() => {
+        loading.value = false
+      })
   })
 }
 
@@ -171,19 +175,22 @@ function handleLogout() {
 </script>
 <style>
 .f-header {
-  @apply flex items-center  bg-indigo-500 text-white fixed top-0 left-0 right-0;
+  @apply flex items-center bg-indigo-500 text-white fixed top-0 left-0 right-0;
   height: 64px;
 }
+
 .logo {
   width: 250px;
   @apply flex justify-center items-center text-xl font-thin;
 }
+
 .icon-btn {
   @apply flex justify-center items-center;
   width: 42px;
   height: 64px;
   cursor: pointer;
 }
+
 .icon-btn:hover {
   @apply bg-indigo-400;
 }
