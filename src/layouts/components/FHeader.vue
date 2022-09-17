@@ -40,7 +40,7 @@
       </el-dropdown>
     </div>
   </div>
-  <el-drawer
+  <!-- <el-drawer
     v-model="showDrawer"
     title="修改密码"
     size="35%"
@@ -88,7 +88,10 @@
         <el-button type=" info" :loading="loading">取消</el-button>
       </el-row>
     </el-form>
-  </el-drawer>
+  </el-drawer> -->
+<form-drawer>
+  123
+</form-drawer>
 </template>
 
 <script setup>
@@ -99,6 +102,7 @@ import { useStore } from 'vuex'
 import { useFullscreen } from '@vueuse/core'
 import { ref, reactive } from 'vue'
 import { updatepassword } from '~/api/manager.js'
+import FormDrawer from '~/components/FormDrawer.vue'
 
 const showDrawer = ref(false)
 
