@@ -47,6 +47,7 @@ defineExpose({
   left: 0;
   right: 0;
   bottom:50px;
+  overflow-y: auto;
 }
 .formDrawer .actions {
   height: 50px;
