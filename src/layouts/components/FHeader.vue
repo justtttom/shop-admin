@@ -89,8 +89,7 @@
       </el-row>
     </el-form>
   </el-drawer> -->
-<form-drawer>
-  123
+<form-drawer ref="formDrawerRef">
 </form-drawer>
 </template>
 
@@ -105,6 +104,7 @@ import { updatepassword } from '~/api/manager.js'
 import FormDrawer from '~/components/FormDrawer.vue'
 
 const showDrawer = ref(false)
+const formDrawerRef = ref(null)
 
 const form = reactive({
   oldpassword: '',
@@ -154,7 +154,8 @@ const handleCommand = (c) => {
       handleLogout()
       break
     case 'rePassword':
-      showDrawer.value = true
+      // showDrawer.value = true
+      formDrawerRef.value.open()
       break
   }
 }

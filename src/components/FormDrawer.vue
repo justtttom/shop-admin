@@ -1,11 +1,10 @@
 <template>
-  <el-drawer
-    v-model="showDrawer"
-    title="修改密码"
-    size="35%"
-    :close-on-click-modal="false"
-  >
-    <div class="formDrawer"></div>
+  <el-drawer v-model="showDrawer" title="修改密码" size="35%" :close-on-click-modal="false">
+    <div class="formDrawer">
+      <slot>
+        123
+      </slot>
+    </div>
   </el-drawer>
 </template>
 
