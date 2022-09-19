@@ -44,7 +44,7 @@
     ref="formDrawerRef"
     title="修改密码"
     destroyOnClose
-    @submit="onsubmit"
+    @submit="onSubmit"
   >
     <el-form
       ref="formRef"
@@ -85,50 +85,10 @@
 </template>
 
 <script setup>
-import { showModal, toast } from '~/composables/util'
-import { logout } from '~/api/manager'
-import { useRouter } from 'vue-router'
-import { useStore } from 'vuex'
+
 import { useFullscreen } from '@vueuse/core'
-import { ref, reactive } from 'vue'
-import { updatepassword } from '~/api/manager.js'
 import FormDrawer from '~/components/FormDrawer.vue'
-
-const showDrawer = ref(false)
-const formDrawerRef = ref(null)
-
-const form = reactive({
-  oldpassword: '',
-  password: '',
-  repassword: ''
-})
-
-const rules = {
-  oldpassword: [{ required: true, message: '旧密码不能为空', trigger: 'blur' }],
-  password: [{ required: true, message: '新密码不能为空', trigger: 'blur' }],
-  repassword: [{ required: true, message: '确认密码不能为空', trigger: 'blur' }]
-}
-
-const formRef = ref(null)
-const loading = ref(false)
-
-const onSubmit = () => {
-  formRef.value.validate((valid) => {
-    if (!valid) {
-      return false
-    }
-    loading.value = true
-    updatepassword(form)
-      .then((res) => {
-        toast('修改密码成功,请退出登录')
-        store.dispatch('logout')
-        router.push('/login')
-      })
-      .finally(() => {
-        loading.value = false
-      })
-  })
-}
+import { useRepassword, useLogout } from '~/composables/useManager'
 
 const {
   // 是否全屏状态
@@ -137,36 +97,29 @@ const {
   toggle
 } = useFullscreen()
 
-const router = useRouter()
-const store = useStore()
+const { formDrawerRef, form, rules, formRef, onSubmit, openReasswordForm } =
+  useRepassword()
+
+const {
+  handleLogout
+} = useLogout()
+
+
 const handleCommand = (c) => {
   switch (c) {
     case 'logout':
       handleLogout()
       break
     case 'rePassword':
-      // showDrawer.value = true
-      formDrawerRef.value.open()
+      openReasswordForm()
       break
   }
 }
 
 // 刷新页面
 const handleRefresh = () => location.reload()
-
-function handleLogout() {
-  showModal('是否退出登录？').then((res) => {
-    logout().finally(() => {
-      // 清除用户状态 vuex
-      store.dispatch('logout')
-      // 跳转回登录页
-      router.push('/login')
-      // 提示登录成功
-      toast('退出登录成功！')
-    })
-  })
-}
 </script>
+
 <style>
 .f-header {
   @apply flex items-center bg-indigo-500 text-white fixed top-0 left-0 right-0;
