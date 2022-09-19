@@ -40,13 +40,12 @@
       </el-dropdown>
     </div>
   </div>
-  <!-- <el-drawer
-    v-model="showDrawer"
+  <form-drawer
+    ref="formDrawerRef"
     title="修改密码"
-    size="35%"
-    :close-on-click-modal="false"
+    destroyOnClose
+    @submit="onsubmit"
   >
-    <input type="text" />
     <el-form
       ref="formRef"
       :rules="rules"
@@ -81,18 +80,8 @@
         >
         </el-input>
       </el-form-item>
-      <el-row>
-        <el-button type="primary" @click="onSubmit" :loading="loading"
-          >提交</el-button
-        >
-        <el-button type=" info" :loading="loading">取消</el-button>
-      </el-row>
     </el-form>
-  </el-drawer> -->
-<form-drawer ref="formDrawerRef">
-  123
-  <div></div>
-</form-drawer>
+  </form-drawer>
 </template>
 
 <script setup>

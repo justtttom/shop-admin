@@ -4,13 +4,14 @@
     title="tittle"
     size="size"
     :close-on-click-modal="false"
+    :destroy-on-close="destroyOnClose"
   >
     <div class="formDrawer">
       <div class="body">
         <slot>123</slot>
       </div>
       <div class="actions">
-        <el-button type="primary">提交</el-button>
+        <el-button type="primary" @click="submit">{{ confirmText }}</el-button>
         <el-button type="default" @click="close">取消</el-button>
       </div>
     </div>
@@ -18,27 +19,39 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
-const showDrawer = ref(false)
+import { ref } from "vue";
+const showDrawer = ref(false);
 
 const props = defineProps({
-  tittle:String,
-  size:{
-    type:String,
-    default:"35%"
-  }
-})
+  tittle: String,
+  size: {
+    type: String,
+    default: "35%",
+  },
+  destroyOnClose: {
+    type: Boolean,
+    default: false,
+  },
+  confirmText: {
+    type: String,
+    default: "提交",
+  },
+});
 // 打开
-const open = () => (showDrawer.value = true)
+const open = () => (showDrawer.value = true);
 
 // 关闭
-const close = () => (showDrawer.value = false)
+const close = () => (showDrawer.value = false);
+
+// 提交
+const emit = defineEmits(["submit"]);
+const submit = () => emit("submit");
 
 // 向父组件暴露以下方法
 defineExpose({
   open,
-  close
-})
+  close,
+});
 </script>
 
 <style>
@@ -53,7 +66,7 @@ defineExpose({
   top: 0;
   left: 0;
   right: 0;
-  bottom:50px;
+  bottom: 50px;
   overflow-y: auto;
 }
 .formDrawer .actions {
