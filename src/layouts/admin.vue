@@ -2,10 +2,10 @@
   <div class="common-layout">
     <el-container>
       <el-header>
-        <f-header />
+        <f-header/>
       </el-header>
       <el-container>
-        <el-aside width="300px" class="bg-yellow-300">
+        <el-aside>
           <f-menu />
         </el-aside>
         <el-main class="bg-green-700">
