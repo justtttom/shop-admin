@@ -1,8 +1,8 @@
 <template>
   <el-drawer
     v-model="showDrawer"
-    title="修改密码"
-    size="35%"
+    title="tittle"
+    size="size"
     :close-on-click-modal="false"
   >
     <div class="formDrawer">
@@ -21,6 +21,13 @@
 import { ref } from 'vue'
 const showDrawer = ref(false)
 
+const props = defineProps({
+  tittle:String,
+  size:{
+    type:String,
+    default:"35%"
+  }
+})
 // 打开
 const open = () => (showDrawer.value = true)
 
@@ -39,7 +46,7 @@ defineExpose({
   width: 100%;
   height: 100%;
   position: relative;
-  @apply flex flex-col bg-indigo-500;
+  @apply flex flex-col;
 }
 .formDrawer .body {
   flex: 1;
