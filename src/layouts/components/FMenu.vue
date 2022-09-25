@@ -46,6 +46,7 @@ import {
 <style>
   .f-menu{
     width: 300px;
+    height: auto;
     @apply shadow-md fixed;
   }
 </style>

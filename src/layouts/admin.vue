@@ -21,4 +21,5 @@
 import FHeader from './components/FHeader.vue'
 import FMenu from './components/FMenu.vue'
 import FTagList from './components/FTagList.vue'
+const newLocal = 'el-aside';
 </script>
