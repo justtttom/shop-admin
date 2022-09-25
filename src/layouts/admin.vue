@@ -8,7 +8,7 @@
         <el-aside>
           <f-menu />
         </el-aside>
-        <el-main class="bg-green-700">
+        <el-main class="bg-green-800">
           <f-tag-list />
           <router-view class="text-light-100"> </router-view>
         </el-main>
