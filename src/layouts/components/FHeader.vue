@@ -7,8 +7,9 @@
       justin program
     </span>
     <el-tooltip effect="dark" content="折叠菜单" placement="bottom-start">
-      <el-icon class="icon-btn">
-        <Fold />
+      <el-icon class="icon-btn" @click="$store.commit('handleAsideWidth')">
+        <Fold v-if="$store.state.asideWidth == '250px'" />
+        <Expand v-else />
       </el-icon>
     </el-tooltip>
     <el-tooltip effect="dark" content="刷新" placement="bottom-start">
@@ -85,7 +86,6 @@
 </template>
 
 <script setup>
-
 import { useFullscreen } from '@vueuse/core'
 import FormDrawer from '~/components/FormDrawer.vue'
 import { useRepassword, useLogout } from '~/composables/useManager'
@@ -100,10 +100,7 @@ const {
 const { formDrawerRef, form, rules, formRef, onSubmit, openReasswordForm } =
   useRepassword()
 
-const {
-  handleLogout
-} = useLogout()
-
+const { handleLogout } = useLogout()
 
 const handleCommand = (c) => {
   switch (c) {

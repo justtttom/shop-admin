@@ -1,5 +1,5 @@
 <template>
-  <div class="f-menu">
+  <div class="f-menu" :style="{width:$store.state.asideWidth}">
     <el-menu default-active="2" class="border-0" @select="handleSelect">
       <template v-for="(item,index) in asideMenus" :key="index">
         <el-sub-menu v-if="item.child && item.child.length > 0" :index="item.name">
@@ -64,7 +64,6 @@ const handleSelect = (e)=>{
 
 <style>
 .f-menu {
-  width: 300px;
   top: 64px;
   bottom: 0;
   overflow: auto;
