@@ -5,17 +5,22 @@
         <el-sub-menu v-if="item.child && item.child.length > 0" :index="item.name">
           <template #title>
             <el-icon>
-              <component :is="componentId"></component>
+              <component :is="item.icon"></component>
             </el-icon>
             <span>{{item.name}}</span>
           </template>
-          <el-menu-item v-for="(item2,index2) in item.child" :key="index2" :index="item2.frontpath">{{item2.name}}</el-menu-item>
+          <el-menu-item v-for="(item2,index2) in item.child" :key="index2" :index="item2.frontpath">
+            <el-icon>
+              <component :is="item2.icon"></component>
+            </el-icon>
+            <span>{{item2.name}}</span>
+          </el-menu-item>
         </el-sub-menu>
-        <el-menu-item index="2">
+        <el-menu-item v-else :index="item.frontpath">
           <el-icon>
-            <icon-menu />
+            <component :is="item.icon"></component>
           </el-icon>
-          <span>Navigator Two</span>
+          <span>{{item.name}}</span>
         </el-menu-item>
       </template>
     </el-menu>
