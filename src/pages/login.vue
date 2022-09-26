@@ -43,7 +43,7 @@
           <el-form-item>
             <el-button
               round
-              color=" #626aefc9"
+              color=" rgb(24 205 120 / 80%)"
               class="w-[250px]"
               type="primary"
               @click="onSubmit"
@@ -127,20 +127,20 @@ onBeforeMount(()=>{
 
 <style>
 .login-container {
-  @apply min-h-screen bg-indigo-400;
+  @apply min-h-screen bg-green-400;
 }
 .login-container .left,
 .login-container .right {
   @apply flex items-center justify-center;
 }
 .login-container .right {
-  @apply bg-indigo-50 flex-col;
+  @apply bg-light-100 flex-col;
 }
 .left .title {
   @apply font-bold text-6xl text-light-100 mb-5;
 }
 .left .description {
-  @apply text-2xl text-gray-300;
+  @apply text-2xl text-light-200;
 }
 .right .title {
   @apply text-4xl text-dark-50 font-bold;

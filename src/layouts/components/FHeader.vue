@@ -122,7 +122,7 @@ const handleRefresh = () => location.reload()
 
 <style>
 .f-header {
-  @apply flex items-center bg-indigo-500 text-white fixed top-0 left-0 right-0;
+  @apply flex items-center  bg-green-400 text-white fixed top-0 left-0 right-0;
   height: 64px;
 }
 
@@ -139,7 +139,7 @@ const handleRefresh = () => location.reload()
 }
 
 .icon-btn:hover {
-  @apply bg-indigo-400;
+  @apply bg-green-500;
 }
 
 .f-header .dropdown {
