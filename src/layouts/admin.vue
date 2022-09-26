@@ -8,9 +8,9 @@
         <el-aside>
           <f-menu />
         </el-aside>
-        <el-main class="bg-orange-500">
+        <el-main class="bg-light-100">
           <f-tag-list />
-          <router-view class="text-light-100"> </router-view>
+          <router-view class="text-dark-100"> </router-view>
         </el-main>
       </el-container>
     </el-container>
