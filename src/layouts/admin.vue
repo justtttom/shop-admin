@@ -10,7 +10,7 @@
         </el-aside>
         <el-main class="bg-light-100">
           <f-tag-list />
-          <router-view class="text-dark-100"> </router-view>
+          <router-view></router-view>
         </el-main>
       </el-container>
     </el-container>
