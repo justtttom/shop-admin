@@ -5,7 +5,7 @@
         <f-header/>
       </el-header>
       <el-container>
-        <el-aside>
+        <el-aside :width="$store.state.asideWidth">
           <f-menu />
         </el-aside>
         <el-main class="bg-light-100">
@@ -23,3 +23,9 @@ import FMenu from './components/FMenu.vue'
 import FTagList from './components/FTagList.vue'
 const newLocal = 'el-aside';
 </script>
+
+<style>
+  .el-aside{
+    transition: all 0.2s;
+  }
+</style>
