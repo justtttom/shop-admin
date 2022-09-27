@@ -5,7 +5,7 @@ import Index from '~/pages/index.vue'
 import NotFound from '~/pages/404.vue'
 import Login from '~/pages/login.vue'
 import GoodList from '~/pages/goods/list.vue'
-import CategoryList from '~/pages/catagory/list.vue'
+import CategoryList from '~/pages/category/list.vue'
 import Admin from '~/layouts/admin.vue'
 
 const routes = [
