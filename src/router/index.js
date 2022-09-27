@@ -17,7 +17,7 @@ const routes = [
     // 子路由
     children:[
       {
-        path: "/",
+        path: '/',
         component:Index,
         meta:{
           title: '首页'
@@ -37,7 +37,7 @@ const routes = [
         }},
     ]
   }, {
-  path: "/login",
+  path: '/login',
   component: Login,
   meta: {
     title: '登录页'
