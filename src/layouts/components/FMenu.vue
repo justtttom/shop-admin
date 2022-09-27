@@ -1,6 +1,7 @@
 <template>
   <div class="f-menu" :style="{ width: $store.state.asideWidth }">
     <el-menu
+      unique-opened
       :collapse="isCollapse"
       default-active="2"
       class="border-0"
@@ -83,9 +84,11 @@ const handleSelect = (e) => {
 
 <style>
 .f-menu {
+  transition: all 0.2s;
   top: 64px;
   bottom: 0;
-  overflow: auto;
+  overflow-y: auto;
+  overflow-x: hidden;
   @apply shadow-md fixed bg-light-50;
 }
 </style>
