@@ -10,7 +10,10 @@ const store = createStore({
       user: {},
 
       // 侧边宽度
-      asideWidth:"250px"
+      asideWidth:"250px",
+
+      menu:[],
+      ruleNames:[]
     }
   },
   mutations: {
@@ -21,7 +24,15 @@ const store = createStore({
     // 展开/缩起侧边栏
     handleAsideWidth(state){
       state.asideWidth =  state.asideWidth == "250px" ? "64px" : "250px"
-    }
+    },
+
+    SET_MENUS(state,menus){
+      state.menus = menus
+    },
+
+    SET_RULENAMES(state,ruleNames){
+      state.ruleNames = ruleNames
+    },
   },
   actions: {
     // 登录
@@ -39,6 +50,8 @@ const store = createStore({
       return new Promise((resolve, reject) => {
         getInfo().then(res => {
           commit("SET_USERINFO", res)
+          commit("SET_MENUS", res.menus)
+          commit("SET_RULENAMES", res.ruleNames)
           resolve(res)
         }).catch(err => { reject(err) })
       })

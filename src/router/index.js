@@ -5,6 +5,7 @@ import Index from '~/pages/index.vue'
 import NotFound from '~/pages/404.vue'
 import Login from '~/pages/login.vue'
 import GoodList from '~/pages/goods/list.vue'
+import CategoryList from '~/pages/catagory/list.vue'
 import Admin from '~/layouts/admin.vue'
 
 const routes = [
@@ -36,6 +37,12 @@ const routes = [
   component: GoodList,
   meta: {
     title: '商品管理页'
+  }
+},{
+  path: '/category/list',
+  component:CategoryList,
+  meta: {
+    title: '分类管理页'
   }
 },
 {
