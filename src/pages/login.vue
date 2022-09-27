@@ -44,7 +44,7 @@
             <el-button
               round
               color=" rgb(24 205 120 / 80%)"
-              class="w-[250px]"
+              class="w-[250px] text-light-100"
               type="primary"
               @click="onSubmit"
               :loading="loading"
