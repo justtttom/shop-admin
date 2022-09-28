@@ -7,51 +7,6 @@ import GoodList from '~/pages/goods/list.vue'
 import CategoryList from '~/pages/category/list.vue'
 import Admin from '~/layouts/admin.vue'
 
-// const routes = [
-//   {
-//     path: "/",
-//     component:Admin,
-
-//     // 子路由
-//     children:[
-//       {
-//         path: '/',
-//         component:Index,
-//         meta:{
-//           title: '首页'
-//         }
-//       },
-//       {
-//         path: "/goods/list",
-//         component: GoodList,
-//         meta: {
-//           title: '商品管理页'
-//         }
-//       },{
-//         path: '/category/list',
-//         component:CategoryList,
-//         meta: {
-//           title: '分类管理页'
-//         }},
-//     ]
-//   }, {
-//   path: '/login',
-//   component: Login,
-//   meta: {
-//     title: '登录页'
-//   }
-// },
-
-// {
-//   path: '/:pathMatch(.*)*',
-//   name: 'NotFound',
-//   component: NotFound,
-//   meta: {
-//     title: '你的页面走丢了'
-//   }
-// }
-// ]
-
 //默认路由，所有用户共享
 const routes = [
   {
@@ -78,6 +33,7 @@ const routes = [
 const asyncRoutes = [
   {
     path: '/',
+    name:'/',
     component: Index,
     meta: {
       title: '首页'
@@ -85,12 +41,14 @@ const asyncRoutes = [
   },
   {
     path: "/goods/list",
+    name:'/goods/list',
     component: GoodList,
     meta: {
       title: '商品管理页'
     }
   }, {
     path: '/category/list',
+    name:'/category/list',
     component: CategoryList,
     meta: {
       title: '分类管理页'
@@ -98,9 +56,19 @@ const asyncRoutes = [
   },
 ]
 
-const router = createRouter({
+export const router = createRouter({
   history: createWebHashHistory(),
   routes
 })
 
-export default router
+// 动态添加路由的方法
+export function addRoutes(menus) {
+  const findAndRoutesByMenus = (arr) =>{
+   arr.forEach(e => {
+      let item = asyncRoutes.find(o=>o.path == e.frontpath)
+      if(item && !router.hasRoute()){
+        router.addRoute()
+      }
+    });
+  }
+}
