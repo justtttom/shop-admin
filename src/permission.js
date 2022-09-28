@@ -1,4 +1,4 @@
-import router from "./router";
+import {router,addRoutes} from "./router";
 import { getToken } from './composables/auth'
 import { toast, showFullLoading, hideFullLoading } from './composables/util'
 import store from "./store"
@@ -22,8 +22,11 @@ router.beforeEach(async (to, from, next) => {
     return next({ path: from.path ? from.path : "/" })
   }
   // 如果用户登录了，就自动获取用户信息，并存储在VueX当中
+  let hasNewRoutes = false
   if (token) {
-    await store.dispatch("getInfo")
+    let {menus} =  await store.dispatch("getInfo")
+    // 动态添加路由
+    hasNewRoutes = addRoutes(menus)
   }
 
   // 设置页面标题
@@ -31,7 +34,7 @@ router.beforeEach(async (to, from, next) => {
   
   document.title = title
 
-  next()
+  hasNewRoutes ? next(to.fullPath) : next()
 })
 
 // 全局后置守卫
