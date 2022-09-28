@@ -56,7 +56,7 @@ import Admin from '~/layouts/admin.vue'
 const routes = [
   {
     path: "/",
-    name:'admin',
+    name: 'admin',
     component: Admin,
   }, {
     path: '/login',
@@ -64,7 +64,7 @@ const routes = [
     meta: {
       title: '登录页'
     }
-  },{
+  }, {
     path: '/:pathMatch(.*)*',
     name: 'NotFound',
     component: NotFound,
@@ -72,6 +72,30 @@ const routes = [
       title: '你的页面走丢了'
     }
   }
+]
+
+// 动态路由，用于匹配菜单动态添加路由
+const asyncRoutes = [
+  {
+    path: '/',
+    component: Index,
+    meta: {
+      title: '首页'
+    }
+  },
+  {
+    path: "/goods/list",
+    component: GoodList,
+    meta: {
+      title: '商品管理页'
+    }
+  }, {
+    path: '/category/list',
+    component: CategoryList,
+    meta: {
+      title: '分类管理页'
+    }
+  },
 ]
 
 const router = createRouter({
