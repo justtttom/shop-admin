@@ -4,7 +4,7 @@
       v-model="editableTabsValue"
       type="card"
       editable
-      @edit="handleTabsEdit"
+      style="min-width:100px;"
     >
       <el-tab-pane
         v-for="item in editableTabs"
@@ -46,40 +46,34 @@ const editableTabs = ref([
     title: 'Tab 2',
     name: '2',
     content: 'Tab 2 content'
+  },
+  {
+    title: 'Tab 1',
+    name: '3',
+    content: 'Tab 1 content'
+  },
+  {
+    title: 'Tab 2',
+    name: '4',
+    content: 'Tab 2 content'
+  },
+  {
+    title: 'Tab 1',
+    name: '5',
+    content: 'Tab 1 content'
+  },
+  {
+    title: 'Tab 2',
+    name: '6',
+    content: 'Tab 2 content'
   }
 ])
 
-const handleTabsEdit = (targetName, action) => {
-  if (action === 'add') {
-    const newTabName = `${++tabIndex}`
-    editableTabs.value.push({
-      title: 'New Tab',
-      name: newTabName,
-      content: 'New Tab content'
-    })
-    editableTabsValue.value = newTabName
-  } else if (action === 'remove') {
-    const tabs = editableTabs.value
-    let activeName = editableTabsValue.value
-    if (activeName === targetName) {
-      tabs.forEach((tab, index) => {
-        if (tab.name === targetName) {
-          const nextTab = tabs[index + 1] || tabs[index - 1]
-          if (nextTab) {
-            activeName = nextTab.name
-          }
-        }
-      })
-    }
 
-    editableTabsValue.value = activeName
-    editableTabs.value = tabs.filter((tab) => tab.name !== targetName)
-  }
-}
 </script>
 <style scoped>
 .f-tag-list {
-  @apply fixed bg-gray-100 flex items-center px-2;
+  @apply fixed bg-gray-200 flex items-center px-2;
   top: 64px;
   right: 0;
   height: 44px;
@@ -90,14 +84,22 @@ const handleTabsEdit = (targetName, action) => {
   width: 32px;
   height: 32px;
 }
+:deep(.el-tabs__new-tab){
+  display: none;
+}
 :deep(.el-tabs__header ){
-  @apply mb-0;
+  @apply  mb-0 mt-1;
 }
-:deep(.el-tabs_nav) {
-  border: 0 !important;
+:deep(.el-tabs__nav) {
+  border: 0!important;
 }
-:deep(.el-tabs_item) {
-  border: 0 !important;
-  @apply mb-0;
+:deep(.el-tabs__item) {
+  border: 0!important;
+  height: 32px;
+  line-height: 32px;
+  @apply bg-white mx-1 rounded;
+}
+:deep(.el-tabs__nav-next),:deep(.el-tabs__nav-prev){
+  line-height: 32px;
 }
 </style>
