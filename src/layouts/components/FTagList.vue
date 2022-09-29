@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="f-tag-list" :style="{ left: $store.state.asideWidth }">
     <el-tabs
       v-model="editableTabsValue"
       type="card"
@@ -13,13 +13,11 @@
         :label="item.title"
         :name="item.name"
       >
-        {{ item.content }}
       </el-tab-pane>
     </el-tabs>
-    <span>
+    <span class="tag-btn">
       <el-dropdown>
         <span class="el-dropdown-link">
-          Dropdown List
           <el-icon class="el-icon--right">
             <arrow-down />
           </el-icon>
@@ -80,11 +78,27 @@ const handleTabsEdit = (targetName, action) => {
   }
 }
 </script>
-<style>
-.demo-tabs > .el-tabs__content {
-  padding: 32px;
-  color: #6b778c;
-  font-size: 32px;
-  font-weight: 600;
+<style scoped>
+.f-tag-list {
+  @apply fixed bg-gray-100 flex items-center px-2;
+  top: 64px;
+  right: 0;
+  height: 44px;
+  z-index: 100;
+}
+.tag-btn {
+  @apply bg-white rounded ml-auto flex items-center justify-center px-2;
+  width: 32px;
+  height: 32px;
+}
+:deep(.el-tabs__header ){
+  @apply mb-0;
+}
+:deep(.el-tabs_nav) {
+  border: 0 !important;
+}
+:deep(.el-tabs_item) {
+  border: 0 !important;
+  @apply mb-0;
 }
 </style>
