@@ -66,6 +66,16 @@ const editableTabs = ref([
     title: 'Tab 2',
     name: '6',
     content: 'Tab 2 content'
+  },
+  {
+    title: 'Tab 1',
+    name: '5',
+    content: 'Tab 1 content'
+  },
+  {
+    title: 'Tab 2',
+    name: '6',
+    content: 'Tab 2 content'
   }
 ])
 
@@ -101,5 +111,9 @@ const editableTabs = ref([
 }
 :deep(.el-tabs__nav-next),:deep(.el-tabs__nav-prev){
   line-height: 32px;
+}
+:deep(.is-disabled){
+  cursor: not-allowed;
+  @apply text-red-300;
 }
 </style>
