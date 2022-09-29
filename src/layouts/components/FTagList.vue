@@ -4,7 +4,6 @@
       v-model="editableTabsValue"
       type="card"
       editable
-      class="demo-tabs"
       @edit="handleTabsEdit"
     >
       <el-tab-pane
