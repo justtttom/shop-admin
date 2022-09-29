@@ -17,7 +17,7 @@
     <span class="tag-btn">
       <el-dropdown>
         <span class="el-dropdown-link">
-          <el-icon class="el-icon--right">
+          <el-icon>
             <arrow-down />
           </el-icon>
         </span>
