@@ -29,7 +29,7 @@
 </template>
 <script setup>
 import { ref } from 'vue'
-import { useRoute } from 'vue-router'
+import { useRoute, onBeforeRouteUpdate } from 'vue-router'
 
 const route = useRoute()
 
@@ -44,6 +44,21 @@ const tabList = ref([
     path: '/good/list'
   }
 ])
+
+// 添加标签导航
+function addTab(tab) {
+  let noTab = tabList.value.findIndex(t=>t.path == tab.path) == -1
+  if(noTab){
+    tabList.value.push(tab)
+  }
+}
+
+onBeforeRouteUpdate((to, from) => {
+  addTab({
+    title:to.meta.title,
+    path:to.path
+  })
+})
 </script>
 <style scoped>
 .f-tag-list {
