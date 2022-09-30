@@ -30,18 +30,16 @@
 <script setup>
 import { ref } from 'vue'
 import { useRoute, onBeforeRouteUpdate } from 'vue-router'
+import { useCookies } from '@vueuse/integrations/useCookies'
 
 const route = useRoute()
+const cookies = useCookies()
 
 const activeTab = ref(route.path)
 const tabList = ref([
   {
     title: '后台首页',
     path: '/'
-  },
-  {
-    title: '商城管理',
-    path: '/good/list'
   }
 ])
 
@@ -51,9 +49,11 @@ function addTab(tab) {
   if(noTab){
     tabList.value.push(tab)
   }
+  cookies.set('tablist',tabList.value)
 }
 
 onBeforeRouteUpdate((to, from) => {
+  activeTab.value = to.path
   addTab({
     title:to.meta.title,
     path:to.path
