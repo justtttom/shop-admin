@@ -1,16 +1,16 @@
 <template>
   <div class="f-tag-list" :style="{ left: $store.state.asideWidth }">
     <el-tabs
-      v-model="editableTabsValue"
+      v-model="activeTab"
       type="card"
       editable
       style="min-width:100px;"
     >
       <el-tab-pane
-        v-for="item in editableTabs"
-        :key="item.name"
+        v-for="item in tabList"
+        :key="item.path"
         :label="item.title"
-        :name="item.name"
+        :name="item.path"
       >
       </el-tab-pane>
     </el-tabs>
@@ -34,52 +34,17 @@
 <script setup>
 import { ref } from 'vue'
 
-let tabIndex = 2
-const editableTabsValue = ref('2')
-const editableTabs = ref([
+const activeTab = ref('2')
+const tabList = ref([
   {
-    title: 'Tab 1',
-    name: '1',
-    content: 'Tab 1 content'
+    title: '后台首页',
+    path:'/'
   },
   {
-    title: 'Tab 2',
-    name: '2',
-    content: 'Tab 2 content'
-  },
-  {
-    title: 'Tab 1',
-    name: '3',
-    content: 'Tab 1 content'
-  },
-  {
-    title: 'Tab 2',
-    name: '4',
-    content: 'Tab 2 content'
-  },
-  {
-    title: 'Tab 1',
-    name: '5',
-    content: 'Tab 1 content'
-  },
-  {
-    title: 'Tab 2',
-    name: '6',
-    content: 'Tab 2 content'
-  },
-  {
-    title: 'Tab 1',
-    name: '5',
-    content: 'Tab 1 content'
-  },
-  {
-    title: 'Tab 2',
-    name: '6',
-    content: 'Tab 2 content'
+    title: '商城管理',
+    path:'/good/list'
   }
 ])
-
-
 </script>
 <style scoped>
 .f-tag-list {
