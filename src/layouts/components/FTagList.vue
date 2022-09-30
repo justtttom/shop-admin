@@ -1,12 +1,8 @@
 <template>
   <div class="f-tag-list" :style="{ left: $store.state.asideWidth }">
-    <el-tabs
-      v-model="activeTab"
-      type="card"
-      editable
-      style="min-width:100px;"
-    >
+    <el-tabs v-model="activeTab" type="card" style="min-width: 100px">
       <el-tab-pane
+        :closable="item.path != '/'"
         v-for="item in tabList"
         :key="item.path"
         :label="item.title"
@@ -33,16 +29,19 @@
 </template>
 <script setup>
 import { ref } from 'vue'
+import { useRoute } from 'vue-router'
 
-const activeTab = ref('2')
+const route = useRoute()
+
+const activeTab = ref(route.path)
 const tabList = ref([
   {
     title: '后台首页',
-    path:'/'
+    path: '/'
   },
   {
     title: '商城管理',
-    path:'/good/list'
+    path: '/good/list'
   }
 ])
 </script>
@@ -59,25 +58,23 @@ const tabList = ref([
   width: 32px;
   height: 32px;
 }
-:deep(.el-tabs__new-tab){
-  display: none;
-}
-:deep(.el-tabs__header ){
-  @apply  mb-0 mt-1;
+:deep(.el-tabs__header) {
+  @apply mb-0 mt-1;
 }
 :deep(.el-tabs__nav) {
-  border: 0!important;
+  border: 0 !important;
 }
 :deep(.el-tabs__item) {
-  border: 0!important;
+  border: 0 !important;
   height: 32px;
   line-height: 32px;
   @apply bg-white mx-1 rounded;
 }
-:deep(.el-tabs__nav-next),:deep(.el-tabs__nav-prev){
+:deep(.el-tabs__nav-next),
+:deep(.el-tabs__nav-prev) {
   line-height: 32px;
 }
-:deep(.is-disabled){
+:deep(.is-disabled) {
   cursor: not-allowed;
   @apply text-red-300;
 }
