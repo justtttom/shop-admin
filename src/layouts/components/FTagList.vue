@@ -1,6 +1,7 @@
 <template>
   <div class="f-tag-list" :style="{ left: $store.state.asideWidth }">
-    <el-tabs v-model="activeTab" type="card" style="min-width: 100px">
+    <el-tabs v-model="activeTab" type="card" style="min-width: 100px"
+    @tab-change="">
       <el-tab-pane
         :closable="item.path != '/'"
         v-for="item in tabList"
@@ -28,37 +29,37 @@
   </div>
 </template>
 <script setup>
-import { ref } from 'vue'
-import { useRoute, onBeforeRouteUpdate } from 'vue-router'
-import { useCookies } from '@vueuse/integrations/useCookies'
+import { ref } from "vue";
+import { useRoute, onBeforeRouteUpdate } from "vue-router";
+import { useCookies } from "@vueuse/integrations/useCookies";
 
-const route = useRoute()
-const cookies = useCookies()
+const route = useRoute();
+const cookies = useCookies();
 
-const activeTab = ref(route.path)
+const activeTab = ref(route.path);
 const tabList = ref([
   {
-    title: '后台首页',
-    path: '/'
-  }
-])
+    title: "后台首页",
+    path: "/",
+  },
+]);
 
 // 添加标签导航
 function addTab(tab) {
-  let noTab = tabList.value.findIndex(t=>t.path == tab.path) == -1
-  if(noTab){
-    tabList.value.push(tab)
+  let noTab = tabList.value.findIndex((t) => t.path == tab.path) == -1;
+  if (noTab) {
+    tabList.value.push(tab);
   }
-  cookies.set('tablist',tabList.value)
+  cookies.set("tablist", tabList.value);
 }
 
 onBeforeRouteUpdate((to, from) => {
-  activeTab.value = to.path
+  activeTab.value = to.path;
   addTab({
-    title:to.meta.title,
-    path:to.path
-  })
-})
+    title: to.meta.title,
+    path: to.path,
+  });
+});
 </script>
 <style scoped>
 .f-tag-list {
