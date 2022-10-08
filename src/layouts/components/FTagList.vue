@@ -17,7 +17,7 @@
       </el-tab-pane>
     </el-tabs>
     <span class="tag-btn">
-      <el-dropdown>
+      <el-dropdown @command="handleClose">
         <span class="el-dropdown-link">
           <el-icon>
             <arrow-down />
@@ -25,8 +25,8 @@
         </span>
         <template #dropdown>
           <el-dropdown-menu>
-            <el-dropdown-item>关闭菜单</el-dropdown-item>
-            <el-dropdown-item>打开菜单</el-dropdown-item>
+            <el-dropdown-item command="clearOther">关闭其他</el-dropdown-item>
+            <el-dropdown-item command="clearAll">全部关闭</el-dropdown-item>
           </el-dropdown-menu>
         </template>
       </el-dropdown>
@@ -98,6 +98,13 @@ const removeTab = (t)=>{
   tabList.value = tabList.value.filter(tab=>tab.path != t)
   
   cookie.set('tablist',tabList.value)
+}
+
+const handleClose = (c) => {
+  if(c == 'clearAll'){
+    // 切换回首页
+    activeTab.value = '/'
+  }
 }
 </script>
 <style scoped>
