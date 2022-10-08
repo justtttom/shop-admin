@@ -81,8 +81,23 @@ const changeTab = (t)=>{
     activeTab.value = t
     router.push(t)
 }
-const removeTab = (a)=>{
-  router.push('/')
+const removeTab = (t)=>{
+  let tabs = tabList.value
+  let a = activeTab.value
+  if(a == t){
+    tabs.forEach((tab,index)=>{
+      if(tab.path == t){
+        const nextTab = tabs[index+1] || tabs[index-1]
+        if(nextTab){
+          a = nextTab.path
+        }
+      }
+    })
+  }
+  activeTab.value = a
+  tabList.value = tabList.value.filter(tab=>tab.path != t)
+  
+  cookie.set('tablist',tabList.value)
 }
 </script>
 <style scoped>
