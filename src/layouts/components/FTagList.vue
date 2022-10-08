@@ -1,7 +1,6 @@
 <template>
   <div class="f-tag-list" :style="{ left: $store.state.asideWidth }">
-    <el-tabs v-model="activeTab" type="card" style="min-width: 100px"
-    @tab-change="">
+    <el-tabs v-model="activeTab" type="card" style="min-width: 100px">
       <el-tab-pane
         :closable="item.path != '/'"
         v-for="item in tabList"
