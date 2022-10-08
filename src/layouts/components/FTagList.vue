@@ -32,13 +32,13 @@
       </el-dropdown>
     </span>
   </div>
-  <div style="height:44px"></div>
+  <div style="height: 44px"></div>
 </template>
 <script setup>
 import { ref } from 'vue'
-import { useRoute,onBeforeRouteUpdate } from 'vue-router'
+import { useRoute, onBeforeRouteUpdate } from 'vue-router'
 import { useCookies } from '@vueuse/integrations/useCookies'
-import { router } from '../../router';
+import { router } from '../../router'
 
 const route = useRoute()
 const cookie = useCookies()
@@ -53,7 +53,7 @@ const tabList = ref([
 
 // 添加标签导航
 function addTab(tab) {
-  let noTab = tabList.value.findIndex(t => t.path == tab.path) == -1
+  let noTab = tabList.value.findIndex((t) => t.path == tab.path) == -1
   if (noTab) {
     tabList.value.push(tab)
   }
@@ -63,7 +63,7 @@ function addTab(tab) {
 // 初始化标签导航列表
 function initTabList() {
   let tbs = cookie.get('tabList')
-  if(tbs){
+  if (tbs) {
     tabList.value = tbs
   }
 }
@@ -77,34 +77,47 @@ onBeforeRouteUpdate((to, from) => {
     path: to.path
   })
 })
-const changeTab = (t)=>{
-    activeTab.value = t
-    router.push(t)
+const changeTab = (t) => {
+  activeTab.value = t
+  router.push(t)
 }
-const removeTab = (t)=>{
+const removeTab = (t) => {
   let tabs = tabList.value
   let a = activeTab.value
-  if(a == t){
-    tabs.forEach((tab,index)=>{
-      if(tab.path == t){
-        const nextTab = tabs[index+1] || tabs[index-1]
-        if(nextTab){
+  if (a == t) {
+    tabs.forEach((tab, index) => {
+      if (tab.path == t) {
+        const nextTab = tabs[index + 1] || tabs[index - 1]
+        if (nextTab) {
           a = nextTab.path
         }
       }
     })
   }
   activeTab.value = a
-  tabList.value = tabList.value.filter(tab=>tab.path != t)
-  
-  cookie.set('tablist',tabList.value)
+  tabList.value = tabList.value.filter((tab) => tab.path != t)
+
+  cookie.set('tablist', tabList.value)
 }
 
 const handleClose = (c) => {
-  if(c == 'clearAll'){
+  if (c == 'clearAll') {
     // 切换回首页
     activeTab.value = '/'
+    // 过滤只剩下首页
+    tabList.value = [
+      {
+        title: '后台首页',
+        path: '/'
+      }
+    ]
+  } else if (c == 'clearOther') {
+    // 过滤只剩下首页和当前激活
+    tabList.value = tabList.value.filter(
+      tab => tab.path == '/' || tab.path == activeTab.value
+    )
   }
+  cookie.set('tabList',tabList.value)
 }
 </script>
 <style scoped>
