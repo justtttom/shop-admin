@@ -32,6 +32,7 @@
       </el-dropdown>
     </span>
   </div>
+  <div style="height:44px"></div>
 </template>
 <script setup>
 import { ref } from 'vue'
@@ -59,6 +60,16 @@ function addTab(tab) {
   cookie.set('tabList', tabList.value)
 }
 
+// 初始化标签导航列表
+function initTabList() {
+  let tbs = cookie.get('tabList')
+  if(tbs){
+    tabList.value = tbs
+  }
+}
+
+initTabList()
+
 onBeforeRouteUpdate((to, from) => {
   activeTab.value = to.path
   addTab({
@@ -70,8 +81,8 @@ const changeTab = (t)=>{
     activeTab.value = t
     router.push(t)
 }
-const removeTab = ()=>{
-  
+const removeTab = (a)=>{
+  router.push('/')
 }
 </script>
 <style scoped>
