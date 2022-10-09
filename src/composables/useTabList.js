@@ -15,7 +15,7 @@ export function useTabList() {
     }
   ])
 
-  // 添加标签导航
+  // 添加标签导航列表
   function addTab(tab) {
     let noTab = tabList.value.findIndex((t) => t.path == tab.path) == -1
     if (noTab) {
