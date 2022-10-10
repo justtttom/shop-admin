@@ -11,9 +11,11 @@
         <el-main class="bg-light-100">
           <f-tag-list />
           <router-view v-slot="{Component}">
-            <KeepAlive :max="10">
-              <component :is="Component"></component>
-            </KeepAlive>
+            <Transition name="fade">
+              <KeepAlive :max="10">
+                <component :is="Component"></component>
+              </KeepAlive>
+            </Transition>
           </router-view>
         </el-main>
       </el-container>
@@ -31,5 +33,20 @@ const newLocal = 'el-aside';
 <style>
 .el-aside {
   transition: all 0.2s;
+}
+.fade-enter-from{
+  opacity: 0;
+}
+.fade-enter-to{
+  opacity: 1;
+}
+.fade-leave-from{
+  opacity: 1;
+}
+.fade-leave-to{
+  opacity: 0;
+}
+.fade-enter-active,.fade-leave-active{
+  transition: all 0.3s;
 }
 </style>
