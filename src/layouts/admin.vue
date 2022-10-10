@@ -27,7 +27,7 @@
 import FHeader from './components/FHeader.vue'
 import FMenu from './components/FMenu.vue'
 import FTagList from './components/FTagList.vue'
-const newLocal = 'el-aside';
+import 'animate.css';
 </script>
 
 <style>
@@ -40,7 +40,6 @@ const newLocal = 'el-aside';
 .fade-enter-to,.fade-leave-from{
   opacity: 1;
 }
-
 .fade-enter-active,.fade-leave-active{
   transition: all 0.3s;
 }
