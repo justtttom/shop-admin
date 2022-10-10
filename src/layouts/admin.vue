@@ -12,7 +12,7 @@
           <f-tag-list />
           <router-view v-slot="{Component}">
             <Transition name="fade">
-              <KeepAlive :max="10" class="animate__pulse">
+              <KeepAlive :max="10">
                 <component :is="Component"></component>
               </KeepAlive>
             </Transition>
@@ -34,16 +34,29 @@ import 'animate.css';
 .el-aside {
   transition: all 0.2s;
 }
-.fade-enter-from,.fade-leave-to{
+
+.fade-enter-from {
   opacity: 0;
 }
-.fade-enter-to,.fade-leave-from{
+
+.fade-enter-to {
   opacity: 1;
 }
-.fade-enter-active,.fade-leave-active{
+
+.fade-leave-from {
+  opacity: 1;
+}
+
+.fade-leave-to {
+  opacity: 0;
+}
+
+.fade-enter-active,
+.fade-leave-active {
   transition: all 0.3s;
 }
-.fade-enter-active{
+
+.fade-enter-active {
   transition-delay: 0.3s;
 }
 </style>
