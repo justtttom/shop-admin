@@ -12,7 +12,7 @@
           <f-tag-list />
           <router-view v-slot="{Component}">
             <Transition name="fade">
-              <KeepAlive :max="10">
+              <KeepAlive :max="10" class="animate__pulse">
                 <component :is="Component"></component>
               </KeepAlive>
             </Transition>
