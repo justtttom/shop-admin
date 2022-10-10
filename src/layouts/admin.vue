@@ -2,7 +2,7 @@
   <div class="common-layout">
     <el-container>
       <el-header>
-        <f-header/>
+        <f-header />
       </el-header>
       <el-container>
         <el-aside :width="$store.state.asideWidth">
@@ -10,7 +10,11 @@
         </el-aside>
         <el-main class="bg-light-100">
           <f-tag-list />
-          <router-view></router-view>
+          <router-view v-slot="{Component}">
+            <KeepAlive :max="10">
+              <component :is="Component"></component>
+            </KeepAlive>
+          </router-view>
         </el-main>
       </el-container>
     </el-container>
@@ -25,7 +29,7 @@ const newLocal = 'el-aside';
 </script>
 
 <style>
-  .el-aside{
-    transition: all 0.2s;
-  }
+.el-aside {
+  transition: all 0.2s;
+}
 </style>
