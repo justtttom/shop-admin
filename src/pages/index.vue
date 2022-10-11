@@ -3,4 +3,6 @@
     后台首页
   </div>
 </template>
-<script setup></script>
+<script setup>
+import { getStatistics1 } from '~/api/index.js'
+</script>
