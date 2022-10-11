@@ -6,6 +6,9 @@
           <template #header>
             <div>
               <span>{{item.title}}</span>
+              <el-tag :type="item.unitColor" effect="plain">
+                {{ item.value }}
+              </el-tag>
             </div>
           </template>
           <!-- card body -->
