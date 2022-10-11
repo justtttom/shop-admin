@@ -33,7 +33,7 @@ import 'animate.css';
 <style>
 .el-aside {
   transition: all 0.2s;
-}
+} 
 
 .fade-enter-from {
   opacity: 0;
