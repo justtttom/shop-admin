@@ -27,7 +27,6 @@
 import FHeader from './components/FHeader.vue'
 import FMenu from './components/FMenu.vue'
 import FTagList from './components/FTagList.vue'
-import 'animate.css';
 </script>
 
 <style>

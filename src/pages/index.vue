@@ -1,6 +1,17 @@
 <template>
   <div>
-    后台首页
+    <el-row :gutter="20">
+      <el-col :span="6" :offset="0" v-for="(item,index) in panels" :key="index">
+        <el-card shadow="hover">
+          <template #header>
+            <div>
+              <span>{{item.title}}</span>
+            </div>
+          </template>
+          <!-- card body -->
+        </el-card>
+      </el-col>
+    </el-row>
   </div>
 </template>
 <script setup>
@@ -13,3 +24,7 @@ getStatistics1().then(res => {
   console.log(panels.value);
 })
 </script>
+
+<style>
+
+</style>
