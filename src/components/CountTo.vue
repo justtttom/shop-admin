@@ -1,5 +1,5 @@
 <template>
-  {{d.num}}
+  {{d.num.toFixed(0)}}
 </template>
 
 <script setup>
