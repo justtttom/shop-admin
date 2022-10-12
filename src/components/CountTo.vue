@@ -3,7 +3,7 @@
 </template>
 
 <script setup>
-import {reactive} from 'vue'
+import {reactive,watch} from 'vue'
 import gsap from 'gsap'
 
 const props = defineProps({
@@ -25,4 +25,7 @@ function AnimateToValue() {
 }
 
 AnimateToValue()
+
+watch(()=>props.value,()=>AnimateToValue())
+
 </script>
