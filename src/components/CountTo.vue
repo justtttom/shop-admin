@@ -17,5 +17,12 @@ const d = reactive({
   num:0,
 })
 
+function AnimateToValue() {
+  gsap.to(d,{
+    duration:0.5,
+    num:props.value
+  })
+}
 
+AnimateToValue()
 </script>
