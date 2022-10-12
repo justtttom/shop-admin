@@ -1,12 +1,14 @@
 <template>
   <div>
     <el-row :gutter="20">
-      <el-col
-        :span="6"
-        :offset="0"
-        v-for="(item, index) in panels"
-        :key="index"
-      >
+      <el-col :span="6" v-for="i in 4 " :key="key">
+        <el-skeleton style="width: 100%;">
+          <template #template>
+            <el-skeleton-item variant="text" style="width: 30%" />
+          </template>
+        </el-skeleton>
+      </el-col>
+      <el-col :span="6" :offset="0" v-for="(item, index) in panels" :key="index">
         <el-card shadow="hover" class="border-0">
           <template #header>
             <div class="flex justify-between">
@@ -40,4 +42,6 @@ getStatistics1().then((res) => {
 })
 </script>
 
-<style></style>
+<style>
+
+</style>
