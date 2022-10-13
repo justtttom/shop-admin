@@ -4,6 +4,7 @@
     <el-card shadow="hover" >
       <div class="flex justify-center items-center cursor-pointer">
         <el-icon><Odometer /></el-icon>
+        <span class="text-sm">分类</span>
       </div>
     </el-card>
     </el-col>
