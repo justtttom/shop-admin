@@ -1,5 +1,5 @@
 <template>
   <div>
-    用户列表
+    优惠卷列表
   </div>
 </template>

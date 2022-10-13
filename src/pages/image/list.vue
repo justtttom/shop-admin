@@ -1,5 +1,5 @@
 <template>
   <div>
-    用户列表
+    图库列表
   </div>
 </template>
