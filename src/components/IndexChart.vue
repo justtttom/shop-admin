@@ -9,7 +9,7 @@
             :key="index"
             :checked="current == item.value"
             style="margin-right: 8px"
-            @click="handleChoose"
+            @click="handleChoose(item.value)"
           >
             {{ item.text }}
           </el-check-tag>
@@ -37,4 +37,7 @@ const options = [
     value: "hour",
   },
 ];
+const handleChoose = (type)=>{
+  current.value = type
+}
 </script>
