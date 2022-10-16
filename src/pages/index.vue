@@ -2,8 +2,8 @@
   <div>
     <el-row :gutter="20">
       <template v-if="panels.length == 0">
-        <el-col :span="6" v-for="i in 4 " :key="key">
-          <el-skeleton style="width: 100%;" animated loading>
+        <el-col :span="6" v-for="i in 4" :key="key">
+          <el-skeleton style="width: 100%" animated loading>
             <template #template>
               <el-card shadow="hover" class="border-0">
                 <template #header>
@@ -23,7 +23,12 @@
           </el-skeleton>
         </el-col>
       </template>
-      <el-col :span="6" :offset="0" v-for="(item, index) in panels" :key="index">
+      <el-col
+        :span="6"
+        :offset="0"
+        v-for="(item, index) in panels"
+        :key="index"
+      >
         <el-card shadow="hover" class="border-0">
           <template #header>
             <div class="flex justify-between">
@@ -44,30 +49,28 @@
         </el-card>
       </el-col>
     </el-row>
-    <IndexNavs/>
+    <IndexNavs />
     <el-row :gutter="20">
       <el-col :span="12" :offset="0">
-        <IndexChart/>
+        <IndexChart />
       </el-col>
       <el-col :span="12" :offset="0"></el-col>
     </el-row>
-    
   </div>
 </template>
 <script setup>
-import { ref } from 'vue'
-import { getStatistics1 } from '~/api/index.js'
-import CountTo from '~/components/CountTo.vue'
-import IndexNavs from '~/components/IndexNavs.vue'
-import IndexChart from '~/components/IndexChart.vue'
+import { ref } from "vue";
+import { getStatistics1 } from "~/api/index.js";
+import CountTo from "~/components/CountTo.vue";
+import IndexNavs from "~/components/IndexNavs.vue";
+import IndexChart from "~/components/IndexChart.vue";
 
-const panels = ref([])
+const panels = ref([]);
 getStatistics1().then((res) => {
-  panels.value = res.panels
-  console.log(panels.value)
-})
+  panels.value = res.panels;
+  console.log(panels.value);
+});
 </script>
 
 <style>
-
 </style>
