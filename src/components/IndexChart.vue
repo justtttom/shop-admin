@@ -1,7 +1,7 @@
 <template>
   <el-card shadow="never" class="mt-5">
     <template #header>
-      <div class="flex flex-1 justify-center items-center">
+      <div class="flex  justify-center items-center">
         <span class="text-sm">订单统计</span>
         <div>
           <el-check-tag
@@ -9,6 +9,7 @@
             :key="index"
             :checked="current == item.value"
             style="margin-right: 8px"
+            @click="handleChoose"
           >
             {{ item.text }}
           </el-check-tag>
