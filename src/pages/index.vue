@@ -68,7 +68,6 @@ import IndexChart from "~/components/IndexChart.vue";
 const panels = ref([]);
 getStatistics1().then((res) => {
   panels.value = res.panels;
-  console.log(panels.value);
 });
 </script>
 

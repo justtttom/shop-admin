@@ -23,6 +23,7 @@
 <script setup>
 import { ref, onMounted } from "vue";
 import * as echarts from "echarts";
+import {getStatistics3} from '~/api/index.js'
 
 const current = ref("week");
 const options = [
@@ -76,6 +77,9 @@ function getData() {
     ],
   };
 
-  option && myChart.setOption(option);
+  // option && myChart.setOption(option);
+  getStatistics3(current.value).then(res=>{
+    console.log(res);
+  })
 }
 </script>
