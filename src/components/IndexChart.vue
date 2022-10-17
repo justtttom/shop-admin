@@ -75,12 +75,14 @@ function getData() {
     ],
   };
 
-  // option && myChart.setOption(option);
+  myChart.showLoading()
   getStatistics3(current.value).then((res) => {
     console.log(res);
     option.xAxis.data = res.x;
     option.series[0].data = res.y;
     myChart.setOption(option);
-  });
+  }).finally(()=>{
+    myChart.hideLoading()
+  })
   }
 </script>
