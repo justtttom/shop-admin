@@ -62,6 +62,7 @@ onMounted(() => {
       {
         data: [120, 200, 150, 80, 70, 110, 130],
         type: "bar",
+        color:"rgba(40, 180, 100, 0.8",
         showBackground: true,
         backgroundStyle: {
           color: "rgba(180, 180, 180, 0.2)",
