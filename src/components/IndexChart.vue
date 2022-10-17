@@ -23,7 +23,7 @@
 <script setup>
 import { ref, onMounted } from "vue";
 import * as echarts from "echarts";
-import {getStatistics3} from '~/api/index.js'
+import { getStatistics3 } from "~/api/index.js";
 
 const current = ref("week");
 const options = [
@@ -42,6 +42,7 @@ const options = [
 ];
 const handleChoose = (type) => {
   current.value = type;
+  getData();
 };
 
 var myChart = null;
@@ -50,25 +51,23 @@ onMounted(() => {
   var chartDom = document.getElementById("chart");
   myChart = echarts.init(chartDom);
 
-  getData()
+  getData();
 });
 
 function getData() {
-  var option;
-
-  option = {
+  let option = {
     xAxis: {
       type: "category",
-      data: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+      data: [],
     },
     yAxis: {
       type: "value",
     },
     series: [
       {
-        data: [120, 200, 150, 80, 70, 110, 130],
+        data: [],
         type: "bar",
-        color:"rgba(40, 180, 100, 0.8",
+        color: "rgba(40, 180, 100, 0.8",
         showBackground: true,
         backgroundStyle: {
           color: "rgba(180, 180, 180, 0.2)",
@@ -78,8 +77,10 @@ function getData() {
   };
 
   // option && myChart.setOption(option);
-  getStatistics3(current.value).then(res=>{
-    console.log(res);
-  })
+  getStatistics3(current.value).then((res) => {
+    option.xAxis.data = res.x;
+    option.series[0].data = res.y;
+    myChart.setOption(option);
+  });
 }
 </script>
