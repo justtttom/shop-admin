@@ -48,6 +48,11 @@ var myChart = null;
 onMounted(() => {
   var chartDom = document.getElementById("chart");
   myChart = echarts.init(chartDom);
+
+  getData()
+});
+
+function getData() {
   var option;
 
   option = {
@@ -72,5 +77,5 @@ onMounted(() => {
   };
 
   option && myChart.setOption(option);
-});
+}
 </script>
