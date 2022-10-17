@@ -16,14 +16,15 @@
         </div>
       </div>
     </template>
-    <div id="chart" style="width: 100%; height: 300px"></div>
+    <div ref="el" id="chart" style="width: 100%; height: 300px"></div>
   </el-card>
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue";
+import { ref, onMounted, onBeforeUnmount } from "vue";
 import * as echarts from "echarts";
 import { getStatistics3 } from "~/api/index.js";
+import { useResizeObserver } from "@vueuse/core";
 
 const current = ref("week");
 const options = [
@@ -53,6 +54,10 @@ onMounted(() => {
   getData();
 });
 
+onBeforeUnmount(() => {
+  if (myChart) echarts.dispose(myChart);
+});
+
 function getData() {
   let option = {
     xAxis: {
@@ -75,14 +80,18 @@ function getData() {
     ],
   };
 
-  myChart.showLoading()
-  getStatistics3(current.value).then((res) => {
-    console.log(res);
-    option.xAxis.data = res.x;
-    option.series[0].data = res.y;
-    myChart.setOption(option);
-  }).finally(()=>{
-    myChart.hideLoading()
-  })
-  }
+  myChart.showLoading();
+  getStatistics3(current.value)
+    .then((res) => {
+      option.xAxis.data = res.x;
+      option.series[0].data = res.y;
+      myChart.setOption(option);
+    })
+    .finally(() => {
+      myChart.hideLoading();
+    });
+}
+
+const el = ref(null);
+useResizeObserver(el, (entries) => myChart.resize());
 </script>
