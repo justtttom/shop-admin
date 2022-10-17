@@ -50,7 +50,6 @@ var myChart = null;
 onMounted(() => {
   var chartDom = document.getElementById("chart");
   myChart = echarts.init(chartDom);
-
   getData();
 });
 
@@ -78,9 +77,10 @@ function getData() {
 
   // option && myChart.setOption(option);
   getStatistics3(current.value).then((res) => {
+    console.log(res);
     option.xAxis.data = res.x;
     option.series[0].data = res.y;
     myChart.setOption(option);
   });
-}
+  }
 </script>
