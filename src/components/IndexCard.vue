@@ -1,5 +1,5 @@
 <template>
-  <el-card shadow="never" class="mt-5">
+  <el-card shadow="never">
     <template #header>
       <div class="flex justify-between">
         <span class="text-sm">{{ title }}</span>
@@ -8,17 +8,17 @@
         </el-tag>
       </div>
     </template>
+    <el-row :gutter="20">
+      <el-col :span="6" :offset="0">
+        <el-card shadow="hover" class="border-0 bg-light-100">
+          <div class="flex flex-col items-center justify-center">
+            <span class="text-xl mb-2">3</span>
+            <span class="text-xs text-gray-600">待付款</span>
+          </div>
+        </el-card>
+      </el-col>
+    </el-row>
   </el-card>
-  <el-row :gutter="20">
-    <el-col :span="6" :offset="0">
-      <el-card shadow="hover">
-        <div class="flex flex-col items-center justify-center">
-          <span>3</span>
-          <span>待付款</span>
-        </div>
-      </el-card>
-    </el-col>
-  </el-row>
 </template>
 
 <script setup>

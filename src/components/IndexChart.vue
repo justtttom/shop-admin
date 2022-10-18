@@ -1,5 +1,5 @@
 <template>
-  <el-card shadow="never" class="mt-5">
+  <el-card shadow="never">
     <template #header>
       <div class="flex justify-center items-center">
         <span class="text-sm">订单统计</span>
