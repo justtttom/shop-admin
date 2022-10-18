@@ -54,7 +54,9 @@
       <el-col :span="12" :offset="0">
         <IndexChart />
       </el-col>
-      <el-col :span="12" :offset="0"></el-col>
+      <el-col :span="12" :offset="0">
+        <IndexCard title="店铺及商品提示" tip="店铺及商品提示"/>
+      </el-col>
     </el-row>
   </div>
 </template>
@@ -64,6 +66,8 @@ import { getStatistics1 } from "~/api/index.js";
 import CountTo from "~/components/CountTo.vue";
 import IndexNavs from "~/components/IndexNavs.vue";
 import IndexChart from "~/components/IndexChart.vue";
+import IndexCard from "~/components/IndexCard.vue";
+
 
 const panels = ref([]);
 getStatistics1().then((res) => {
