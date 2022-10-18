@@ -3,7 +3,7 @@
     <template #header>
       <div class="flex justify-between">
         <span class="text-sm">{{ title }}</span>
-        <el-tag :type="danger" effect="plain">
+        <el-tag type="warning" effect="plain">
           {{ tip }}
         </el-tag>
       </div>

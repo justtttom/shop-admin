@@ -62,7 +62,7 @@
 </template>
 <script setup>
 import { ref } from "vue";
-import { getStatistics1 } from "~/api/index.js";
+import { getStatistics1, getStatistics2} from "~/api/index.js";
 import CountTo from "~/components/CountTo.vue";
 import IndexNavs from "~/components/IndexNavs.vue";
 import IndexChart from "~/components/IndexChart.vue";
@@ -72,6 +72,10 @@ const panels = ref([]);
 getStatistics1().then((res) => {
   panels.value = res.panels;
 });
+
+getStatistics2().then((res)=>{
+  console.log(res);
+})
 </script>
 
 <style>
