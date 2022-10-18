@@ -55,7 +55,7 @@
         <IndexChart />
       </el-col>
       <el-col :span="12" :offset="0">
-        <IndexCard title="店铺及商品提示" tip="店铺及商品提示" />
+        <IndexCard title="店铺及商品提示" tip="店铺及商品提示" :btns="goods"/>
       </el-col>
     </el-row>
   </div>
@@ -73,8 +73,12 @@ getStatistics1().then((res) => {
   panels.value = res.panels;
 });
 
+const goods = ref([])
+const order = ref([])
 getStatistics2().then((res)=>{
   console.log(res);
+  goods.value = res.goods
+  order.value = res.order
 })
 </script>
 
