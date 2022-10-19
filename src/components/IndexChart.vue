@@ -1,7 +1,7 @@
 <template>
   <el-card shadow="never">
     <template #header>
-      <div class="flex justify-center items-center">
+      <div class="flex justify-between">
         <span class="text-sm">订单统计</span>
         <div>
           <el-check-tag
