@@ -26,4 +26,6 @@ import  './permission'
 
 import '../node_modules/nprogress/nprogress.css'
 
+import permission from '~/directives/permission.js'
+
 app.mount('#app')
