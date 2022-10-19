@@ -49,7 +49,7 @@
         </el-card>
       </el-col>
     </el-row>
-    <IndexNavs />
+    <IndexNavs v-permission="['getStatistics3,GET']"/>
     <el-row :gutter="20" class="mt-5">
       <el-col :span="12" :offset="0">
         <IndexChart />
@@ -77,7 +77,6 @@ getStatistics1().then((res) => {
 const goods = ref([]);
 const order = ref([]);
 getStatistics2().then((res) => {
-  console.log(res);
   goods.value = res.goods;
   order.value = res.order;
 });
