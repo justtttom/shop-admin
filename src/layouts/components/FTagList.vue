@@ -29,7 +29,7 @@ const { activeTab,tabList,changeTab,removeTab,handleClose } = useTabList()
 </script>
 <style scoped>
 .f-tag-list {
-  @apply fixed bg-gray-200 flex items-center px-2;
+  @apply fixed flex items-center px-2 border-0;
   top: 64px;
   right: 0;
   height: 44px;
@@ -43,7 +43,8 @@ const { activeTab,tabList,changeTab,removeTab,handleClose } = useTabList()
 }
 
 :deep(.el-tabs__header) {
-  @apply mb-0 mt-1;
+  border: 0!important;
+  @apply mb-0;
 }
 
 :deep(.el-tabs__nav) {

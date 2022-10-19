@@ -8,7 +8,7 @@
         <el-aside :width="$store.state.asideWidth">
           <f-menu />
         </el-aside>
-        <el-main class="bg-light-100">
+        <el-main class="bg-gray-100">
           <f-tag-list />
           <router-view v-slot="{Component}">
             <Transition name="fade">
