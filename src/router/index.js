@@ -87,7 +87,7 @@ const asyncRoutes = [
     name:'/image/list',
     component: ImageList,
     meta: {
-      title: '图库列表'
+      title: '图库管理'
     }
   }, {
     path: '/notice/list',
