@@ -6,9 +6,7 @@
     <div class="bottom">分页区域</div>
   </el-aside>
 </template>
-<script setup >
-  
-</script>
+
 <style scoped>
   .image-aside {
   border-right: 1px solid #eee;

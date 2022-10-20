@@ -6,9 +6,7 @@
     <div class="bottom">分页区域</div>
   </el-main>
 </template>
-<script setup >
-  
-</script>
+
 <style scoped>
 .image-main {
   position: relative;
