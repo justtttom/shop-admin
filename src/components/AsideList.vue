@@ -1,24 +1,29 @@
 <template>
-    <div class="aside-list">
-      <span class="truncate">分类标题</span>
-      <el-button class="ml-auto px-1" text type="primary" size="small">
-        <el-icon :size="12"><Edit /></el-icon>
-      </el-button>
-      <el-button text type="primary" size="small">
-        <el-icon :size="12"><Close /></el-icon>
-      </el-button>
-    </div>
-    <div class="aside-list active">
-        <span class="truncate">分类标题</span>
-        <el-button class="ml-auto px-1" text type="primary" size="small">
-          <el-icon :size="12"><Edit /></el-icon>
-        </el-button>
-        <el-button text type="primary" size="small">
-          <el-icon :size="12"><Close /></el-icon>
-        </el-button>
-      </div>
+  <div class="aside-list" :class="{ active: active }">
+    <span class="truncate"><slot /></span>
+    <el-button
+      class="ml-auto px-1"
+      text
+      type="primary"
+      size="small"
+      @click="$emit('edit')"
+    >
+      <el-icon :size="12"><Edit /></el-icon>
+    </el-button>
+    <el-button text type="primary" size="small" @click="$emit('delete')">
+      <el-icon :size="12"><Close /></el-icon>
+    </el-button>
+  </div>
 </template>
-
+<script setup>
+defineProps({
+  active: {
+    type: Boolean,
+    default: false,
+  },
+});
+defineEmits(["edit", "delete"]);
+</script>
 <style scoped>
 .aside-list {
   border-bottom: 1px solid #f4f4f4;

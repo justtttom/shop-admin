@@ -1,7 +1,12 @@
 <template>
   <el-aside width="220px" class="image-aside">
     <div class="top">
-      <AsideList/>
+      <AsideList>
+        分类标题
+      </AsideList>
+      <AsideList active>
+        分类标题
+      </AsideList>
     </div>
     <div class="bottom">分页区域</div>
   </el-aside>
