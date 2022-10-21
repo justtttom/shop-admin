@@ -1,7 +1,6 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import WindiCSS from 'vite-plugin-windicss'
-import vetur from'@volar-plugins/vetur';
 
 import path from 'path'
 
@@ -24,7 +23,6 @@ export default defineConfig({
   plugins: [
     vue(),
     WindiCSS(),
-    vetur()
   ]
 })
 
