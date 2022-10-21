@@ -1,8 +1,7 @@
 <template>
   <el-aside width="220px" class="image-aside" v-loading="loading">
     <div class="top">
-      <AsideList> 分类标题 </AsideList>
-      <AsideList active> 分类标题 </AsideList>
+      <AsideList :active="activeId == item.id" v-for="(item,index) in list" :key="index"> {{item.name}} </AsideList>
     </div>
     <div class="bottom">分页区域</div>
   </el-aside>
@@ -14,13 +13,18 @@ import { getImageClassList } from "~/api/image_class.js";
 
 // 加载动画
 const loading = ref(false);
-
+const list = ref([])
+const activeId = ref(0)
 // 获取数据
 function getData() {
   loading.value = true;
   getImageClassList(1)
     .then((res) => {
-      console.log(res);
+      list.value = res.list
+      let item = list.value[1]
+      if(item){
+        activeId.value = item.id
+      }
     })
     .finally(() => [(loading.value = false)]);
 }
