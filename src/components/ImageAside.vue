@@ -2,7 +2,7 @@
   <el-aside width="220px" class="image-aside">
     <div class="top">
       <div class="aside-list">
-        <span>分类标题</span>
+        <span class="truncate">分类标题</span>
         <el-button class="ml-auto px-1" text type="primary" size="small">
           <el-icon :size="12"><Edit /></el-icon>
         </el-button>
@@ -40,5 +40,8 @@
   border-bottom: 1px solid #f4f4f4;
   cursor: pointer;
   @apply flex items-center p-3 text-sm text-gray-600;
+}
+.aside-list:hover{
+  @apply bg-blue-50;
 }
 </style>
