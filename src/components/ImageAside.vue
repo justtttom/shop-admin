@@ -1,5 +1,5 @@
 <template>
-  <el-aside width="220px" class="image-aside">
+  <el-aside width="220px" class="image-aside" v-loading="loading">
     <div class="top">
       <AsideList> 分类标题 </AsideList>
       <AsideList active> 分类标题 </AsideList>
@@ -8,18 +8,23 @@
   </el-aside>
 </template>
 <script setup>
+import { ref } from "vue";
 import AsideList from "./AsideList.vue";
 import { getImageClassList } from "~/api/image_class.js";
 
 // 加载动画
+const loading = ref(false);
 
 // 获取数据
 function getData() {
-  getImageClassList(1).then(res=>{
-    console.log(res);
-  })
+  loading.value = true;
+  getImageClassList(1)
+    .then((res) => {
+      console.log(res);
+    })
+    .finally(() => [(loading.value = false)]);
 }
-getData()
+getData();
 </script>
 <style scoped>
 .image-aside {
