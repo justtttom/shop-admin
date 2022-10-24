@@ -4,7 +4,8 @@
       <AsideList :active="activeId == item.id" v-for="(item, index) in list" :key="index"> {{ item.name }} </AsideList>
     </div>
     <div class="bottom">
-      <el-pagination background layout="prev, next" :total="total" />
+      <el-pagination background layout="prev, next" :total="total"
+       :current-page="currentPage" :page-size="limit" @current-change="getData"/>
     </div>
   </el-aside>
 </template>
@@ -24,7 +25,10 @@ const total = ref(0)
 const limit = ref(10)
 
 // 获取数据
-function getData() {
+function getData(p = null) {
+  if(typeof p == 'number'){
+    currentPage.value = p
+  }
   loading.value = true;
   getImageClassList(currentPage.value)
     .then((res) => {
