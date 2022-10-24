@@ -1,9 +1,11 @@
 <template>
   <el-aside width="220px" class="image-aside" v-loading="loading">
     <div class="top">
-      <AsideList :active="activeId == item.id" v-for="(item,index) in list" :key="index"> {{item.name}} </AsideList>
+      <AsideList :active="activeId == item.id" v-for="(item, index) in list" :key="index"> {{ item.name }} </AsideList>
     </div>
-    <div class="bottom">分页区域</div>
+    <div class="bottom">
+      <el-pagination background layout="prev, next" :total="total" />
+    </div>
   </el-aside>
 </template>
 <script setup>
@@ -15,14 +17,21 @@ import { getImageClassList } from "~/api/image_class.js";
 const loading = ref(false);
 const list = ref([])
 const activeId = ref(0)
+
+// 分页
+const currentPage = ref(1)
+const total = ref(0)
+const limit = ref(10)
+
 // 获取数据
 function getData() {
   loading.value = true;
-  getImageClassList(1)
+  getImageClassList(currentPage.value)
     .then((res) => {
+      total.value = res.totalCount
       list.value = res.list
       let item = list.value[1]
-      if(item){
+      if (item) {
         activeId.value = item.id
       }
     })
@@ -35,6 +44,7 @@ getData();
   border-right: 1px solid #eee;
   position: relative;
 }
+
 .image-aside .top {
   position: absolute;
   top: 0;
@@ -43,6 +53,7 @@ getData();
   bottom: 50px;
   overflow-y: auto;
 }
+
 .image-aside .bottom {
   @apply flex items-center justify-center;
   position: absolute;
