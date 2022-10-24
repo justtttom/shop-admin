@@ -32,7 +32,7 @@ service.interceptors.response.use(function (response) {
 }, function (error) {
   const msg = error.response.data.msg || "请求失败"
   // 对响应错误做点什么
-  if (msg == "非法token，请先登录！") {
+  if (msg == "非法token,请先登录!") {
     store.dispatch("logout")
       .finally(() =>
         location.reload()
