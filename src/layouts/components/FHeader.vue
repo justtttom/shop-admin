@@ -145,4 +145,7 @@ const handleRefresh = () => location.reload()
   cursor: pointer;
   @apply flex justify-center items-center text-white mx-5;
 }
+.el-drawer__body{
+  background-color: white;
+}
 </style>

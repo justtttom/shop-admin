@@ -9,9 +9,12 @@
     </div>
   </el-aside>
   <FormDrawer title="新增" ref="formDrawerRef" @submit="handleSubmit">
-    <el-form :model="form" ref="formRef" :rules="rules" label-width="80px" :inline="false" size="normal">
-      <el-form-item label="">
-        <el-input v-model="form."></el-input>
+    <el-form :model="form" ref="formRef" :rules="rules" label-width="80px" :inline="false">
+      <el-form-item label="分类名称" prop="name">
+        <el-input v-model="form.name"></el-input>
+      </el-form-item>
+      <el-form-item label="排序" prop="order">
+        <el-input v-model="form.order"></el-input>
       </el-form-item>
     </el-form>
   </FormDrawer>
@@ -58,9 +61,9 @@ const handleCreate = () => {
 }
 
 
-const from = reactive({
+const form = reactive({
   name: "",
-  order: 50
+  order: 50,
 })
 
 const rules = {
