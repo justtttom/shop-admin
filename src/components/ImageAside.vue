@@ -9,7 +9,11 @@
     </div>
   </el-aside>
   <FormDrawer title="新增" ref="formDrawerRef" @submit="handleSubmit">
-
+    <el-form :model="form" ref="form" :rules="rules" label-width="80px" :inline="false" size="normal">
+      <el-form-item label="">
+        <el-input v-model="form."></el-input>
+      </el-form-item>
+    </el-form>
   </FormDrawer>
 </template>
 <script setup>
