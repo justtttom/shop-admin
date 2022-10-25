@@ -4,13 +4,17 @@
       <AsideList :active="activeId == item.id" v-for="(item, index) in list" :key="index"> {{ item.name }} </AsideList>
     </div>
     <div class="bottom">
-      <el-pagination background layout="prev, next" :total="total"
-       :current-page="currentPage" :page-size="limit" @current-change="getData"/>
+      <el-pagination background layout="prev, next" :total="total" :current-page="currentPage" :page-size="limit"
+        @current-change="getData" />
     </div>
   </el-aside>
+  <FormDrawer title="新增" ref="formDrawerRef" @submit="handleSubmit">
+
+  </FormDrawer>
 </template>
 <script setup>
 import { ref } from "vue";
+import FormDrawer from './FormDrawer.vue'
 import AsideList from "./AsideList.vue";
 import { getImageClassList } from "~/api/image_class.js";
 
@@ -26,7 +30,7 @@ const limit = ref(10)
 
 // 获取数据
 function getData(p = null) {
-  if(typeof p == 'number'){
+  if (typeof p == 'number') {
     currentPage.value = p
   }
   loading.value = true;
@@ -42,6 +46,8 @@ function getData(p = null) {
     .finally(() => [(loading.value = false)]);
 }
 getData();
+
+const formDrawerRef = ref(null)
 </script>
 <style scoped>
 .image-aside {
