@@ -47,7 +47,18 @@ function getData(p = null) {
 }
 getData();
 
+
 const formDrawerRef = ref(null)
+const handleCreate = ()=>{
+  formDrawerRef.value.open()
+}
+const handleSubmit = ()=>{
+  console.log("提交成功");
+}
+
+defineExpose({
+  handleCreate
+})
 </script>
 <style scoped>
 .image-aside {
