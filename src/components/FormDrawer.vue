@@ -8,7 +8,7 @@
   >
     <div class="formDrawer">
       <div class="body">
-        <slot>123</slot>
+        <slot></slot>
       </div>
       <div class="actions">
         <el-button type="primary" @click="submit" :loading="loading">{{

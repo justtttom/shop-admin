@@ -51,7 +51,7 @@
       ref="formRef"
       :rules="rules"
       :model="form"
-      label-width="85px"
+      label-width="90px"
       size="small"
     >
       <el-form-item prop="oldpassword" label="旧密码：">
