@@ -14,7 +14,7 @@
         <el-input v-model="form.name"></el-input>
       </el-form-item>
       <el-form-item label="排序" prop="order">
-        <el-input v-model="form.order"></el-input>
+        <el-input-number v-model="form.order" :min="0" :max="1000" />
       </el-form-item>
     </el-form>
   </FormDrawer>
