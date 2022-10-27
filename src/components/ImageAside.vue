@@ -24,6 +24,7 @@ import { reactive, ref } from "vue";
 import FormDrawer from './FormDrawer.vue'
 import AsideList from "./AsideList.vue";
 import { getImageClassList,createImageClass } from "~/api/image_class.js";
+import {toast} from '~/composables/util.js'
 
 // 加载动画
 const loading = ref(false);
@@ -77,7 +78,10 @@ const formRef = ref(null)
 const handleSubmit = () => {
   formRef.value.validate((valid)=>{
     if(!valid)return
-    console.log("提交成功");
+    createImageClass({form})
+    .then((res)=>{
+      toast("新增成功")
+    })
   })
 }
 
