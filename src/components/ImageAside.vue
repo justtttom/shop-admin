@@ -78,9 +78,15 @@ const formRef = ref(null)
 const handleSubmit = () => {
   formRef.value.validate((valid)=>{
     if(!valid)return
-    createImageClass({form})
+    formDrawerRef.value.showLoading()
+    createImageClass(form)
     .then((res)=>{
       toast("新增成功")
+      getData(1)
+      formDrawerRef.value.close()
+    })
+    .finally(()=>{
+      formDrawerRef.value.hideLoading()
     })
   })
 }
