@@ -23,7 +23,7 @@
 import { reactive, ref } from "vue";
 import FormDrawer from './FormDrawer.vue'
 import AsideList from "./AsideList.vue";
-import { getImageClassList } from "~/api/image_class.js";
+import { getImageClassList,createImageClass } from "~/api/image_class.js";
 
 // 加载动画
 const loading = ref(false);
