@@ -1,7 +1,7 @@
 <template>
   <el-aside width="220px" class="image-aside" v-loading="loading">
     <div class="top">
-      <AsideList :active="activeId == item.id" v-for="(item, index) in list" :key="index"> {{ item.name }} </AsideList>
+      <AsideList :active="activeId == item.id" v-for="(item, index) in list" :key="index" @edit="handleEdit(item)"> {{ item.name }} </AsideList>
     </div>
     <div class="bottom">
       <el-pagination background layout="prev, next" :total="total" :current-page="currentPage" :page-size="limit"
@@ -23,7 +23,7 @@
 import { reactive, ref } from "vue";
 import FormDrawer from './FormDrawer.vue'
 import AsideList from "./AsideList.vue";
-import { getImageClassList,createImageClass } from "~/api/image_class.js";
+import { getImageClassList,createImageClass ,updateImageClass} from "~/api/image_class.js";
 import {toast} from '~/composables/util.js'
 
 // 加载动画
@@ -89,6 +89,14 @@ const handleSubmit = () => {
       formDrawerRef.value.hideLoading()
     })
   })
+}
+
+// 编辑
+const handleEdit = (row)=>{
+  form.name = row.name
+  form.order = row.order
+  formDrawerRef.value.open()
+  updateImageClass(row.id,form)
 }
 
 defineExpose({
