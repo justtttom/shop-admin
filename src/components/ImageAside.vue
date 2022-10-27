@@ -58,6 +58,8 @@ getData();
 
 const formDrawerRef = ref(null)
 const handleCreate = () => {
+  form.name = ""
+  form.order = 50
   formDrawerRef.value.open()
 }
 
