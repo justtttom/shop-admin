@@ -107,8 +107,10 @@ const handleEdit = (row) => {
   form.name = row.name
   form.order = row.order
   formDrawerRef.value.open()
-  // updateImageClass(row.id,form)
 }
+
+// 删除
+const 
 
 defineExpose({
   handleCreate
