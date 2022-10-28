@@ -8,7 +8,7 @@
         @current-change="getData" />
     </div>
   </el-aside>
-  <FormDrawer title="新增" ref="formDrawerRef" @submit="handleSubmit">
+  <FormDrawer :title="drawerTitle" ref="formDrawerRef" @submit="handleSubmit">
     <el-form :model="form" ref="formRef" :rules="rules" label-width="80px" :inline="false">
       <el-form-item label="分类名称" prop="name">
         <el-input v-model="form.name"></el-input>
@@ -20,7 +20,7 @@
   </FormDrawer>
 </template>
 <script setup>
-import { reactive, ref } from "vue";
+import { computed, reactive, ref } from "vue";
 import FormDrawer from './FormDrawer.vue'
 import AsideList from "./AsideList.vue";
 import { getImageClassList,createImageClass ,updateImageClass} from "~/api/image_class.js";
@@ -55,15 +55,9 @@ function getData(p = null) {
 }
 getData();
 
-
+const editId = ref(0)
+const drawerTitle = computed(()=>editId.value ? "修改" : "新增")
 const formDrawerRef = ref(null)
-const handleCreate = () => {
-  form.name = ""
-  form.order = 50
-  formDrawerRef.value.open()
-}
-
-
 const form = reactive({
   name: "",
   order: 50,
@@ -93,12 +87,22 @@ const handleSubmit = () => {
   })
 }
 
+// 新增
+const handleCreate = () => {
+  editId.value = 0
+  form.name = ""
+  form.order = 50
+  formDrawerRef.value.open()
+}
+
+
 // 编辑
 const handleEdit = (row)=>{
+  editId.value = row.id
   form.name = row.name
   form.order = row.order
   formDrawerRef.value.open()
-  updateImageClass(row.id,form)
+  // updateImageClass(row.id,form)
 }
 
 defineExpose({
