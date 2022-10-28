@@ -70,7 +70,9 @@ const rules = {
      trigger: 'blur'
   }]
 }
+
 const formRef = ref(null)
+// 提交
 const handleSubmit = () => {
   formRef.value.validate((valid)=>{
     if(!valid)return
