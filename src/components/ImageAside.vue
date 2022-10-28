@@ -1,7 +1,9 @@
 <template>
   <el-aside width="220px" class="image-aside" v-loading="loading">
     <div class="top">
-      <AsideList :active="activeId == item.id" v-for="(item, index) in list" :key="index" @edit="handleEdit(item)"> {{ item.name }} </AsideList>
+      <AsideList :active="activeId == item.id" v-for="(item, index) in list" :key="index" @edit="handleEdit(item)"> {{
+          item.name
+      }} </AsideList>
     </div>
     <div class="bottom">
       <el-pagination background layout="prev, next" :total="total" :current-page="currentPage" :page-size="limit"
@@ -23,8 +25,8 @@
 import { computed, reactive, ref } from "vue";
 import FormDrawer from './FormDrawer.vue'
 import AsideList from "./AsideList.vue";
-import { getImageClassList,createImageClass ,updateImageClass} from "~/api/image_class.js";
-import {toast} from '~/composables/util.js'
+import { getImageClassList, createImageClass, updateImageClass } from "~/api/image_class.js";
+import { toast } from '~/composables/util.js'
 
 // 加载动画
 const loading = ref(false);
@@ -56,7 +58,7 @@ function getData(p = null) {
 getData();
 
 const editId = ref(0)
-const drawerTitle = computed(()=>editId.value ? "修改" : "新增")
+const drawerTitle = computed(() => editId.value ? "修改" : "新增")
 const formDrawerRef = ref(null)
 const form = reactive({
   name: "",
@@ -65,25 +67,26 @@ const form = reactive({
 
 const rules = {
   name: [{
-    required: true, 
+    required: true,
     message: '图库分类名称不能为空',
-     trigger: 'blur'
+    trigger: 'blur'
   }]
 }
 
 const formRef = ref(null)
 // 提交
 const handleSubmit = () => {
-  formRef.value.validate((valid)=>{
-    if(!valid)return
+  formRef.value.validate((valid) => {
+    if (!valid) return
     formDrawerRef.value.showLoading()
-    createImageClass(form)
-    .then((res)=>{
-      toast("新增成功")
-      getData(1)
+
+    const fun = editId.value ? updateImageClass(editId.value, form) : createImageClass(form)
+
+    fun.then((res) => {
+      toast(drawerTitle.value + "成功")
+      getData(editId.value ? currentPage.value : 1)
       formDrawerRef.value.close()
-    })
-    .finally(()=>{
+    }).finally(() => {
       formDrawerRef.value.hideLoading()
     })
   })
@@ -99,7 +102,7 @@ const handleCreate = () => {
 
 
 // 编辑
-const handleEdit = (row)=>{
+const handleEdit = (row) => {
   editId.value = row.id
   form.name = row.name
   form.order = row.order
