@@ -1,5 +1,5 @@
 import axios from "~/axios";
 
-export function getImageList() {
-  return axios.get("/admin/image_class/:page?limit=10")
+export function getImageList(id,page) {
+  return axios.get(`/admin/image_class/:${id}/image/:${page}`)
 }
