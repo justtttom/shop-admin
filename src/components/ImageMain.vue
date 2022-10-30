@@ -1,7 +1,7 @@
 <template>
   <el-main class="image-main">
     <div class="top">
-      <div v-for="i in 100" :key="i">{{ i }}</div>
+      <div v-for="i in 10" :key="i">{{ i }}</div>
     </div>
     <div class="bottom">分页区域</div>
   </el-main>
