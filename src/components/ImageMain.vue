@@ -1,7 +1,7 @@
 <template>
   <el-main class="image-main" v-loading="">
     <div class="top">
-      <div v-for="i in 10" :key="i">{{ i }}</div>
+      
     </div>
     <div class="bottom">
       <el-pagination background layout="prev, next" :total="total" :current-page="currentPage" :page-size="limit"
@@ -11,6 +11,7 @@
 </template>
 <script setup >
   import { getImageList } from '~/api/image.js';
+  import AsideList from './AsideList.vue'
   import { ref } from 'vue';
 
   // 分页
@@ -19,6 +20,7 @@ const total = ref(0)
 const limit = ref(10)
 const list = ref([])
 const loading = ref(false)
+const image_class_id = ref(0)
 
 // 获取数据
 function getData(p = null) {
@@ -26,14 +28,24 @@ function getData(p = null) {
     currentPage.value = p
   }
   loading.value = true;
-  getImageList(currentPage.value)
+  getImageList(image_class_id,currentPage.value)
     .then((res) => {
       total.value = res.totalCount
       list.value = res.list
+      console.log(res);
     })
     .finally(() => [(loading.value = false)]);
 }
-// getData();
+
+// 根据分类ID重新加载图片列表
+const loadData = (id)=>{
+  currentPage.value = 1
+  getData()
+}
+
+defineExpose({
+  loadData
+})
 
 </script>
 <style scoped>
