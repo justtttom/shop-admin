@@ -123,9 +123,11 @@ const handleDelete = (id) => {
 
 // 选中图库分类ID
 const activeId = ref(0)
+const emit = defineEmits(['change'])
 // 切换分类
 function handleChangeActiveId(id) {
   activeId.value = id
+  emit("change")
 }
 
 defineExpose({
