@@ -1,9 +1,10 @@
 <template>
   <el-aside width="220px" class="image-aside" v-loading="loading">
     <div class="top">
-      <AsideList :active="activeId == item.id" v-for="(item, index) in list" :key="index" @edit="handleEdit(item)" @delete="handleDelete(item.id)"> {{
-          item.name
-      }} </AsideList>
+      <AsideList :active="activeId == item.id" v-for="(item, index) in list" :key="index" @edit="handleEdit(item)"
+        @delete="handleDelete(item.id)" @click="handleChangeActiveId(item.id)">
+        {{ item.name }}
+      </AsideList>
     </div>
     <div class="bottom">
       <el-pagination background layout="prev, next" :total="total" :current-page="currentPage" :page-size="limit"
@@ -25,13 +26,13 @@
 import { computed, reactive, ref } from "vue";
 import FormDrawer from './FormDrawer.vue'
 import AsideList from "./AsideList.vue";
-import { getImageClassList, createImageClass, updateImageClass ,deleteImageClass} from "~/api/image_class.js";
+import { getImageClassList, createImageClass, updateImageClass, deleteImageClass } from "~/api/image_class.js";
 import { toast } from '~/composables/util.js'
 
 // 加载动画
 const loading = ref(false);
 const list = ref([])
-const activeId = ref(0)
+
 
 // 分页
 const currentPage = ref(1)
@@ -112,12 +113,19 @@ const handleEdit = (row) => {
 // 删除
 const handleDelete = (id) => {
   loading.value = true
-  deleteImageClass(id).then((res)=>{
+  deleteImageClass(id).then((res) => {
     toast("删除成功！")
     getData()
-  }).finally(()=>{
+  }).finally(() => {
     loading.value = false
   })
+}
+
+// 选中图库分类ID
+const activeId = ref(0)
+// 切换分类
+function handleChangeActiveId(id) {
+  activeId.value = id
 }
 
 defineExpose({

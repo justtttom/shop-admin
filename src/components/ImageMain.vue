@@ -40,6 +40,7 @@ function getData(p = null) {
 // 根据分类ID重新加载图片列表
 const loadData = (id)=>{
   currentPage.value = 1
+  image_class_id.value = id
   getData()
 }
 
