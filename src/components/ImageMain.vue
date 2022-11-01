@@ -1,11 +1,11 @@
 <template>
   <el-main class="image-main" v-loading="">
-    <div class="top">
-      <el-row :gutter="20">
+    <div class="top p-3">
+      <el-row :gutter="10">
         <el-col :span="6" :offset="0" v-for="(item, index) in list" :key="index">
-          <el-card shadow="hover" class="relative">
-            <el-image :src="item.url" fit="cover" :lazy="true" class="h=[150px]" style="w-100%"></el-image>
-            <div>{{item.name}}</div>
+          <el-card shadow="hover" class="relative mb-3" :body-style="{'padding':0}">
+            <el-image :src="item.url" fit="cover" :lazy="true" class="h-[150px]" style="width:100%"></el-image>
+            <div class="image-title">{{item.name}}</div>
             <div class="flex items-center justify-center p-2">
               <el-button type="primary" size="small" text @click="">重命名</el-button>
               <el-button type="primary" size="small" text @click="">删除</el-button>
@@ -83,5 +83,10 @@ defineExpose({
   height: 50px;
   right: 0;
   left: 0;
+}
+.image-title{
+  position: absolute;
+  top: 122px;
+  left: -1;
 }
 </style>
