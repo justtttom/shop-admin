@@ -11,7 +11,6 @@
 </template>
 <script setup >
   import { getImageList } from '~/api/image.js';
-  import AsideList from './AsideList.vue'
   import { ref } from 'vue';
 
   // 分页
