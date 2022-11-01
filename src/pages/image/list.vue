@@ -4,7 +4,6 @@
       <el-button type="primary" size="small" @click="handleOpenCreate">
         新增图片分类
       </el-button>
-      
     </el-header>
     <el-container>
       <ImageAside ref="ImageAsideRef" @change="handleAsideChange"/>
@@ -30,6 +29,7 @@ const handleOpenCreate = ()=>{
 const imageMainRef = ref(null)
 const handleAsideChange = (image_class_id)=>{
   imageMainRef.value.loadData(image_class_id)
+  console.log(image_class_id);
 }
 </script>
 

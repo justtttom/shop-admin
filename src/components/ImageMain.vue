@@ -1,19 +1,19 @@
 <template>
   <el-main class="image-main" v-loading="">
     <div class="top">
-      
+      <div v-for="(item, index) in list" :key="index">{{ item.url }}</div>
     </div>
     <div class="bottom">
-      <el-pagination background layout="prev, next" :total="total" :current-page="currentPage" :page-size="limit"
+      <el-pagination background layout="prev,pager,next" :total="total" :current-page="currentPage" :page-size="limit"
         @current-change="getData" />
     </div>
   </el-main>
 </template>
-<script setup >
-  import { getImageList } from '~/api/image.js';
-  import { ref } from 'vue';
+<script setup>
+import { getImageList } from '~/api/image.js';
+import { ref } from "vue";
 
-  // 分页
+// 分页
 const currentPage = ref(1)
 const total = ref(0)
 const limit = ref(10)
@@ -23,21 +23,23 @@ const image_class_id = ref(0)
 
 // 获取数据
 function getData(p = null) {
-  if (typeof p == 'number') {
+  if (typeof p == "number") {
     currentPage.value = p
   }
   loading.value = true;
-  getImageList(image_class_id,currentPage.value)
+  getImageList(image_class_id.value, currentPage.value)
     .then((res) => {
       total.value = res.totalCount
       list.value = res.list
       console.log(res);
     })
-    .finally(() => [(loading.value = false)]);
+    .finally(() => {
+      loading.value = false
+    })
 }
 
 // 根据分类ID重新加载图片列表
-const loadData = (id)=>{
+const loadData = (id) => {
   currentPage.value = 1
   image_class_id.value = id
   getData()
@@ -52,6 +54,7 @@ defineExpose({
 .image-main {
   position: relative;
 }
+
 .image-main .top {
   position: absolute;
   top: 0;

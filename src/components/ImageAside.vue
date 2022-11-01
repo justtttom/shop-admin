@@ -54,7 +54,7 @@ function getData(p = null) {
         handleChangeActiveId(item.id)
       }
     })
-    .finally(() => [(loading.value = false)]);
+    .finally(() => {loading.value = false});
 }
 getData();
 
