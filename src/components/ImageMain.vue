@@ -1,7 +1,19 @@
 <template>
   <el-main class="image-main" v-loading="">
     <div class="top">
-      <div v-for="(item, index) in list" :key="index">{{ item.url }}</div>
+      <el-row :gutter="20">
+        <el-col :span="6" :offset="0" v-for="(item, index) in list" :key="index">
+          <el-card shadow="hover" class="relative">
+            <el-image :src="item.url" fit="cover" :lazy="true" class="h=[150px]" style="w-100%"></el-image>
+            <div>{{item.name}}</div>
+            <div class="flex items-center justify-center p-2">
+              <el-button type="primary" size="small" text @click="">重命名</el-button>
+              <el-button type="primary" size="small" text @click="">删除</el-button>
+            </div>
+          </el-card>
+        </el-col>
+      </el-row>
+
     </div>
     <div class="bottom">
       <el-pagination background layout="prev,pager,next" :total="total" :current-page="currentPage" :page-size="limit"
