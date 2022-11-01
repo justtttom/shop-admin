@@ -127,7 +127,7 @@ const emit = defineEmits(['change'])
 // 切换分类
 function handleChangeActiveId(id) {
   activeId.value = id
-  emit("change")
+  emit("change",id)
 }
 
 defineExpose({
