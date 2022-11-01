@@ -51,7 +51,7 @@ function getData(p = null) {
       list.value = res.list
       let item = list.value[1]
       if (item) {
-        activeId.value = item.id
+        handleChangeActiveId(item.id)
       }
     })
     .finally(() => [(loading.value = false)]);

@@ -7,8 +7,8 @@
       
     </el-header>
     <el-container>
-      <ImageAside ref="ImageAsideRef"/>
-      <ImageMain/>
+      <ImageAside ref="ImageAsideRef" @change="handleAsideChange"/>
+      <ImageMain ref="imageMainRef"/>
     </el-container>
   </el-container>
 </template>
@@ -25,6 +25,11 @@ const ImageAsideRef = ref(null)
 
 const handleOpenCreate = ()=>{
   ImageAsideRef.value.handleCreate()
+}
+
+const imageMainRef = ref(null)
+const handleAsideChange = (image_class_id)=>{
+  imageMainRef.value.loadData(image_class_id)
 }
 </script>
 
