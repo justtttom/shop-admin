@@ -48,7 +48,7 @@
   </el-main>
 </template>
 <script setup>
-import { getImageList } from '~/api/image.js'
+import { getImageList,updateImage,deleteImage } from '~/api/image.js'
 import { ref } from 'vue'
 
 // 分页
