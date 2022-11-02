@@ -89,5 +89,6 @@ defineExpose({
   top: 122px;
   left: -1px;
   right: -1px;
+  @apply text-sm truncate text-gray-100 bg-opacity-50 bg-gray-500 px-2 py-1;
 }
 </style>
