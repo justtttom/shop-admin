@@ -87,6 +87,7 @@ defineExpose({
 .image-title{
   position: absolute;
   top: 122px;
-  left: -1;
+  left: -1px;
+  right: -1px;
 }
 </style>
