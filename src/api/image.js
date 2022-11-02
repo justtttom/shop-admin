@@ -5,7 +5,7 @@ export function getImageList(id,page = 1){
 }
 
 export function updateImage(id,name){
-    return axios.post(`/admin/image/${id}`,name)
+    return axios.post(`/admin/image/${id}`,{name})
 }
 
 export function deleteImage(ids){

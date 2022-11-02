@@ -49,7 +49,7 @@
 </template>
 <script setup>
 import { getImageList,updateImage,deleteImage } from '~/api/image.js'
-import {showPrompt,toast} from '~/composables/util.js'
+import {showPrompt,toast} from '~/composables/util'
 import { ref } from 'vue'
 
 // 分页
