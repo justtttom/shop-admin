@@ -24,7 +24,7 @@
             ></el-image>
             <div class="image-title">{{ item.name }}</div>
             <div class="flex items-center justify-center p-2">
-              <el-button type="primary" size="small" text @click=""
+              <el-button type="primary" size="small" text @click="handleEdit(item)"
                 >重命名</el-button
               >
               <el-button type="primary" size="small" text @click=""
@@ -49,6 +49,7 @@
 </template>
 <script setup>
 import { getImageList,updateImage,deleteImage } from '~/api/image.js'
+import {showPrompt,toast} from '~/composables/util.js'
 import { ref } from 'vue'
 
 // 分页
@@ -81,6 +82,21 @@ const loadData = (id) => {
   currentPage.value = 1
   image_class_id.value = id
   getData()
+}
+
+// 重命名
+const handleEdit = (item)=>{
+  showPrompt("重命名",item.name)
+  .then(({value})=>{
+    loading.value = true
+    updateImage(item.id,value)
+    .then(res=>{
+      toast("修改成功");
+      getData()
+    }).finally(()=>{
+      loading.value = false
+    })
+  })
 }
 
 defineExpose({
