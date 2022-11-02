@@ -2,28 +2,54 @@
   <el-main class="image-main" v-loading="">
     <div class="top p-3">
       <el-row :gutter="10">
-        <el-col :span="6" :offset="0" v-for="(item, index) in list" :key="index">
-          <el-card shadow="hover" class="relative mb-3" :body-style="{'padding':0}">
-            <el-image :src="item.url" fit="cover" :lazy="true" class="h-[150px]" style="width:100%"></el-image>
-            <div class="image-title">{{item.name}}</div>
+        <el-col
+          :span="6"
+          :offset="0"
+          v-for="(item, index) in list"
+          :key="index"
+        >
+          <el-card
+            shadow="hover"
+            class="relative mb-3"
+            :body-style="{ padding: 0 }"
+          >
+            <el-image
+              :src="item.url"
+              fit="cover"
+              :lazy="true"
+              class="h-[150px]"
+              style="width: 100%;"
+              :preview-src-list="[item.url]"
+              :initial-index="0"
+            ></el-image>
+            <div class="image-title">{{ item.name }}</div>
             <div class="flex items-center justify-center p-2">
-              <el-button type="primary" size="small" text @click="">重命名</el-button>
-              <el-button type="primary" size="small" text @click="">删除</el-button>
+              <el-button type="primary" size="small" text @click=""
+                >重命名</el-button
+              >
+              <el-button type="primary" size="small" text @click=""
+                >删除</el-button
+              >
             </div>
           </el-card>
         </el-col>
       </el-row>
-
     </div>
     <div class="bottom">
-      <el-pagination background layout="prev,pager,next" :total="total" :current-page="currentPage" :page-size="limit"
-        @current-change="getData" />
+      <el-pagination
+        background
+        layout="prev,pager,next"
+        :total="total"
+        :current-page="currentPage"
+        :page-size="limit"
+        @current-change="getData"
+      />
     </div>
   </el-main>
 </template>
 <script setup>
-import { getImageList } from '~/api/image.js';
-import { ref } from "vue";
+import { getImageList } from '~/api/image.js'
+import { ref } from 'vue'
 
 // 分页
 const currentPage = ref(1)
@@ -35,15 +61,15 @@ const image_class_id = ref(0)
 
 // 获取数据
 function getData(p = null) {
-  if (typeof p == "number") {
+  if (typeof p == 'number') {
     currentPage.value = p
   }
-  loading.value = true;
+  loading.value = true
   getImageList(image_class_id.value, currentPage.value)
     .then((res) => {
       total.value = res.totalCount
       list.value = res.list
-      console.log(res);
+      console.log(res)
     })
     .finally(() => {
       loading.value = false
@@ -60,7 +86,6 @@ const loadData = (id) => {
 defineExpose({
   loadData
 })
-
 </script>
 <style scoped>
 .image-main {
@@ -84,7 +109,8 @@ defineExpose({
   right: 0;
   left: 0;
 }
-.image-title{
+
+.image-title {
   position: absolute;
   top: 122px;
   left: -1px;
