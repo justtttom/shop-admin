@@ -29,7 +29,6 @@ const handleOpenCreate = ()=>{
 const imageMainRef = ref(null)
 const handleAsideChange = (image_class_id)=>{
   imageMainRef.value.loadData(image_class_id)
-  console.log(image_class_id);
 }
 </script>
 

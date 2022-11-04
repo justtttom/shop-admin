@@ -83,7 +83,6 @@ function getData(p = null) {
     .then((res) => {
       total.value = res.totalCount
       list.value = res.list
-      console.log(res)
     })
     .finally(() => {
       loading.value = false
@@ -113,7 +112,16 @@ const handleEdit = (item) => {
 }
 
 // 删除图片
-handleEdit
+const handleDelete = (id)=>{
+  loading.value = true
+  deleteImage([id]).then((res)=>{
+    toast("删除成功")
+    getData()
+    console.log(res);
+  }).finally(()=>{
+    loading.value = false
+  })
+}
 
 defineExpose({
   loadData
