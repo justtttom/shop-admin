@@ -59,6 +59,14 @@
       />
     </div>
   </el-main>
+  <el-drawer
+    v-model="drawer"
+    title="I am the title"
+    :direction="direction"
+    :before-close="handleClose"
+  >
+    <span>Hi, there!</span>
+  </el-drawer>
 </template>
 <script setup>
 import { getImageList, updateImage, deleteImage } from '~/api/image.js'
@@ -112,15 +120,17 @@ const handleEdit = (item) => {
 }
 
 // 删除图片
-const handleDelete = (id)=>{
+const handleDelete = (id) => {
   loading.value = true
-  deleteImage([id]).then((res)=>{
-    toast("删除成功")
-    getData()
-    console.log(res);
-  }).finally(()=>{
-    loading.value = false
-  })
+  deleteImage([id])
+    .then((res) => {
+      toast('删除成功')
+      getData()
+      console.log(res)
+    })
+    .finally(() => {
+      loading.value = false
+    })
 }
 
 defineExpose({
