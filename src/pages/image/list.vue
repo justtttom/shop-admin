@@ -4,6 +4,9 @@
       <el-button type="primary" size="small" @click="handleOpenCreate">
         新增图片分类
       </el-button>
+      <el-button type="warning" size="small" @click="">
+        上传图片
+      </el-button>
     </el-header>
     <el-container>
       <ImageAside ref="ImageAsideRef" @change="handleAsideChange"/>
