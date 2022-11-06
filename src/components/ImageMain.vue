@@ -59,19 +59,18 @@
       />
     </div>
   </el-main>
-  <el-drawer
-    v-model="drawer"
-    title="I am the title"
-    :direction="direction"
-    :before-close="handleClose"
-  >
-    <span>Hi, there!</span>
+  <el-drawer v-model="drawer" title="上传图片">
+    <UploadFileVue />
   </el-drawer>
 </template>
 <script setup>
 import { getImageList, updateImage, deleteImage } from '~/api/image.js'
 import { showPrompt, toast } from '~/composables/util'
+import UploadFileVue from './UploadFile.vue'
 import { ref } from 'vue'
+
+// 上传图片
+const drawer = ref(true)
 
 // 分页
 const currentPage = ref(1)
