@@ -1,9 +1,11 @@
 <template>
   <el-upload
-    class="upload-demo"
     drag
-    action="/api/admin/image/upload"
+    :action="uploadImageAction"
     multiple
+    :headers="{
+      token
+    }"
   >
     <el-icon class="el-icon--upload"><upload-filled /></el-icon>
     <div class="el-upload__text">
@@ -18,5 +20,7 @@
 </template>
 
 <script setup>
-
+import {uploadImageAction} from '~/api/image.js'
+import {getToken} from "~/composables/auth.js"
+const token  = getToken()
 </script>
