@@ -70,7 +70,8 @@ import UploadFileVue from './UploadFile.vue'
 import { ref } from 'vue'
 
 // 上传图片
-const drawer = ref(true)
+const drawer = ref(false)
+const openUploadFile = () => (drawer.value = true)
 
 // 分页
 const currentPage = ref(1)
@@ -133,7 +134,8 @@ const handleDelete = (id) => {
 }
 
 defineExpose({
-  loadData
+  loadData,
+  openUploadFile
 })
 </script>
 <style scoped>
