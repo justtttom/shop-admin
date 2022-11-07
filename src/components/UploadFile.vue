@@ -6,6 +6,7 @@
     :headers="{
       token
     }"
+    name="img"
   >
     <el-icon class="el-icon--upload"><upload-filled /></el-icon>
     <div class="el-upload__text">
@@ -23,4 +24,7 @@
 import {uploadImageAction} from '~/api/image.js'
 import {getToken} from "~/composables/auth.js"
 const token  = getToken()
+defineProps({
+  data:Object
+})
 </script>
