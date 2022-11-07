@@ -7,6 +7,9 @@
       token
     }"
     name="img"
+    :data="data"
+    :on-success="uploadSuccess"
+    :on-error="uploadError"
   >
     <el-icon class="el-icon--upload"><upload-filled /></el-icon>
     <div class="el-upload__text">
@@ -27,4 +30,14 @@ const token  = getToken()
 defineProps({
   data:Object
 })
+
+// 上传成功
+const uploadSuccess = ()=>{
+
+}
+
+// 上传失败
+const uploadError = ()=>{
+
+}
 </script>
