@@ -60,7 +60,7 @@
     </div>
   </el-main>
   <el-drawer v-model="drawer" title="上传图片">
-    <UploadFileVue />
+    <UploadFileVue :data="{image_class_id}" @success="handleUploadSuccess"/>
   </el-drawer>
 </template>
 <script setup>
@@ -131,6 +131,11 @@ const handleDelete = (id) => {
     .finally(() => {
       loading.value = false
     })
+}
+
+// 上传成功
+const handleUploadSuccess = ()=>{
+  getData(1)
 }
 
 defineExpose({
