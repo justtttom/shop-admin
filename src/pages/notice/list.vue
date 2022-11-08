@@ -9,13 +9,35 @@
       </el-tooltip>
     </div>
     <el-table :data="tableData" stripe style="width: 100%;">
-      <el-table-column prop="date" label="公告标题" width="180" />
-      <el-table-column prop="name" label="发布时间" width="180" />
-      <el-table-column prop="address" label="操作" />
+      <el-table-column prop="title" label="公告标题" />
+      <el-table-column prop="create_time" label="发布时间" width="380" />
+      <el-table-column label="操作" width="180" align="center"/>
     </el-table>
   </el-card>
 </template>
 
 <script setup>
-  
+import { ref } from 'vue'
+
+const tableData = ref([])
+
+function getData() {
+  tableData.value = [
+    {
+      id: 13,
+
+      title: 'nip',
+
+      content: 'nip\n',
+
+      order: 0,
+
+      create_time: '2022-06-06 14:40:11',
+
+      update_time: '2022-06-06 14:40:11'
+    }
+  ]
+}
+
+getData()
 </script>
