@@ -14,7 +14,16 @@
       <el-table-column label="操作" width="180" align="center">
         <template #default="scope">
           <el-button size="small" type="primary" @click="" text>修改</el-button>
-          <el-button size="small" type="primary" @click="" text>删除</el-button>
+          <el-popconfirm
+            title="是否要删除该公告？"
+            confirm-button-text="确定"
+            cancel-button-text="取消"
+            @confirm=""
+          >
+            <template #reference>
+              <el-button size="small" type="primary" @click="" text>删除</el-button>
+            </template>
+          </el-popconfirm>
         </template>
       </el-table-column>
     </el-table>
