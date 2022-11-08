@@ -19,6 +19,7 @@
         title="是否要删除该分类？"
         confirm-button-text="确定"
         cancel-button-text="取消"
+        width="20"
         @confirm="$emit('delete')"
       >
         <template #reference>

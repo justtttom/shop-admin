@@ -18,7 +18,8 @@
             title="是否要删除该公告？"
             confirm-button-text="确定"
             cancel-button-text="取消"
-            @confirm=""
+            width="20"
+            @confirm="handleDelete(scope.row.id)"
           >
             <template #reference>
               <el-button size="small" type="primary" @click="" text>删除</el-button>
@@ -34,6 +35,8 @@
 import { ref } from 'vue'
 
 const tableData = ref([])
+
+
 
 function getData() {
   tableData.value = [
@@ -54,4 +57,9 @@ function getData() {
 }
 
 getData()
+
+// 删除
+const handleDelete = (id)=>{
+  
+}
 </script>
