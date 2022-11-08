@@ -11,7 +11,12 @@
     <el-table :data="tableData" stripe style="width: 100%;">
       <el-table-column prop="title" label="公告标题" />
       <el-table-column prop="create_time" label="发布时间" width="380" />
-      <el-table-column label="操作" width="180" align="center"/>
+      <el-table-column label="操作" width="180" align="center">
+        <template #default="scope">
+          <el-button size="small" type="primary" @click="" text>修改</el-button>
+          <el-button size="small" type="primary" @click="" text>删除</el-button>
+        </template>
+      </el-table-column>
     </el-table>
   </el-card>
 </template>
