@@ -1,5 +1,5 @@
 import axios from "~/axios"
 
-export function getNoticeList(){
-  return axios.get("/admin/notice/:page")
+export function getNoticeList(page){
+  return axios.get(`/admin/notice/${page}`)
 }
