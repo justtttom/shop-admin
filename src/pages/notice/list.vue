@@ -33,7 +33,14 @@
         @current-change="getData" />
     </div>
     <FormDrawer ref="formDrawerRef" tittle="新增" @submit="handSubmit">
-      
+      <el-form :model="form" ref="formRef" :rules="rules" label-width="80px" :inline="false">
+        <el-form-item label="公告标题" prop="title">
+          <el-input v-model="form.title"></el-input>
+        </el-form-item>
+        <el-form-item label="公告内容" prop="content">
+          <el-input v-model="form.content"></el-input>
+        </el-form-item>
+      </el-form>
     </FormDrawer>
   </el-card>
 </template>
@@ -73,6 +80,16 @@ getData()
 
 // 新增
 const formDrawerRef = ref(null)
+const formRef = ref(null)
+const form = reactive({
+  title:"",
+  content:""
+})
+const rules = {
+  title:[],
+  content:[]
+}
+
 const handSubmit = ()=>{
 
 }
