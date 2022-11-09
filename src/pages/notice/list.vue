@@ -8,7 +8,7 @@
         </el-button>
       </el-tooltip>
     </div>
-    <el-table :data="tableData" stripe style="width: 100%;">
+    <el-table :data="tableData" stripe style="width: 100%;" v-loading="loading">
       <el-table-column prop="title" label="公告标题" />
       <el-table-column prop="create_time" label="发布时间" width="380" />
       <el-table-column label="操作" width="180" align="center">
@@ -51,12 +51,7 @@ function getData(p = null) {
   loading.value = true;
   getNoticeList(currentPage.value)
     .then((res) => {
-      total.value = res.totalCount
-      list.value = res.list
-      let item = list.value[1]
-      if (item) {
-        handleChangeActiveId(item.id)
-      }
+      console.log(res);
     })
     .finally(() => {loading.value = false});
 }
