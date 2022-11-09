@@ -3,7 +3,7 @@
     <div class="flex justify-between items-center mb-4">
       <el-button type="primary" size="small" @click="">新增</el-button>
       <el-tooltip effect="dark" content="刷新数据" placement="top-start">
-        <el-button text>
+        <el-button text @click="getData">
           <el-icon :size="20"><Refresh /></el-icon>
         </el-button>
       </el-tooltip>
@@ -29,14 +29,18 @@
       </el-table-column>
     </el-table>
     <div class="flex items-center justify-center mt-5">
-      <el-pagination background layout="prev, next" :total="total" :current-page="currentPage" :page-size="limit"
+      <el-pagination background layout="prev, pager,next" :total="total" :current-page="currentPage" :page-size="limit"
         @current-change="getData" />
     </div>
+    <FormDrawer>
+      
+    </FormDrawer>
   </el-card>
 </template>
 
 <script setup>
 import { ref } from 'vue'
+import FormDrawer from '~/components/FormDrawer.vue'
 import {getNoticeList} from '~/api/notice.js'
 
 const tableData = ref([])
