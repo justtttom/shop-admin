@@ -46,7 +46,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref,reactive } from 'vue'
 import FormDrawer from '~/components/FormDrawer.vue'
 import {getNoticeList,addNoticeList} from '~/api/notice.js'
 
@@ -92,6 +92,10 @@ const rules = {
 
 const handSubmit = ()=>{
 
+}
+
+const handelCreate = ()=>{
+  formDrawerRef.value.open()
 }
 
 
