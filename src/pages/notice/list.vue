@@ -32,7 +32,7 @@
       <el-pagination background layout="prev, pager,next" :total="total" :current-page="currentPage" :page-size="limit"
         @current-change="getData" />
     </div>
-    <FormDrawer>
+    <FormDrawer ref="formDrawerRef" tittle="新增" @submit="handSubmit">
       
     </FormDrawer>
   </el-card>
@@ -41,7 +41,7 @@
 <script setup>
 import { ref } from 'vue'
 import FormDrawer from '~/components/FormDrawer.vue'
-import {getNoticeList} from '~/api/notice.js'
+import {getNoticeList,addNoticeList} from '~/api/notice.js'
 
 const tableData = ref([])
 const loading = ref(false)
@@ -70,6 +70,13 @@ function getData(p = null) {
 
 
 getData()
+
+// 新增
+const formDrawerRef = ref(null)
+const handSubmit = ()=>{
+
+}
+
 
 // 删除
 const handleDelete = (id)=>{
