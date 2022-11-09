@@ -35,7 +35,30 @@
 import { ref } from 'vue'
 
 const tableData = ref([])
+const loading = ref(false)
 
+// 分页
+const currentPage = ref(1)
+const total = ref(0)
+const limit = ref(10)
+
+// 获取数据
+function getData(p = null) {
+  if (typeof p == 'number') {
+    currentPage.value = p
+  }
+  loading.value = true;
+  getImageClassList(currentPage.value)
+    .then((res) => {
+      total.value = res.totalCount
+      list.value = res.list
+      let item = list.value[1]
+      if (item) {
+        handleChangeActiveId(item.id)
+      }
+    })
+    .finally(() => {loading.value = false});
+}
 
 
 function getData() {
