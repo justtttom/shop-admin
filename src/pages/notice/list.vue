@@ -28,6 +28,10 @@
         </template>
       </el-table-column>
     </el-table>
+    <div class="flex items-center justify-center mt-5">
+      <el-pagination background layout="prev, next" :total="total" :current-page="currentPage" :page-size="limit"
+        @current-change="getData" />
+    </div>
   </el-card>
 </template>
 
@@ -52,6 +56,9 @@ function getData(p = null) {
   getNoticeList(currentPage.value)
     .then((res) => {
       console.log(res);
+      tableData.value = res.list
+      total.value = res.totalCount
+
     })
     .finally(() => {loading.value = false});
 }
