@@ -1,7 +1,7 @@
 <template>
   <el-card shadow="hover" class="border-0">
     <div class="flex justify-between items-center mb-4">
-      <el-button type="primary" size="small" @click="">新增</el-button>
+      <el-button type="primary" size="small" @click="handelCreate">新增</el-button>
       <el-tooltip effect="dark" content="刷新数据" placement="top-start">
         <el-button text @click="getData">
           <el-icon :size="20"><Refresh /></el-icon>
