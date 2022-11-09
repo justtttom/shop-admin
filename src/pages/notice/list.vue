@@ -33,6 +33,7 @@
 
 <script setup>
 import { ref } from 'vue'
+import {getNoticeList} from '~/api/notice.js'
 
 const tableData = ref([])
 const loading = ref(false)
@@ -48,7 +49,7 @@ function getData(p = null) {
     currentPage.value = p
   }
   loading.value = true;
-  getImageClassList(currentPage.value)
+  getNoticeList(currentPage.value)
     .then((res) => {
       total.value = res.totalCount
       list.value = res.list
@@ -61,23 +62,6 @@ function getData(p = null) {
 }
 
 
-function getData() {
-  tableData.value = [
-    {
-      id: 13,
-
-      title: 'nip',
-
-      content: 'nip\n',
-
-      order: 0,
-
-      create_time: '2022-06-06 14:40:11',
-
-      update_time: '2022-06-06 14:40:11'
-    }
-  ]
-}
 
 getData()
 
