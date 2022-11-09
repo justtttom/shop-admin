@@ -35,10 +35,10 @@
     <FormDrawer ref="formDrawerRef" tittle="新增" @submit="handSubmit">
       <el-form :model="form" ref="formRef" :rules="rules" label-width="80px" :inline="false">
         <el-form-item label="公告标题" prop="title">
-          <el-input v-model="form.title"></el-input>
+          <el-input v-model="form.title" placeholder="公告标题"></el-input>
         </el-form-item>
         <el-form-item label="公告内容" prop="content">
-          <el-input v-model="form.content"></el-input>
+          <el-input v-model="form.content" placeholder="公告内容" type="textarea" :rows="5"></el-input>
         </el-form-item>
       </el-form>
     </FormDrawer>
