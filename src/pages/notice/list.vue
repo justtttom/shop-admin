@@ -1,14 +1,14 @@
 <template>
-  <el-card shadow="hover" class="border-0">
+  <el-card shadow="never" class="border-0">
     <div class="flex justify-between items-center mb-4">
       <el-button type="primary" size="small" @click="handleCreate">新增</el-button>
-      <el-tooltip effect="dark" content="刷新数据" placement="top-start">
+      <el-tooltip effect="dark" content="刷新数据" placement="top">
         <el-button text @click="getData">
           <el-icon :size="20"><Refresh /></el-icon>
         </el-button>
       </el-tooltip>
     </div>
-    <el-table :data="tableData" stripe style="width: 100%;" v-loading="loading">
+    <el-table :data="tableData" stripe style="width: 100%" v-loading="loading">
       <el-table-column prop="title" label="公告标题" />
       <el-table-column prop="create_time" label="发布时间" width="380" />
       <el-table-column label="操作" width="180" align="center">
@@ -32,7 +32,7 @@
       <el-pagination background layout="prev, pager,next" :total="total" :current-page="currentPage" :page-size="limit"
         @current-change="getData" />
     </div>
-    <FormDrawer ref="formDrawerRef" tittle="新增" @submit="handleSubmit">
+    <FormDrawer ref="formDrawerRef" title="新增" @submit="handleSubmit">
       <el-form :model="form" ref="formRef" :rules="rules" label-width="80px" :inline="false">
         <el-form-item label="公告标题" prop="title">
           <el-input v-model="form.title" placeholder="公告标题"></el-input>
