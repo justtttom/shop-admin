@@ -1,7 +1,7 @@
 <template>
   <el-card shadow="hover" class="border-0">
     <div class="flex justify-between items-center mb-4">
-      <el-button type="primary" size="small" @click="handelCreate">新增</el-button>
+      <el-button type="primary" size="small" @click="handleCreate">新增</el-button>
       <el-tooltip effect="dark" content="刷新数据" placement="top-start">
         <el-button text @click="getData">
           <el-icon :size="20"><Refresh /></el-icon>
@@ -49,6 +49,7 @@
 import { ref,reactive } from 'vue'
 import FormDrawer from '~/components/FormDrawer.vue'
 import {getNoticeList,addNoticeList} from '~/api/notice.js'
+import {toast} from '~/composables/util.js'
 
 const tableData = ref([])
 const loading = ref(false)
@@ -105,7 +106,7 @@ const handSubmit = ()=>{
   })
 }
 
-const handelCreate = ()=>{
+const handleCreate = ()=>{
   formDrawerRef.value.open()
 }
 
