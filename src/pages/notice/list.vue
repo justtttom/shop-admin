@@ -91,7 +91,18 @@ const rules = {
 }
 
 const handSubmit = ()=>{
+  formRef,value.validate((valid)=>{
+    if(!valid)return
 
+    formDrawerRef.value.showLoading()
+
+    createNotice(form).then(res=>{
+
+    })
+    .finally(()=>{
+      formDrawerRef.value.hideLoading()
+    })
+  })
 }
 
 const handelCreate = ()=>{
