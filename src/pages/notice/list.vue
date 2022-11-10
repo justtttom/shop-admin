@@ -96,8 +96,7 @@ const handleSubmit = ()=>{
     if(!valid)return
 
     formDrawerRef.value.showLoading()
-
-    createNotice(form).then(res=>{
+    addNoticeList(form).then(res=>{
       toast("新增成功")
       getData(1)
       formDrawerRef.value.close()
