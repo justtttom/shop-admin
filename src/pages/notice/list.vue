@@ -32,7 +32,7 @@
       <el-pagination background layout="prev, pager,next" :total="total" :current-page="currentPage" :page-size="limit"
         @current-change="getData" />
     </div>
-    <FormDrawer ref="formDrawerRef" tittle="新增" @submit="handSubmit">
+    <FormDrawer ref="formDrawerRef" tittle="新增" @submit="handleSubmit">
       <el-form :model="form" ref="formRef" :rules="rules" label-width="80px" :inline="false">
         <el-form-item label="公告标题" prop="title">
           <el-input v-model="form.title" placeholder="公告标题"></el-input>
@@ -91,14 +91,16 @@ const rules = {
   content:[]
 }
 
-const handSubmit = ()=>{
-  formRef,value.validate((valid)=>{
+const handleSubmit = ()=>{
+  formRef.value.validate((valid)=>{
     if(!valid)return
 
     formDrawerRef.value.showLoading()
 
     createNotice(form).then(res=>{
-
+      toast("新增成功")
+      getData(1)
+      formDrawerRef.value.close()
     })
     .finally(()=>{
       formDrawerRef.value.hideLoading()
