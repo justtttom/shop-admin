@@ -15,7 +15,7 @@
       <el-table-column prop="create_time" label="发布时间" width="380" />
       <el-table-column label="操作" width="180" align="center">
         <template #default="scope">
-          <el-button size="small" type="primary" @click="" text>修改</el-button>
+          <el-button size="small" type="primary" @click="handleEdit(scope.row)" text>修改</el-button>
           <el-popconfirm
             title="是否要删除该公告？"
             confirm-button-text="确定"
@@ -42,7 +42,7 @@
         @current-change="getData"
       />
     </div>
-    <FormDrawer ref="formDrawerRef" title="新增" @submit="handleSubmit">
+    <FormDrawer ref="formDrawerRef" :title="drawerTitle" @submit="handleSubmit">
       <el-form
         :model="form"
         ref="formRef"
@@ -67,7 +67,7 @@
 </template>
 
 <script setup>
-import { ref, reactive } from 'vue'
+import { ref, reactive,computed } from 'vue'
 import FormDrawer from '~/components/FormDrawer.vue'
 import {
   getNoticeList,
@@ -93,7 +93,6 @@ function getData(p = null) {
   loading.value = true
   getNoticeList(currentPage.value)
     .then((res) => {
-      console.log(res)
       tableData.value = res.list
       total.value = res.totalCount
     })
@@ -104,7 +103,7 @@ function getData(p = null) {
 
 getData()
 
-// 新增
+
 const formDrawerRef = ref(null)
 const formRef = ref(null)
 const form = reactive({
@@ -115,6 +114,8 @@ const rules = {
   title: [],
   content: []
 }
+const editId = ref(0)
+const drawerTitle = computed(()=>editId.value ? "修改" : "新增")
 
 const handleSubmit = () => {
   formRef.value.validate((valid) => {
@@ -132,7 +133,15 @@ const handleSubmit = () => {
   })
 }
 
+// 新增
 const handleCreate = () => {
+  editId.value = 0
+  formDrawerRef.value.open()
+}
+
+// 修改
+const handleEdit = (row)=>{
+  editId.value = row.id
   formDrawerRef.value.open()
 }
 
