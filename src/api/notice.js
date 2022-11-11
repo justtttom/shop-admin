@@ -8,10 +8,10 @@ export function addNoticeList(data){
   return axios.post(`/admin/notice`,data)
 }
 
-export function updateNoticeList(id){
-  return axios.post(`/admin/notice/${id}`)
+export function updateNoticeList(id,data){
+  return axios.post(`/admin/notice/${id}`,data)
 }
 
-export function deleteNoticeList(id){
-  return axios.post(`/admin/notice/${id}/delete`)
+export function deleteNoticeList(id,data){
+  return axios.post(`/admin/notice/${id}/delete`,data)
 }
