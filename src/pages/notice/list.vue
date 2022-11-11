@@ -133,6 +133,11 @@ const handleSubmit = () => {
   })
 }
 
+// 重置表单
+function resetForm() {
+  if(formRef.value)formRef.value.clear
+}
+
 // 新增
 const handleCreate = () => {
   editId.value = 0
