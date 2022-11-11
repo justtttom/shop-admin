@@ -119,7 +119,6 @@ const rules = {
 const handleSubmit = () => {
   formRef.value.validate((valid) => {
     if (!valid) return
-
     formDrawerRef.value.showLoading()
     addNoticeList(form)
       .then((res) => {
@@ -144,7 +143,7 @@ const handleDelete = (id) => {
     toast("删除成功！")
     console.log(res);
   }).finally(()=>{
-
+    loading.value = false
   })
 }
 </script>
