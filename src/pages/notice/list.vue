@@ -141,6 +141,7 @@ const handleDelete = (id) => {
   loading.value = true
   deleteNoticeList(id).then(res=>{
     toast("删除成功！")
+    getData()
     console.log(res);
   }).finally(()=>{
     loading.value = false
