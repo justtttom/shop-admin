@@ -15,7 +15,13 @@
       <el-table-column prop="create_time" label="发布时间" width="380" />
       <el-table-column label="操作" width="180" align="center">
         <template #default="scope">
-          <el-button size="small" type="primary" @click="handleEdit(scope.row)" text>修改</el-button>
+          <el-button
+            size="small"
+            type="primary"
+            @click="handleEdit(scope.row)"
+            text
+            >修改</el-button
+          >
           <el-popconfirm
             title="是否要删除该公告？"
             confirm-button-text="确定"
@@ -67,7 +73,7 @@
 </template>
 
 <script setup>
-import { ref, reactive,computed } from 'vue'
+import { ref, reactive, computed } from 'vue'
 import FormDrawer from '~/components/FormDrawer.vue'
 import {
   getNoticeList,
@@ -103,7 +109,6 @@ function getData(p = null) {
 
 getData()
 
-
 const formDrawerRef = ref(null)
 const formRef = ref(null)
 const form = reactive({
@@ -115,7 +120,7 @@ const rules = {
   content: []
 }
 const editId = ref(0)
-const drawerTitle = computed(()=>editId.value ? "修改" : "新增")
+const drawerTitle = computed(() => (editId.value ? '修改' : '新增'))
 
 const handleSubmit = () => {
   formRef.value.validate((valid) => {
@@ -134,31 +139,36 @@ const handleSubmit = () => {
 }
 
 // 重置表单
-function resetForm() {
-  if(formRef.value)formRef.value.clear
+function resetForm(row = false) {
+  if (formRef.value) formRef.value.clearValidate()
+  if()
 }
 
 // 新增
 const handleCreate = () => {
   editId.value = 0
+  resetForm()
   formDrawerRef.value.open()
 }
 
 // 修改
-const handleEdit = (row)=>{
+const handleEdit = (row) => {
   editId.value = row.id
+  resetForm(row)
   formDrawerRef.value.open()
 }
 
 // 删除
 const handleDelete = (id) => {
   loading.value = true
-  deleteNoticeList(id).then(res=>{
-    toast("删除成功！")
-    getData()
-    console.log(res);
-  }).finally(()=>{
-    loading.value = false
-  })
+  deleteNoticeList(id)
+    .then((res) => {
+      toast('删除成功！')
+      getData()
+      console.log(res)
+    })
+    .finally(() => {
+      loading.value = false
+    })
 }
 </script>
