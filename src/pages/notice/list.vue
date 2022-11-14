@@ -126,9 +126,12 @@ const handleSubmit = () => {
   formRef.value.validate((valid) => {
     if (!valid) return
     formDrawerRef.value.showLoading()
+
+    const 
+
     addNoticeList(form)
       .then((res) => {
-        toast('新增成功')
+        toast(`${drawerTitle.value}成功！`)
         getData(1)
         formDrawerRef.value.close()
       })
@@ -141,13 +144,20 @@ const handleSubmit = () => {
 // 重置表单
 function resetForm(row = false) {
   if (formRef.value) formRef.value.clearValidate()
-  if()
+  if (row) {
+    for (const key in form) {
+      form[key] = row[key]
+    }
+  }
 }
 
 // 新增
 const handleCreate = () => {
   editId.value = 0
-  resetForm()
+  resetForm({
+    title: '',
+    content: ''
+  })
   formDrawerRef.value.open()
 }
 
