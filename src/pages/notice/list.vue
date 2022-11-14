@@ -127,12 +127,14 @@ const handleSubmit = () => {
     if (!valid) return
     formDrawerRef.value.showLoading()
 
-    const 
+    const fun = editId.value
+      ? updateNoticeList(editId.value, form)
+      : addNoticeList(form)
 
-    addNoticeList(form)
-      .then((res) => {
-        toast(`${drawerTitle.value}成功！`)
-        getData(1)
+    fun.then((res) => {
+        toast(drawerTitle.value + '成功!')
+        // 修改刷新当前页
+        getData(editId.value ? false : 1)
         formDrawerRef.value.close()
       })
       .finally(() => {
