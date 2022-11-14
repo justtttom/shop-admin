@@ -13,6 +13,7 @@ import ImageList from '~/pages/image/list.vue'
 import NoticeList from '~/pages/notice/list.vue'
 import SettingBase from '~/pages/setting/base.vue'
 import CouponList from '~/pages/coupon/list.vue'
+import ManagerList from '~/pages/manager/list.vue'
 
 
 //默认路由，所有用户共享
@@ -109,6 +110,13 @@ const asyncRoutes = [
     component: CouponList,
     meta: {
       title: '优惠券列表'
+    }
+  },{
+    path: '/manager/list',
+    name:'/manger/list',
+    component: ManagerList,
+    meta: {
+      title: '管理员页面'
     }
   },
 ]
