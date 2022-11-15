@@ -14,7 +14,7 @@
       <el-table-column label="管理员" width="200">
         <template #default="{ row }">
           <div class="flex items-center">
-            <el-avatar :size="30" src="row.avatar">
+            <el-avatar :size="30" :src="row.avatar">
               <img src="https://cube.elemecdn.com/e/fd/0fc7d20532fdaf769a25683617711png.png" />
             </el-avatar>
             <div class="ml-3">
