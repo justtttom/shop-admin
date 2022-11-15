@@ -116,7 +116,7 @@ const asyncRoutes = [
     name:'/manger/list',
     component: ManagerList,
     meta: {
-      title: '管理员页面'
+      title: '管理员管理'
     }
   },
 ]
