@@ -19,13 +19,7 @@ export function updatepassword(data) {
   return axios.post('/admin/updatepassword', data)
 }
 
-export function getManagerList(
-  page,
-  query = {
-    limit: 10,
-    keyword: 'ceshi'
-  }
-) {
+export function getManagerList(page, query = {}) {
   let q = []
   for (const key in query) {
     if (query[key]) {
@@ -33,5 +27,6 @@ export function getManagerList(
     }
   }
   let r = q.join('&')
-  return axios.post(`admin/manager/${page}?limit=10&keyword=ceshi`, data)
+  r = r ? '?' + r : ''
+  return axios.get(`admin/manager/${page}${r}`)
 }

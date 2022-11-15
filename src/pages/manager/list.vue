@@ -11,8 +11,9 @@
       </el-tooltip>
     </div>
     <el-table :data="tableData" stripe style="width: 100%;" v-loading="loading">
-      <el-table-column prop="title" label="公告标题" />
-      <el-table-column prop="create_time" label="发布时间" width="380" />
+      <el-table-column prop="username" label="管理员" />
+      <el-table-column prop="create_time" label="所属管理员" width="300" />
+      <el-table-column prop="" label="状态" width="300" />
       <el-table-column label="操作" width="180" align="center">
         <template #default="scope">
           <el-button
@@ -57,7 +58,7 @@
         :inline="false"
       >
         <el-form-item label="公告标题" prop="title">
-          <el-input v-model="form.title" placeholder="公告标题"></el-input>
+          <el-input v-model="form.username" placeholder="公告标题"></el-input>
         </el-form-item>
         <el-form-item label="公告内容" prop="content">
           <el-input
@@ -75,9 +76,13 @@
 <script setup>
 import { ref, reactive, computed } from 'vue'
 import FormDrawer from '~/components/FormDrawer.vue'
+import { getManagerList } from '~/api/manager.js'
 import {
-  getManagerList,
-} from '~/api/mannager.js'
+  getNoticeList,
+  addNoticeList,
+  updateNoticeList,
+  deleteNoticeList
+} from '~/api/notice.js'
 import { toast } from '~/composables/util.js'
 
 const tableData = ref([])
@@ -94,10 +99,11 @@ function getData(p = null) {
     currentPage.value = p
   }
   loading.value = true
-  getManagerList(currentPage.value)
+  getManagerList(currentPage.value, { limit: 10, keyword: "" })
     .then((res) => {
+      console.log(res);
       tableData.value = res.list
-      total.value = res.totalCount
+      total.value = res.roles
     })
     .finally(() => {
       loading.value = false
@@ -128,7 +134,8 @@ const handleSubmit = () => {
       ? updateNoticeList(editId.value, form)
       : addNoticeList(form)
 
-    fun.then((res) => {
+    fun
+      .then((res) => {
         toast(drawerTitle.value + '成功!')
         // 修改刷新当前页，新增刷新第一页
         getData(editId.value ? false : 1)
