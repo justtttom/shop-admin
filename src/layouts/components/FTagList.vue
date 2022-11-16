@@ -41,9 +41,9 @@ const { activeTab, tabList, changeTab, removeTab, handleClose } = useTabList();
 <style scoped>
 .f-tag-list {
   @apply fixed bg-gray-100 flex items-center px-4;
-  top: 90px;
+  top: 64px;
   right: 0;
-  height: 4px;
+  height: 54px;
   z-index: 100;
 }
 .tag-btn {
