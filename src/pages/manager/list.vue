@@ -26,14 +26,20 @@
       </el-table-column>
       <el-table-column  label="所属管理员" align="center">
         <template #default="{ row }">
-          {{}}
+          {{ row.role?.name || "-"}}
         </template>
       </el-table-column>
-      <el-table-column prop="" label="状态" width="200" />
-      <el-table-column label="操作" width="380" align="center">
+      <el-table-column label="状态" width="380">
+        <template #default="{ row }">
+          <el-switch :modelValue="row.status" :active-value="1" :inactive-value="0">
+          </el-switch>
+          
+        </template>
+      </el-table-column>
+      <el-table-column label="操作" width="180" align="center">
         <template #default="scope">
           <el-button size="small" type="primary" @click="handleEdit(scope.row)" text>修改</el-button>
-          <el-popconfirm title="是否要删除该公告？" confirm-button-text="确定" cancel-button-text="取消" width="20"
+          <el-popconfirm title="是否要删除该管理员？" confirm-button-text="确定" cancel-button-text="取消" width="20"
             @confirm="handleDelete(scope.row.id)">
             <template #reference>
               <el-button size="small" type="primary" @click="" text>删除</el-button>
@@ -89,7 +95,7 @@ function getData(p = null) {
     .then((res) => {
       console.log(res);
       tableData.value = res.list
-      total.value = res.roles
+      total.value = res.totalCount
     })
     .finally(() => {
       loading.value = false
