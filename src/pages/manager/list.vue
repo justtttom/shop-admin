@@ -1,5 +1,16 @@
 <template>
   <el-card shadow="never" class="border-0">
+    <el-form :model="searchForm" label-width="80px" class="mb-3">
+      <el-form-item label="关键词">
+        <el-input v-model="searchForm.keyword"></el-input>
+      </el-form-item>
+      <el-form-item>
+        <el-button type="primary" @click="onSubmit">立即创建</el-button>
+        <el-button>取消</el-button>
+      </el-form-item>
+    </el-form>
+    
+    <!-- 新增 刷新 -->
     <div class="flex justify-between items-center mb-4">
       <el-button type="primary" size="small" @click="handleCreate">新增</el-button>
       <el-tooltip effect="dark" content="刷新数据" placement="top">
