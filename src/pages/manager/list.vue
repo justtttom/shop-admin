@@ -26,7 +26,7 @@
       </el-table-column>
       <el-table-column  label="所属管理员" align="center">
         <template #default="{ row }">
-          
+          {{}}
         </template>
       </el-table-column>
       <el-table-column prop="" label="状态" width="200" />
