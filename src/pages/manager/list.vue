@@ -24,7 +24,11 @@
           </div>
         </template>
       </el-table-column>
-      <el-table-column prop="create_time" label="所属管理员" width="160" />
+      <el-table-column  label="所属管理员" align="center">
+        <template #default="{ row }">
+          
+        </template>
+      </el-table-column>
       <el-table-column prop="" label="状态" width="200" />
       <el-table-column label="操作" width="380" align="center">
         <template #default="scope">
