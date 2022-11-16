@@ -33,8 +33,7 @@
         <template #default="{ row }">
           <el-switch :modelValue="row.status" :active-value="1" :inactive-value="0">
           </el-switch>
-          
-        </template>
+        </template> 
       </el-table-column>
       <el-table-column label="操作" width="180" align="center">
         <template #default="scope">
