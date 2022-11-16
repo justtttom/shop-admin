@@ -1,12 +1,12 @@
 <template>
   <el-card shadow="never" class="border-0">
-    <el-form :model="searchForm" label-width="80px" class="mb-3">
-      <el-form-item label="关键词">
-        <el-input v-model="searchForm.keyword"></el-input>
+    <el-form :model="searchForm" label-width="80px" size="small" class="mb-3 flex justify-between ">
+      <el-form-item label="关键词:" >
+        <el-input v-model="searchForm.keyword" placeholder="管理员昵称" clearable class="w-70"></el-input>
       </el-form-item>
       <el-form-item>
-        <el-button type="primary" @click="onSubmit">立即创建</el-button>
-        <el-button>取消</el-button>
+        <el-button type="primary" @click="">搜索</el-button>
+        <el-button @click="resetSearchForm">重置</el-button>
       </el-form-item>
     </el-form>
     
@@ -87,6 +87,10 @@ import {
 } from '~/api/notice.js'
 import { toast } from '~/composables/util.js'
 
+const searchForm = reactive({
+  keyword:""
+})
+
 const tableData = ref([])
 const loading = ref(false)
 
@@ -101,7 +105,7 @@ function getData(p = null) {
     currentPage.value = p
   }
   loading.value = true
-  getManagerList(currentPage.value, { limit: 10, keyword: "" })
+  getManagerList(currentPage.value, searchForm)
     .then((res) => {
       console.log(res);
       tableData.value = res.list
