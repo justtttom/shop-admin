@@ -5,7 +5,7 @@
         <el-input v-model="searchForm.keyword" placeholder="管理员昵称" clearable class="w-70"></el-input>
       </el-form-item>
       <el-form-item>
-        <el-button type="primary" @click="">搜索</el-button>
+        <el-button type="primary" @click="getData">搜索</el-button>
         <el-button @click="resetSearchForm">重置</el-button>
       </el-form-item>
     </el-form>
