@@ -1,7 +1,7 @@
 <template>
   <el-card shadow="never" class="border-0">
     <el-form :model="searchForm" label-width="80px" size="small" class="mb-3 flex justify-between ">
-      <el-form-item label="关键词:" >
+      <el-form-item label="关键词:" > 
         <el-input v-model="searchForm.keyword" placeholder="管理员昵称" clearable class="w-70"></el-input>
       </el-form-item>
       <el-form-item>
