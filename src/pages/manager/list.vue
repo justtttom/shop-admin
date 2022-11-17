@@ -61,6 +61,7 @@
             :active-value="1"
             :inactive-value="0"
             :loading="row.statusLoading"
+            :disabled="row.super == 1"
             @change="handleStatusChange($event, row)"
           >
           </el-switch>
@@ -68,26 +69,32 @@
       </el-table-column>
       <el-table-column label="操作" width="180" align="center">
         <template #default="scope">
-          <el-button
-            size="small"
-            type="primary"
-            @click="handleEdit(scope.row)"
-            text
-            >修改</el-button
-          >
-          <el-popconfirm
-            title="是否要删除该管理员？"
-            confirm-button-text="确定"
-            cancel-button-text="取消"
-            width="20"
-            @confirm="handleDelete(scope.row.id)"
-          >
-            <template #reference>
-              <el-button size="small" type="primary" @click="" text
-                >删除</el-button
-              >
-            </template>
-          </el-popconfirm>
+          <small v-if="scope.row.super == 1" class="text-sm text-gray-400">
+            暂无操作
+          </small>
+          <div v-else >
+            <el-button
+              size="small"
+              type="primary"
+              @click="handleEdit(scope.row)"
+              text
+            >
+              修改
+            </el-button>
+            <el-popconfirm
+              title="是否要删除该管理员？"
+              confirm-button-text="确定"
+              cancel-button-text="取消"
+              width="20"
+              @confirm="handleDelete(scope.row.id)"
+            >
+              <template #reference>
+                <el-button size="small" type="primary" @click="" text>
+                  删除
+                </el-button>
+              </template>
+            </el-popconfirm>
+          </div>
         </template>
       </el-table-column>
     </el-table>
