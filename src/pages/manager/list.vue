@@ -42,7 +42,7 @@
       </el-table-column>
       <el-table-column label="状态" width="380">
         <template #default="{ row }">
-          <el-switch :modelValue="row.status" :active-value="1" :inactive-value="0">
+          <el-switch :modelValue="row.status" :active-value="1" :inactive-value="0" @change="handleStatusChange($event,row)">
           </el-switch>
         </template> 
       </el-table-column>
@@ -78,9 +78,8 @@
 <script setup>
 import { ref, reactive, computed } from 'vue'
 import FormDrawer from '~/components/FormDrawer.vue'
-import { getManagerList } from '~/api/manager.js'
+import { getManagerList,updateManagerStatus } from '~/api/manager.js'
 import {
-  getNoticeList,
   addNoticeList,
   updateNoticeList,
   deleteNoticeList
@@ -195,5 +194,10 @@ const handleDelete = (id) => {
     .finally(() => {
       loading.value = false
     })
+}
+
+// 修改状态
+const handleStatusChange = (status,row)=>{
+  updateManagerStatus(status,row)
 }
 </script>
