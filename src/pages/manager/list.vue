@@ -198,6 +198,13 @@ const handleDelete = (id) => {
 
 // 修改状态
 const handleStatusChange = (status,row)=>{
-  updateManagerStatus(status,row)
+  updateManagerStatus(row.id,status)
+  .then(res=>{
+    console.log(res);
+    toast("修改状态成功！")
+    row.status = status
+  }).finally(()=>{
+
+  })
 }
 </script>
