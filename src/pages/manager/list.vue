@@ -1,18 +1,30 @@
 <template>
   <el-card shadow="never" class="border-0">
-    <el-form :model="searchForm" label-width="80px" size="small" class="mb-3 flex justify-between ">
-      <el-form-item label="关键词:" > 
-        <el-input v-model="searchForm.keyword" placeholder="管理员昵称" clearable class="w-70"></el-input>
+    <el-form
+      :model="searchForm"
+      label-width="80px"
+      size="small"
+      class="mb-3 flex justify-between"
+    >
+      <el-form-item label="关键词:">
+        <el-input
+          v-model="searchForm.keyword"
+          placeholder="管理员昵称"
+          clearable
+          class="w-70"
+        ></el-input>
       </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="getData">搜索</el-button>
         <el-button @click="resetSearchForm">重置</el-button>
       </el-form-item>
     </el-form>
-    
+
     <!-- 新增 刷新 -->
     <div class="flex justify-between items-center mb-4">
-      <el-button type="primary" size="small" @click="handleCreate">新增</el-button>
+      <el-button type="primary" size="small" @click="handleCreate"
+        >新增</el-button
+      >
       <el-tooltip effect="dark" content="刷新数据" placement="top">
         <el-button text @click="getData">
           <el-icon :size="20">
@@ -21,54 +33,92 @@
         </el-button>
       </el-tooltip>
     </div>
-    <el-table :data="tableData" stripe style="width: 100%" v-loading="loading">
+    <el-table :data="tableData" stripe style="width: 100%;" v-loading="loading">
       <el-table-column label="管理员" width="200">
         <template #default="{ row }">
           <div class="flex items-center">
             <el-avatar :size="30" :src="row.avatar">
-              <img src="https://cube.elemecdn.com/e/fd/0fc7d20532fdaf769a25683617711png.png" />
+              <img
+                src="https://cube.elemecdn.com/e/fd/0fc7d20532fdaf769a25683617711png.png"
+              />
             </el-avatar>
             <div class="ml-3">
-              <h6>{{row.username}}</h6>
-              <small>ID:{{row.id}}</small>
+              <h6>{{ row.username }}</h6>
+              <small>ID:{{ row.id }}</small>
             </div>
           </div>
         </template>
       </el-table-column>
-      <el-table-column  label="所属管理员" align="center">
+      <el-table-column label="所属管理员" align="center">
         <template #default="{ row }">
-          {{ row.role?.name || "-"}}
+          {{ row.role?.name || '-' }}
         </template>
       </el-table-column>
       <el-table-column label="状态" width="380">
         <template #default="{ row }">
-          <el-switch :modelValue="row.status" :active-value="1" :inactive-value="0" @change="handleStatusChange($event,row)">
+          <el-switch
+            :modelValue="row.status"
+            :active-value="1"
+            :inactive-value="0"
+            :loading="row.statusLoading"
+            @change="handleStatusChange($event, row)"
+          >
           </el-switch>
-        </template> 
+        </template>
       </el-table-column>
       <el-table-column label="操作" width="180" align="center">
         <template #default="scope">
-          <el-button size="small" type="primary" @click="handleEdit(scope.row)" text>修改</el-button>
-          <el-popconfirm title="是否要删除该管理员？" confirm-button-text="确定" cancel-button-text="取消" width="20"
-            @confirm="handleDelete(scope.row.id)">
+          <el-button
+            size="small"
+            type="primary"
+            @click="handleEdit(scope.row)"
+            text
+            >修改</el-button
+          >
+          <el-popconfirm
+            title="是否要删除该管理员？"
+            confirm-button-text="确定"
+            cancel-button-text="取消"
+            width="20"
+            @confirm="handleDelete(scope.row.id)"
+          >
             <template #reference>
-              <el-button size="small" type="primary" @click="" text>删除</el-button>
+              <el-button size="small" type="primary" @click="" text
+                >删除</el-button
+              >
             </template>
           </el-popconfirm>
         </template>
       </el-table-column>
     </el-table>
     <div class="flex items-center justify-center mt-5">
-      <el-pagination background layout="prev, pager,next" :total="total" :current-page="currentPage" :page-size="limit"
-        @current-change="getData" />
+      <el-pagination
+        background
+        layout="prev, pager,next"
+        :total="total"
+        :current-page="currentPage"
+        :page-size="limit"
+        @current-change="getData"
+      />
     </div>
     <FormDrawer ref="formDrawerRef" :title="drawerTitle" @submit="handleSubmit">
-      <el-form :model="form" ref="formRef" :rules="rules" label-width="80px" :inline="false">
+      <el-form
+        :model="form"
+        ref="formRef"
+        :rules="rules"
+        label-width="80px"
+        :inline="false"
+      >
         <el-form-item label="公告标题" prop="title">
           <el-input v-model="form.username" placeholder="公告标题"></el-input>
         </el-form-item>
         <el-form-item label="公告内容" prop="content">
-          <el-input v-model="form.content" placeholder="公告内容" type="textarea" :rows="5"></el-input>
+          <el-input
+            v-model="form.content"
+            placeholder="公告内容"
+            type="textarea"
+            :rows="5"
+          ></el-input>
         </el-form-item>
       </el-form>
     </FormDrawer>
@@ -78,7 +128,7 @@
 <script setup>
 import { ref, reactive, computed } from 'vue'
 import FormDrawer from '~/components/FormDrawer.vue'
-import { getManagerList,updateManagerStatus } from '~/api/manager.js'
+import { getManagerList, updateManagerStatus } from '~/api/manager.js'
 import {
   addNoticeList,
   updateNoticeList,
@@ -87,10 +137,10 @@ import {
 import { toast } from '~/composables/util.js'
 
 const searchForm = reactive({
-  keyword:""
+  keyword: ''
 })
-const resetSearchForm = ()=>{
-  searchForm.keyword = ""
+const resetSearchForm = () => {
+  searchForm.keyword = ''
   getData()
 }
 
@@ -110,7 +160,10 @@ function getData(p = null) {
   loading.value = true
   getManagerList(currentPage.value, searchForm)
     .then((res) => {
-      tableData.value = res.list
+      tableData.value = res.list.map((o) => {
+        o.statusLoading = false
+        return o
+      })
       total.value = res.totalCount
     })
     .finally(() => {
@@ -197,14 +250,16 @@ const handleDelete = (id) => {
 }
 
 // 修改状态
-const handleStatusChange = (status,row)=>{
-  updateManagerStatus(row.id,status)
-  .then(res=>{
-    console.log(res);
-    toast("修改状态成功！")
-    row.status = status
-  }).finally(()=>{
-
-  })
+const handleStatusChange = (status, row) => {
+  row.statusLoading = true
+  updateManagerStatus(row.id, status)
+    .then((res) => {
+      console.log(res)
+      toast('修改状态成功！')
+      row.status = status
+    })
+    .finally(() => {
+      row.statusLoading = false
+    })
 }
 </script>
