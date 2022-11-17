@@ -90,6 +90,10 @@ import { toast } from '~/composables/util.js'
 const searchForm = reactive({
   keyword:""
 })
+const resetSearchForm = ()=>{
+  searchForm.keyword = ""
+  getData()
+}
 
 const tableData = ref([])
 const loading = ref(false)
@@ -107,7 +111,6 @@ function getData(p = null) {
   loading.value = true
   getManagerList(currentPage.value, searchForm)
     .then((res) => {
-      console.log(res);
       tableData.value = res.list
       total.value = res.totalCount
     })
