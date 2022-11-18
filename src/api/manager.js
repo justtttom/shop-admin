@@ -31,8 +31,20 @@ export function getManagerList(page, query = {}) {
   return axios.get(`admin/manager/${page}${r}`)
 }
 
-export function updateManagerStatus(id,status) {
-  return axios.post(`/admin/manager/${id}/update_status`,{
+export function updateManagerStatus(id, status) {
+  return axios.post(`/admin/manager/${id}/update_status`, {
     status
   })
+}
+
+export function createManager(data) {
+  return axios.post(`/admin/manager`, data)
+}
+
+export function updateManager(id,data) {
+  return axios.post(`/admin/manager${id}`, data)
+}
+
+export function deleteManager(id) {
+  return axios.post(`/admin/manager${id}/delete`)
 }
