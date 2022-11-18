@@ -177,7 +177,6 @@ const handleDelete = (id) => {
     .then((res) => {
       toast('删除成功！')
       getData()
-      console.log(res)
     })
     .finally(() => {
       loading.value = false
