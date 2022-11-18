@@ -138,11 +138,7 @@ import FormDrawer from '~/components/FormDrawer.vue'
 import { getManagerList, updateManagerStatus,addManager,
   updateManager,
   deleteManager } from '~/api/manager.js'
-import {
-  addNoticeList,
-  updateNoticeList,
-  deleteNoticeList
-} from '~/api/notice.js'
+
 import { toast } from '~/composables/util.js'
 
 const searchForm = reactive({
@@ -201,8 +197,8 @@ const handleSubmit = () => {
     formDrawerRef.value.showLoading()
 
     const fun = editId.value
-      ? updateNoticeList(editId.value, form)
-      : addNoticeList(form)
+      ? updateManager(editId.value, form)
+      : addManager(form)
 
     fun
       .then((res) => {
@@ -251,7 +247,6 @@ const handleDelete = (id) => {
     .then((res) => {
       toast('删除成功！')
       getData()
-      console.log(res)
     })
     .finally(() => {
       loading.value = false
@@ -263,7 +258,6 @@ const handleStatusChange = (status, row) => {
   row.statusLoading = true
   updateManagerStatus(row.id, status)
     .then((res) => {
-      console.log(res)
       toast('修改状态成功！')
       row.status = status
     })
