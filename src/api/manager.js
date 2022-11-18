@@ -37,7 +37,7 @@ export function updateManagerStatus(id, status) {
   })
 }
 
-export function createManager(data) {
+export function addManager(data) {
   return axios.post(`/admin/manager`, data)
 }
 

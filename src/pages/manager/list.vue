@@ -135,7 +135,9 @@
 <script setup>
 import { ref, reactive, computed } from 'vue'
 import FormDrawer from '~/components/FormDrawer.vue'
-import { getManagerList, updateManagerStatus } from '~/api/manager.js'
+import { getManagerList, updateManagerStatus,addManager,
+  updateManager,
+  deleteManager } from '~/api/manager.js'
 import {
   addNoticeList,
   updateNoticeList,
@@ -245,7 +247,7 @@ const handleEdit = (row) => {
 // 删除
 const handleDelete = (id) => {
   loading.value = true
-  deleteNoticeList(id)
+  deleteManager(id)
     .then((res) => {
       toast('删除成功！')
       getData()
