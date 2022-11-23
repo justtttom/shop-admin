@@ -132,21 +132,21 @@
             v-model="form.content"
             placeholder="+"
             type="textarea"
-            :rows="5"
+            :rows="1"
           ></el-input>
         </el-form-item>
-        <el-form-item label="密码" prop="content">
+        <el-form-item label="所属管理员" prop="content">
           <el-input
             v-model="form.content"
-            placeholder="公告内容"
+            placeholder="管理员昵称"
             type="textarea"
             :rows="5"
           ></el-input>
         </el-form-item>
-        <el-form-item label="密码" prop="content">
+        <el-form-item label="状态" prop="content">
           <el-input
             v-model="form.content"
-            placeholder="公告内容"
+            placeholder="hello"
             type="textarea"
             :rows="5"
           ></el-input>
