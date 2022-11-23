@@ -117,20 +117,20 @@
         :inline="false"
       >
         <el-form-item label="用户名" prop="title">
-          <el-input v-model="form.username" placeholder="公告标题"></el-input>
+          <el-input v-model="form.username" placeholder="请输入用户名"></el-input>
         </el-form-item>
         <el-form-item label="密码" prop="content">
           <el-input
             v-model="form.content"
-            placeholder="公告内容"
+            placeholder="请输入密码"
             type="textarea"
-            :rows="5"
+            :rows="1"
           ></el-input>
         </el-form-item>
         <el-form-item label="头像" prop="content">
           <el-input
             v-model="form.content"
-            placeholder="公告内容"
+            placeholder="+"
             type="textarea"
             :rows="5"
           ></el-input>
