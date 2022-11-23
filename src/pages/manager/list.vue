@@ -205,8 +205,10 @@ getData()
 const formDrawerRef = ref(null)
 const formRef = ref(null)
 const form = reactive({
-  title: '',
-  content: ''
+  username: '',
+  password: '',
+  role_id:null,
+  
 })
 const rules = {
   title: [],

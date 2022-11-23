@@ -1,6 +1,7 @@
 <template>
   <el-card shadow="never" class="border-0">
     <div class="flex justify-between items-center mb-4">
+      <!-- 新增|刷新 -->
       <el-button type="primary" size="small" @click="handleCreate"
         >新增</el-button
       >
@@ -10,7 +11,7 @@
         </el-button>
       </el-tooltip>
     </div>
-    <el-table :data="tableData" stripe style="width: 100%;" v-loading="loading">
+    <el-table :data="tableData" stripe style="width:100%" v-loading="loading">
       <el-table-column prop="title" label="公告标题" />
       <el-table-column prop="create_time" label="发布时间" width="380" />
       <el-table-column label="操作" width="180" align="center">
@@ -112,12 +113,20 @@ getData()
 const formDrawerRef = ref(null)
 const formRef = ref(null)
 const form = reactive({
-  title: '',
-  content: ''
+  title:'',
+  content:''
 })
 const rules = {
-  title: [],
-  content: []
+  title:[{
+      required: true,
+      message: '公告标题不能为空',
+      trigger: 'blur'
+  }],
+  content:[{
+      required: true,
+      message: '公告内容不能为空',
+      trigger: 'blur'
+  }]
 }
 const editId = ref(0)
 const drawerTitle = computed(() => (editId.value ? '修改' : '新增'))
@@ -157,7 +166,7 @@ function resetForm(row = false) {
 const handleCreate = () => {
   editId.value = 0
   resetForm({
-    title: '',
+    title:'',
     content: ''
   })
   formDrawerRef.value.open()
