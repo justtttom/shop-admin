@@ -131,21 +131,11 @@
             placeholder="+"
           ></el-input>
         </el-form-item>
-        <el-form-item label="所属管理员" prop="role_id">
-          <el-input
-            v-model="form.content"
-            placeholder="管理员昵称"
-            type="textarea"
-            :rows="5"
-          ></el-input>
+        <el-form-item label="所属角色" prop="role_id">
         </el-form-item>
         <el-form-item label="状态" prop="status">
-          <el-input
-            v-model="form.content"
-            placeholder="hello"
-            type="textarea"
-            :rows="5"
-          ></el-input>
+          <el-switch v-model="form.status" :active-value="1" :inactive-value="0" @change="">
+          </el-switch>
         </el-form-item>
       </el-form>
     </FormDrawer>
