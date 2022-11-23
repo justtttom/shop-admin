@@ -72,7 +72,7 @@
           <small v-if="scope.row.super == 1" class="text-sm text-gray-400">
             暂无操作
           </small>
-          <div v-else >
+          <div v-else>
             <el-button
               size="small"
               type="primary"
@@ -117,24 +117,39 @@
         :inline="false"
       >
         <el-form-item label="用户名" prop="username">
-          <el-input v-model="form.username" placeholder="请输入用户名"></el-input>
+          <el-input
+            v-model="form.username"
+            placeholder="请输入用户名"
+          ></el-input>
         </el-form-item>
         <el-form-item label="密码" prop="password">
-          <el-input
-            v-model="form.password"
-            placeholder="请输入密码"
-          ></el-input>
+          <el-input v-model="form.password" placeholder="请输入密码"></el-input>
         </el-form-item>
         <el-form-item label="头像" prop="avatar">
-          <el-input
-            v-model="form.avatar"
-            placeholder="+"
-          ></el-input>
+          <el-input v-model="form.avatar" placeholder="+"></el-input>
         </el-form-item>
         <el-form-item label="所属角色" prop="role_id">
+          <el-select
+            v-model="form.role_id"
+            class="m-2"
+            placeholder="选择所属角色"
+            size="small"
+          >
+            <el-option
+              v-for="item in roles"
+              :key="item.id"
+              :label="item.name"
+              :value="item.name"
+            />
+          </el-select>
         </el-form-item>
         <el-form-item label="状态" prop="status">
-          <el-switch v-model="form.status" :active-value="1" :inactive-value="0" @change="">
+          <el-switch
+            v-model="form.status"
+            :active-value="1"
+            :inactive-value="0"
+            @change=""
+          >
           </el-switch>
         </el-form-item>
       </el-form>
@@ -145,9 +160,13 @@
 <script setup>
 import { ref, reactive, computed } from 'vue'
 import FormDrawer from '~/components/FormDrawer.vue'
-import { getManagerList, updateManagerStatus,addManager,
+import {
+  getManagerList,
+  updateManagerStatus,
+  addManager,
   updateManager,
-  deleteManager } from '~/api/manager.js'
+  deleteManager
+} from '~/api/manager.js'
 
 import { toast } from '~/composables/util.js'
 
@@ -159,6 +178,7 @@ const resetSearchForm = () => {
   getData()
 }
 
+const roles = ref([])
 const tableData = ref([])
 const loading = ref(false)
 
@@ -175,11 +195,13 @@ function getData(p = null) {
   loading.value = true
   getManagerList(currentPage.value, searchForm)
     .then((res) => {
+      console.log(res)
       tableData.value = res.list.map((o) => {
         o.statusLoading = false
         return o
       })
       total.value = res.totalCount
+      roles.value = res.roles
     })
     .finally(() => {
       loading.value = false
@@ -193,21 +215,25 @@ const formRef = ref(null)
 const form = reactive({
   username: '',
   password: '',
-  role_id:null,
-  status:1,
-  avatar:""
+  role_id: null,
+  status: 1,
+  avatar: ''
 })
 const rules = {
-  username:[{
+  username: [
+    {
       required: true,
       message: '用户名不能为空',
       trigger: 'blur'
-  }],
-  password:[{
+    }
+  ],
+  password: [
+    {
       required: true,
       message: '密码不能为空',
       trigger: 'blur'
-  }]
+    }
+  ]
 }
 const editId = ref(0)
 const drawerTitle = computed(() => (editId.value ? '修改' : '新增'))
