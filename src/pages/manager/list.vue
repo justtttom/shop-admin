@@ -116,26 +116,22 @@
         label-width="80px"
         :inline="false"
       >
-        <el-form-item label="用户名" prop="title">
+        <el-form-item label="用户名" prop="username">
           <el-input v-model="form.username" placeholder="请输入用户名"></el-input>
         </el-form-item>
-        <el-form-item label="密码" prop="content">
+        <el-form-item label="密码" prop="password">
           <el-input
-            v-model="form.content"
+            v-model="form.password"
             placeholder="请输入密码"
-            type="textarea"
-            :rows="1"
           ></el-input>
         </el-form-item>
-        <el-form-item label="头像" prop="content">
+        <el-form-item label="头像" prop="avatar">
           <el-input
-            v-model="form.content"
+            v-model="form.avatar"
             placeholder="+"
-            type="textarea"
-            :rows="1"
           ></el-input>
         </el-form-item>
-        <el-form-item label="所属管理员" prop="content">
+        <el-form-item label="所属管理员" prop="role_id">
           <el-input
             v-model="form.content"
             placeholder="管理员昵称"
@@ -143,7 +139,7 @@
             :rows="5"
           ></el-input>
         </el-form-item>
-        <el-form-item label="状态" prop="content">
+        <el-form-item label="状态" prop="status">
           <el-input
             v-model="form.content"
             placeholder="hello"
