@@ -51,7 +51,7 @@
       </el-table-column>
       <el-table-column label="所属管理员" align="center">
         <template #default="{ row }">
-          {{ row.role?.name || "-"}}
+          {{ row.role?.name || '-' }}
         </template>
       </el-table-column>
       <el-table-column label="状态" width="380">
@@ -62,7 +62,7 @@
             :inactive-value="0"
             :loading="row.statusLoading"
             :disabled="row.super == 1"
-            @change="handleStatusChange($event,row)"
+            @change="handleStatusChange($event, row)"
           >
           </el-switch>
         </template>
@@ -274,8 +274,11 @@ function resetForm(row = false) {
 const handleCreate = () => {
   editId.value = 0
   resetForm({
-    title: '',
-    content: ''
+    username: '',
+    password: '',
+    role_id: null,
+    status: 1,
+    avatar: ''
   })
   formDrawerRef.value.open()
 }
