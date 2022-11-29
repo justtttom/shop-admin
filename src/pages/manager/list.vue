@@ -126,7 +126,7 @@
           <el-input v-model="form.password" placeholder="请输入密码"></el-input>
         </el-form-item>
         <el-form-item label="头像" prop="avatar">
-          <el-input v-model="form.avatar" placeholder="+"></el-input>
+            <ChooseImage v-model="form.avatar" @click=""></ChooseImage>
         </el-form-item>
         <el-form-item label="所属角色" prop="role_id">
           <el-select
@@ -160,6 +160,7 @@
 <script setup>
 import { ref, reactive, computed } from 'vue'
 import FormDrawer from '~/components/FormDrawer.vue'
+import ChooseImage from '~/components/ChooseImage.vue'
 import {
   getManagerList,
   updateManagerStatus,
