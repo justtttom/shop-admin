@@ -1,5 +1,5 @@
 <template>
   <div class="choose-image-btn">
-    <button>+</button>
+    <el-icon><Plus /></el-icon>
   </div>
 </template>
