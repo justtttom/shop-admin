@@ -6,6 +6,6 @@
 
 <style>
 .choose-image-btn{
-  @apply 
+  @apply w-[100px]
 }
 </style>
