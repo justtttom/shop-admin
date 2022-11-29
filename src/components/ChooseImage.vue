@@ -1,6 +1,6 @@
 <template>
   <div class="choose-image-btn">
-    <el-icon :size="25"><Plus /></el-icon>
+    <el-icon :size="25" class="text-green-400"><Plus /></el-icon>
   </div>
 </template>
 

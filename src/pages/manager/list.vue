@@ -15,14 +15,14 @@
         ></el-input>
       </el-form-item>
       <el-form-item>
-        <el-button type="primary" @click="getData">搜索</el-button>
+        <el-button type="success" @click="getData">搜索</el-button>
         <el-button @click="resetSearchForm">重置</el-button>
       </el-form-item>
     </el-form>
 
     <!-- 新增 刷新 -->
     <div class="flex justify-between items-center mb-4">
-      <el-button type="primary" size="small" @click="handleCreate"
+      <el-button type="success" size="small" @click="handleCreate"
         >新增</el-button
       >
       <el-tooltip effect="dark" content="刷新数据" placement="top">
@@ -63,6 +63,7 @@
             :loading="row.statusLoading"
             :disabled="row.super == 1"
             @change="handleStatusChange($event, row)"
+            style="--el-switch-on-color: #13ce66;"
           >
           </el-switch>
         </template>
@@ -149,6 +150,7 @@
             :active-value="1"
             :inactive-value="0"
             @change=""
+            style="--el-switch-on-color: #13ce66;"
           >
           </el-switch>
         </el-form-item>
