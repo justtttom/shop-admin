@@ -6,6 +6,6 @@
 
 <style>
 .choose-image-btn{
-  @apply w-[100px]
+  @apply w-[100px] h-[100px] rounded border flex justify-center items-center;
 }
 </style>
