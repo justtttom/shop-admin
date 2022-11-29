@@ -1,5 +1,11 @@
 <template>
   <div class="choose-image-btn">
-    <el-icon><Plus /></el-icon>
+    <el-icon :size="25"><Plus /></el-icon>
   </div>
 </template>
+
+<style>
+.choose-image-btn{
+  @apply 
+}
+</style>
