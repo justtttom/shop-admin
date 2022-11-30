@@ -33,7 +33,7 @@
 <script setup>
 import { ref } from 'vue'
 import ImageAside from './ImageAside.vue';
-import ImageMain from './ImageAside.vue';
+import ImageMain from './ImageMain.vue';
 
 
 const dialogVisible = ref(false)
@@ -67,5 +67,9 @@ const handleOpenUpload = ()=>{
   @apply w-[100px] h-[100px]
    rounded border flex justify-center 
    items-center cursor-pointer hover:bg-light-100;
+}
+.image-header {
+  border-bottom: 1px solid #eee;
+  @apply flex items-center;
 }
 </style>

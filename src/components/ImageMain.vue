@@ -24,6 +24,7 @@
             ></el-image>
             <div class="image-title">{{ item.name }}</div>
             <div class="flex items-center justify-center p-2">
+              <el-checkbox />
               <el-button
                 type="primary"
                 size="small"
@@ -60,7 +61,7 @@
     </div>
   </el-main>
   <el-drawer v-model="drawer" title="上传图片">
-    <UploadFileVue :data="{image_class_id}" @success="handleUploadSuccess"/>
+    <UploadFileVue :data="{ image_class_id }" @success="handleUploadSuccess" />
   </el-drawer>
 </template>
 <script setup>
@@ -133,7 +134,7 @@ const handleDelete = (id) => {
 }
 
 // 上传成功
-const handleUploadSuccess = ()=>{
+const handleUploadSuccess = () => {
   getData(1)
 }
 
