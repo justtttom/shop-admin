@@ -8,7 +8,7 @@
     width="80%"
     top="5vh"
   >
-  <el-container class="bg-white rounded" :style="{ height: h + 'px' }">
+  <el-container class="bg-white rounded" style="height:70vh;">
     <el-header class="image-header">
       <el-button type="primary" size="small" @click="handleOpenCreate">
         新增图片分类
@@ -35,6 +35,7 @@ import { ref } from 'vue'
 import ImageAside from './ImageAside.vue';
 import ImageMain from './ImageAside.vue';
 
+
 const dialogVisible = ref(false)
 
 const open = ()=>{
@@ -43,6 +44,21 @@ const open = ()=>{
 
 const submit = ()=>{
 
+}
+
+const ImageAsideRef = ref(null)
+
+const handleOpenCreate = ()=>{
+  ImageAsideRef.value.handleCreate()
+}
+
+const imageMainRef = ref(null)
+const handleAsideChange = (image_class_id)=>{
+  imageMainRef.value.loadData(image_class_id)
+}
+
+const handleOpenUpload = ()=>{
+  imageMainRef.value.openUploadFile()
 }
 </script>
 
