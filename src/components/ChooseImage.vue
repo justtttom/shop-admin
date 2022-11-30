@@ -24,8 +24,8 @@
   </el-container>
     <template #footer>
       <span>
-        <el-button @click="dialogVisible = false">Cancel</el-button>
-        <el-button type="primary" @click="submit">OK</el-button>
+        <el-button @click="dialogVisible = false">取消</el-button>
+        <el-button type="primary" @click="submit">确认</el-button>
       </span>
     </template>
   </el-dialog>
