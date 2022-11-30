@@ -6,24 +6,24 @@
     title="选择图片"
     v-model="dialogVisible"
     width="80%"
-    :before-close="">
+  >
     <span></span>
     <template #footer>
-    <span>
-      <el-button @click=" = false">Cancel</el-button>
-      <el-button type="primary" @click="">OK</el-button>
-    </span>
+      <span>
+        <el-button @click=" false">Cancel</el-button>
+        <el-button type="primary" @click="">OK</el-button>
+      </span>
     </template>
   </el-dialog>
-    
 </template>
 <script setup>
-import { ref } from 'vue';
-  const dialogVisible = ref(null)
+import { ref } from 'vue'
+
+const dialogVisible = ref(false)
 </script>
 
 <style>
-.choose-image-btn{
+.choose-image-btn {
   @apply w-[100px] h-[100px]
    rounded border flex justify-center 
    items-center cursor-pointer hover:bg-light-100;
