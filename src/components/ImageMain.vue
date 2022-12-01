@@ -24,7 +24,7 @@
             ></el-image>
             <div class="image-title">{{ item.name }}</div>
             <div class="flex items-center justify-center p-2">
-              <el-checkbox />
+              <el-checkbox/>
               <el-button
                 type="primary"
                 size="small"
@@ -39,7 +39,7 @@
                 @confirm="handleDelete(item.id)"
               >
                 <template #reference>
-                  <el-button type="primary" size="small" text @click=""
+                  <el-button class="!m-0" type="primary" size="small" text @click=""
                     >删除</el-button
                   >
                 </template>
