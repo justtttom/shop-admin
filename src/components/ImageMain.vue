@@ -68,7 +68,7 @@
 import { getImageList, updateImage, deleteImage } from '~/api/image.js'
 import { showPrompt, toast } from '~/composables/util'
 import UploadFileVue from './UploadFile.vue'
-import { ref } from 'vue'
+import { ref,computed } from 'vue'
 
 // 上传图片
 const drawer = ref(false)
@@ -141,8 +141,11 @@ const handleUploadSuccess = () => {
   getData(1)
 }
 
+// 选中的图片
+const checkedImage = computed(()=>list.value.filter(o=>o.checked))
+
 const handleChooseChange = (item)=>{
-  if(item >=2 ){
+  if(item.checked && checkedImage.length >=2 ){
     toast("当前只能选中一个")
   }
 }
