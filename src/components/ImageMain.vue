@@ -24,7 +24,7 @@
             ></el-image>
             <div class="image-title">{{ item.name }}</div>
             <div class="flex items-center justify-center p-2">
-              <el-checkbox/>
+              <el-checkbox v-model="item.checked" @change="handleChooseChange(item)"/>
               <el-button
                 type="primary"
                 size="small"
@@ -91,7 +91,10 @@ function getData(p = null) {
   getImageList(image_class_id.value, currentPage.value)
     .then((res) => {
       total.value = res.totalCount
-      list.value = res.list
+      list.value = res.list.map(o=>{
+        o.checked = false
+        return o
+      })
     })
     .finally(() => {
       loading.value = false
@@ -137,6 +140,7 @@ const handleDelete = (id) => {
 const handleUploadSuccess = () => {
   getData(1)
 }
+
 
 defineExpose({
   loadData,
