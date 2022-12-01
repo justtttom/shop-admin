@@ -141,6 +141,11 @@ const handleUploadSuccess = () => {
   getData(1)
 }
 
+const handleChooseChange = (item)=>{
+  if(item >=2 ){
+    toast("当前只能选中一个")
+  }
+}
 
 defineExpose({
   loadData,
