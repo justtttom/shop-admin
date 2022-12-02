@@ -12,6 +12,7 @@
             shadow="hover"
             class="relative mb-3"
             :body-style="{ padding: 0 }"
+            :class="{'border-blue-500':item.checked}"
           >
             <el-image
               :src="item.url"
@@ -142,14 +143,15 @@ const handleUploadSuccess = () => {
 }
 
 // 选中的图片
+const emit = defineEmits(['choose'])
 const checkedImage = computed(()=>list.value.filter(o=>o.checked))
-
 const handleChooseChange = (item)=>{
   if(item.checked && checkedImage.value.length >1 ){
     item.checked = false
-    toast("最多只能选中一张!")
+    toast(`最多只能选中一张!`,"error")
     return
   }
+  emit("choose",checkedImage.value)
 }
 
 defineExpose({
