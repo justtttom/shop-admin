@@ -19,7 +19,7 @@
     </el-header>
     <el-container>
       <ImageAside ref="ImageAsideRef" @change="handleAsideChange"/>
-      <ImageMain ref="imageMainRef"/>
+      <ImageMain ref="imageMainRef" @choose="handleChoose"/>
     </el-container>
   </el-container>
     <template #footer>
@@ -59,6 +59,9 @@ const handleAsideChange = (image_class_id)=>{
 
 const handleOpenUpload = ()=>{
   imageMainRef.value.openUploadFile()
+}
+const handleChoose = (e)=>{
+  console.log(e);
 }
 </script>
 
