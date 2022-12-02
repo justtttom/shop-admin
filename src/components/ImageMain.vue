@@ -145,8 +145,10 @@ const handleUploadSuccess = () => {
 const checkedImage = computed(()=>list.value.filter(o=>o.checked))
 
 const handleChooseChange = (item)=>{
-  if(item.checked && checkedImage.length >=2 ){
+  if(item.checked && checkedImage.value.length >1 ){
+    item.checked = false
     toast("当前只能选中一个")
+    return
   }
 }
 

@@ -43,7 +43,7 @@ const open = ()=>{
 }
 
 const submit = ()=>{
-
+  console.log("object");
 }
 
 const ImageAsideRef = ref(null)
