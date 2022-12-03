@@ -61,7 +61,9 @@ const handleOpenUpload = ()=>{
   imageMainRef.value.openUploadFile()
 }
 const handleChoose = (e)=>{
+  let urls = []
   console.log(e);
+  e.map(o=>o.url)
 }
 </script>
 
