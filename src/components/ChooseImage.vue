@@ -42,9 +42,7 @@ const open = ()=>{
   dialogVisible.value = true
 }
 
-const submit = ()=>{
-  console.log("object");
-}
+
 
 const ImageAsideRef = ref(null)
 
@@ -67,7 +65,13 @@ const props =  defineProps({
 const emit = defineEmits(["update:modelValue"])
 const handleChoose = (e)=>{
   let urls = []
-  e.map(o=>o.url)
+  urls = e.map(o=>o.url)
+}
+
+const submit = ()=>{
+  if(urls.length){
+    emit("update:modelValue",urls[0])
+  }
 }
 </script>
 
