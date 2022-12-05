@@ -60,9 +60,13 @@ const handleAsideChange = (image_class_id)=>{
 const handleOpenUpload = ()=>{
   imageMainRef.value.openUploadFile()
 }
+
+const props =  defineProps({
+  modelValue:[String,Array]
+})
+const emit = defineEmits(["update:modelValue"])
 const handleChoose = (e)=>{
   let urls = []
-  console.log(e);
   e.map(o=>o.url)
 }
 </script>
