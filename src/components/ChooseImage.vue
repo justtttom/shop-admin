@@ -23,7 +23,11 @@
       </el-header> -->
       <el-container>
         <ImageAside ref="ImageAsideRef" @change="handleAsideChange" />
-        <ImageMain openChoose="true" ref="imageMainRef" @choose="handleChoose" />
+        <ImageMain
+          openChoose
+          ref="imageMainRef"
+          @choose="handleChoose"
+        />
       </el-container>
     </el-container>
     <template #footer>
@@ -46,8 +50,6 @@ const open = () => (dialogVisible.value = true)
 const close = () => (dialogVisible.value = false)
 
 const ImageAsideRef = ref(null)
-
-
 
 const imageMainRef = ref(null)
 const handleAsideChange = (image_class_id) => {

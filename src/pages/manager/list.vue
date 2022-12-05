@@ -90,7 +90,7 @@
               @confirm="handleDelete(scope.row.id)"
             >
               <template #reference>
-                <el-button size="small" type="primary" @click="" text>
+                <el-button size="small" type="primary" text>
                   删除
                 </el-button>
               </template>
@@ -192,13 +192,12 @@ const limit = ref(10)
 
 // 获取数据
 function getData(p = null) {
-  if (typeof p == 'number') {
+  if (typeof p == "number") {
     currentPage.value = p
   }
   loading.value = true
   getManagerList(currentPage.value, searchForm)
     .then((res) => {
-      console.log(res)
       tableData.value = res.list.map((o) => {
         o.statusLoading = false
         return o
@@ -213,6 +212,19 @@ function getData(p = null) {
 
 getData()
 
+// 删除
+const handleDelete = (id)=>{
+  loading.value = true
+  deleteManager(id).then(res=>{
+    toast("删除成功")
+    getData()
+  })
+  .finally(()=>{
+    loading.value = false
+  })
+}
+
+// 表单部分
 const formDrawerRef = ref(null)
 const formRef = ref(null)
 const form = reactive({
@@ -293,18 +305,7 @@ const handleEdit = (row) => {
   formDrawerRef.value.open()
 }
 
-// 删除
-const handleDelete = (id) => {
-  loading.value = true
-  deleteManager(id)
-    .then((res) => {
-      toast('删除成功！')
-      getData()
-    })
-    .finally(() => {
-      loading.value = false
-    })
-}
+
 
 // 修改状态
 const handleStatusChange = (status, row) => {

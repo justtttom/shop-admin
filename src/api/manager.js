@@ -45,6 +45,6 @@ export function updateManager(id,data) {
   return axios.post(`/admin/manager${id}`, data)
 }
 
-export function deleteManager(id) {
-  return axios.post(`/admin/manager${id}/delete`)
+export function deleteManager(id){
+  return axios.post(`/admin/manager/${id}/delete`)
 }
