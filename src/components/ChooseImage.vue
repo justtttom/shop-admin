@@ -1,4 +1,13 @@
 <template>
+  <div v-if="modelValue">
+    <el-image
+      :src="modelValue"
+      fit="cover"
+      :lazy="true"
+      class="w-[100px] h-[100px] rounded border mr-2 flex justify-center items-center"
+    >
+    </el-image>
+  </div>
   <div class="choose-image-btn" @click="open">
     <el-icon :size="25" class="text-green-400"><Plus /></el-icon>
   </div>
