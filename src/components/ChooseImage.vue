@@ -13,17 +13,17 @@
   </div>
   <el-dialog title="选择图片" v-model="dialogVisible" width="80%" top="5vh">
     <el-container class="bg-white rounded" style="height: 70vh;">
-      <el-header class="image-header">
+      <!-- <el-header class="image-header" v-if="openChoose">
         <el-button type="primary" size="small" @click="handleOpenCreate">
           新增图片分类
         </el-button>
         <el-button type="warning" size="small" @click="handleOpenUpload">
           上传图片
         </el-button>
-      </el-header>
+      </el-header> -->
       <el-container>
         <ImageAside ref="ImageAsideRef" @change="handleAsideChange" />
-        <ImageMain ref="imageMainRef" @choose="handleChoose" />
+        <ImageMain openChoose="true" ref="imageMainRef" @choose="handleChoose" />
       </el-container>
     </el-container>
     <template #footer>
@@ -47,18 +47,19 @@ const close = () => (dialogVisible.value = false)
 
 const ImageAsideRef = ref(null)
 
-const handleOpenCreate = () => {
-  ImageAsideRef.value.handleCreate()
-}
+
 
 const imageMainRef = ref(null)
 const handleAsideChange = (image_class_id) => {
   imageMainRef.value.loadData(image_class_id)
 }
 
-const handleOpenUpload = () => {
-  imageMainRef.value.openUploadFile()
-}
+// const handleOpenCreate = () => {
+//   ImageAsideRef.value.handleCreate()
+// }
+// const handleOpenUpload = () => {
+//   imageMainRef.value.openUploadFile()
+// }
 
 const props = defineProps({
   modelValue: [String, Array]

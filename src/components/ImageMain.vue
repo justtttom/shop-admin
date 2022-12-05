@@ -25,7 +25,7 @@
             ></el-image>
             <div class="image-title">{{ item.name }}</div>
             <div class="flex items-center justify-center p-2">
-              <el-checkbox v-model="item.checked" @change="handleChooseChange(item)"/>
+              <el-checkbox v-if="openChoose" v-model="item.checked" @change="handleChooseChange(item)"/>
               <el-button
                 type="primary"
                 size="small"
@@ -142,6 +142,12 @@ const handleUploadSuccess = () => {
   getData(1)
 }
 
+defineProps({
+  openChoose:{
+    type:Boolean,
+    default:false
+  }
+})
 // 选中的图片
 const emit = defineEmits(['choose'])
 const checkedImage = computed(()=>list.value.filter(o=>o.checked))
