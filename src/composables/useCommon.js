@@ -1,4 +1,7 @@
-export function useInitTable(){
+import { ref, reactive } from 'vue'
+import { getManagerList } from '~/api/manager.js'
+
+export function useInitTable() {
   const searchForm = reactive({
     keyword: ''
   })
@@ -6,18 +9,18 @@ export function useInitTable(){
     searchForm.keyword = ''
     getData()
   }
-   
+
   const tableData = ref([])
   const loading = ref(false)
-  
+
   // 分页
   const currentPage = ref(1)
   const total = ref(0)
   const limit = ref(10)
-  
+
   // 获取数据
   function getData(p = null) {
-    if (typeof p == "number") {
+    if (typeof p == 'number') {
       currentPage.value = p
     }
     loading.value = true
@@ -34,10 +37,10 @@ export function useInitTable(){
         loading.value = false
       })
   }
-  
+
   getData()
 
-  return{
+  return {
     searchForm,
     resetSearchForm,
     tableData,
@@ -47,4 +50,4 @@ export function useInitTable(){
     limit,
     getData
   }
-} 
+}
