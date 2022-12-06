@@ -110,6 +110,19 @@ function getData(p = null) {
 
 getData()
 
+// 删除
+const handleDelete = (id) => {
+  loading.value = true
+  deleteNoticeList(id)
+    .then((res) => {
+      toast('删除成功！')
+      getData()
+    })
+    .finally(() => {
+      loading.value = false
+    })
+}
+
 const formDrawerRef = ref(null)
 const formRef = ref(null)
 const form = reactive({
@@ -179,16 +192,5 @@ const handleEdit = (row) => {
   formDrawerRef.value.open()
 }
 
-// 删除
-const handleDelete = (id) => {
-  loading.value = true
-  deleteNoticeList(id)
-    .then((res) => {
-      toast('删除成功！')
-      getData()
-    })
-    .finally(() => {
-      loading.value = false
-    })
-}
+
 </script>
