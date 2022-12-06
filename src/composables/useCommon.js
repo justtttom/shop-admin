@@ -39,6 +39,12 @@ export function useInitTable(){
 
   return{
     searchForm,
-    resetSearchForm
+    resetSearchForm,
+    tableData,
+    loading,
+    currentPage,
+    total,
+    limit,
+    getData
   }
 } 

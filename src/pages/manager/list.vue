@@ -170,21 +170,33 @@ import {
   updateManager,
   deleteManager
 } from '~/api/manager.js'
-
 import { toast } from '~/composables/util.js'
+import { useInitTable } from '~/composables/useCommon'
 
 const roles = ref([])
 
+const {
+  searchForm,
+  resetSearchForm,
+  tableData,
+  loading,
+  currentPage,
+  total,
+  limit,
+  getData
+} = useInitTable()
+
 // 删除
-const handleDelete = (id)=>{
+const handleDelete = (id) => {
   loading.value = true
-  deleteManager(id).then(res=>{
-    toast("删除成功")
-    getData()
-  })
-  .finally(()=>{
-    loading.value = false
-  })
+  deleteManager(id)
+    .then((res) => {
+      toast('删除成功')
+      getData()
+    })
+    .finally(() => {
+      loading.value = false
+    })
 }
 
 // 表单部分
@@ -267,8 +279,6 @@ const handleEdit = (row) => {
   resetForm(row)
   formDrawerRef.value.open()
 }
-
-
 
 // 修改状态
 const handleStatusChange = (status, row) => {
