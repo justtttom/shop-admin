@@ -22,9 +22,7 @@
 
     <!-- 新增 刷新 -->
     <div class="flex justify-between items-center mb-4">
-      <el-button type="success" size="small" @click="handleCreate"
-        >新增</el-button
-      >
+      <el-button type="success" size="small" @click="handleCreate">新增</el-button>
       <el-tooltip effect="dark" content="刷新数据" placement="top">
         <el-button text @click="getData">
           <el-icon :size="20">
@@ -33,7 +31,7 @@
         </el-button>
       </el-tooltip>
     </div>
-    <el-table :data="tableData" stripe style="width: 100%;" v-loading="loading">
+    <el-table :data="tableData" stripe style="width: 100%" v-loading="loading">
       <el-table-column label="管理员" width="200">
         <template #default="{ row }">
           <div class="flex items-center">
@@ -51,7 +49,7 @@
       </el-table-column>
       <el-table-column label="所属管理员" align="center">
         <template #default="{ row }">
-          {{ row.role?.name || '-' }}
+          {{ row.role?.name || "-" }}
         </template>
       </el-table-column>
       <el-table-column label="状态" width="380">
@@ -63,7 +61,7 @@
             :loading="row.statusLoading"
             :disabled="row.super == 1"
             @change="handleStatusChange($event, row)"
-            style="--el-switch-on-color: #13ce66;"
+            style="--el-switch-on-color: #13ce66"
           >
           </el-switch>
         </template>
@@ -74,12 +72,7 @@
             暂无操作
           </small>
           <div v-else>
-            <el-button
-              size="small"
-              type="primary"
-              @click="handleEdit(scope.row)"
-              text
-            >
+            <el-button size="small" type="primary" @click="handleEdit(scope.row)" text>
               修改
             </el-button>
             <el-popconfirm
@@ -90,9 +83,7 @@
               @confirm="handleDelete(scope.row.id)"
             >
               <template #reference>
-                <el-button size="small" type="primary" text>
-                  删除
-                </el-button>
+                <el-button size="small" type="primary" text> 删除 </el-button>
               </template>
             </el-popconfirm>
           </div>
@@ -118,10 +109,7 @@
         :inline="false"
       >
         <el-form-item label="用户名" prop="username">
-          <el-input
-            v-model="form.username"
-            placeholder="请输入用户名"
-          ></el-input>
+          <el-input v-model="form.username" placeholder="请输入用户名"></el-input>
         </el-form-item>
         <el-form-item label="密码" prop="password">
           <el-input v-model="form.password" placeholder="请输入密码"></el-input>
@@ -129,7 +117,7 @@
         <el-form-item label="头像" prop="avatar">
           <ChooseImage v-model="form.avatar" />
         </el-form-item>
-        <el-form-item label="所属角色" prop="role_id">
+        <el-form-item label="所属色" prop="role_id">
           <el-select
             v-model="form.role_id"
             class="m-2"
@@ -150,7 +138,7 @@
             :active-value="1"
             :inactive-value="0"
             @change=""
-            style="--el-switch-on-color: #13ce66;"
+            style="--el-switch-on-color: #13ce66"
           >
           </el-switch>
         </el-form-item>
@@ -160,19 +148,19 @@
 </template>
 
 <script setup>
-import { ref, reactive, computed } from 'vue'
-import FormDrawer from '~/components/FormDrawer.vue'
-import ChooseImage from '~/components/ChooseImage.vue'
+import { ref, reactive, computed } from "vue";
+import FormDrawer from "~/components/FormDrawer.vue";
+import ChooseImage from "~/components/ChooseImage.vue";
 import {
   updateManagerStatus,
   addManager,
   updateManager,
-  deleteManager
-} from '~/api/manager.js'
-import { toast } from '~/composables/util.js'
-import { useInitTable } from '~/composables/useCommon'
+  deleteManager,
+} from "~/api/manager.js";
+import { toast } from "~/composables/util.js";
+import { useInitTable } from "~/composables/useCommon";
 
-const roles = ref([])
+const roles = ref([]);
 
 const {
   searchForm,
@@ -182,113 +170,111 @@ const {
   currentPage,
   total,
   limit,
-  getData
-} = useInitTable()
+  getData,
+} = useInitTable();
 
 // 删除
 const handleDelete = (id) => {
-  loading.value = true
+  loading.value = true;
   deleteManager(id)
     .then((res) => {
-      toast('删除成功')
-      getData()
+      toast("删除成功");
+      getData();
     })
     .finally(() => {
-      loading.value = false
-    })
-}
+      loading.value = false;
+    });
+};
 
 // 表单部分
-const formDrawerRef = ref(null)
-const formRef = ref(null)
+const formDrawerRef = ref(null);
+const formRef = ref(null);
 const form = reactive({
-  username: '',
-  password: '',
+  username: "",
+  password: "",
   role_id: null,
   status: 1,
-  avatar: ''
-})
+  avatar: "",
+});
 const rules = {
   username: [
     {
       required: true,
-      message: '用户名不能为空',
-      trigger: 'blur'
-    }
+      message: "用户名不能为空",
+      trigger: "blur",
+    },
   ],
   password: [
     {
       required: true,
-      message: '密码不能为空',
-      trigger: 'blur'
-    }
-  ]
-}
-const editId = ref(0)
-const drawerTitle = computed(() => (editId.value ? '修改' : '新增'))
+      message: "密码不能为空",
+      trigger: "blur",
+    },
+  ],
+};
+const editId = ref(0);
+const drawerTitle = computed(() => (editId.value ? "修改" : "新增"));
 
 const handleSubmit = () => {
   formRef.value.validate((valid) => {
-    if (!valid) return
-    formDrawerRef.value.showLoading()
+    if (!valid) return;
+    formDrawerRef.value.showLoading();
 
-    const fun = editId.value
-      ? updateManager(editId.value, form)
-      : addManager(form)
+    const fun = editId.value ? updateManager(editId.value, form) : addManager(form);
 
     fun
       .then((res) => {
-        toast(drawerTitle.value + '成功!')
+        toast(drawerTitle.value + "成功!");
         // 修改刷新当前页，新增刷新第一页
-        getData(editId.value ? false : 1)
-        formDrawerRef.value.close()
+        getData(editId.value ? false : 1);
+        formDrawerRef.value.close();
       })
       .finally(() => {
-        formDrawerRef.value.hideLoading()
-      })
-  })
-}
+        formDrawerRef.value.hideLoading();
+      });
+  });
+};
 
 // 重置表单
 function resetForm(row = false) {
-  if (formRef.value) formRef.value.clearValidate()
+  if (formRef.value) formRef.value.clearValidate();
   if (row) {
     for (const key in form) {
-      form[key] = row[key]
+      form[key] = row[key];
     }
   }
 }
 
 // 新增
 const handleCreate = () => {
-  editId.value = 0
+  editId.value = 0;
   resetForm({
-    username: '',
-    password: '',
+    username: "",
+    password: "",
     role_id: null,
     status: 1,
-    avatar: ''
-  })
-  formDrawerRef.value.open()
-}
+    avatar: "",
+  });
+  formDrawerRef.value.open();
+};
 
 // 修改
 const handleEdit = (row) => {
-  editId.value = row.id
-  resetForm(row)
-  formDrawerRef.value.open()
-}
+  editId.value = row.id;
+  resetForm(row);
+  formDrawerRef.value.open();
+};
 
 // 修改状态
 const handleStatusChange = (status, row) => {
-  row.statusLoading = true
+  row.statusLoading = true;
   updateManagerStatus(row.id, status)
     .then((res) => {
-      toast('修改状态成功！')
-      row.status = status
+      toast("修改状态成功！");
+      row.status = status;
     })
     .finally(() => {
-      row.statusLoading = false
-    })
-}
+      row.statusLoading = false;
+    });
+};
 </script>
