@@ -133,7 +133,7 @@
           <el-select
             v-model="form.role_id"
             class="m-2"
-            placeholder="选择所属角"
+            placeholder="选择所属角色"
             size="small"
           >
             <el-option
