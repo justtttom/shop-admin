@@ -1,7 +1,7 @@
 import { ref, reactive } from 'vue'
 import { getManagerList } from '~/api/manager.js'
 
-export function useInitTable() {
+export function useInitTable(opt = {}) {
   const searchForm = reactive({
     keyword: ''
   })
@@ -26,12 +26,18 @@ export function useInitTable() {
     loading.value = true
     getManagerList(currentPage.value, searchForm)
       .then((res) => {
-        tableData.value = res.list.map((o) => {
-          o.statusLoading = false
-          return o
-        })
-        total.value = res.totalCount
-        roles.value = res.roles
+        if (opt.onGetListSuccess && typeof opt.onGetListSuccess == 'function') {
+          opt.onGetListSuccess(res)
+        } else {
+          tableData.value = res.list
+          total.value = res.totalCount
+          // tableData.value = res.list.map((o) => {
+          //   o.statusLoading = false
+          //   return o
+          // })
+          // total.value = res.totalCount
+          // roles.value = res.roles
+        }
       })
       .finally(() => {
         loading.value = false

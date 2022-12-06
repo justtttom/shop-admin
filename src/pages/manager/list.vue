@@ -164,7 +164,6 @@ import { ref, reactive, computed } from 'vue'
 import FormDrawer from '~/components/FormDrawer.vue'
 import ChooseImage from '~/components/ChooseImage.vue'
 import {
-  getManagerList,
   updateManagerStatus,
   addManager,
   updateManager,
