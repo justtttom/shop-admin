@@ -31,12 +31,6 @@ export function useInitTable(opt = {}) {
         } else {
           tableData.value = res.list
           total.value = res.totalCount
-          // tableData.value = res.list.map((o) => {
-          //   o.statusLoading = false
-          //   return o
-          // })
-          // total.value = res.totalCount
-          // roles.value = res.roles
         }
       })
       .finally(() => {

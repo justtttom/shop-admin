@@ -173,7 +173,15 @@ const {
   limit,
   getData,
 } = useInitTable({
-  getlist:getManagerList,
+  getlist: getManagerList,
+  onGetListSuccess: (res) => {
+    tableData.value = res.list.map((o) => {
+      o.statusLoading = false;
+      return o;
+    });
+    total.value = res.totalCount;
+    roles.value = res.roles;
+  },
 });
 
 // 删除
