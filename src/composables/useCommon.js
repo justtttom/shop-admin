@@ -1,5 +1,5 @@
 import { ref, reactive } from 'vue'
-import { getManagerList } from '~/api/manager.js'
+
 
 export function useInitTable(opt = {}) {
   const searchForm = reactive({
@@ -24,7 +24,7 @@ export function useInitTable(opt = {}) {
       currentPage.value = p
     }
     loading.value = true
-    getManagerList(currentPage.value, searchForm)
+    opt.getlist(currentPage.value, searchForm)
       .then((res) => {
         if (opt.onGetListSuccess && typeof opt.onGetListSuccess == 'function') {
           opt.onGetListSuccess(res)

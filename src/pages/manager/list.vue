@@ -152,6 +152,7 @@ import { ref, reactive, computed } from "vue";
 import FormDrawer from "~/components/FormDrawer.vue";
 import ChooseImage from "~/components/ChooseImage.vue";
 import {
+  getManagerList,
   updateManagerStatus,
   addManager,
   updateManager,
@@ -171,7 +172,9 @@ const {
   total,
   limit,
   getData,
-} = useInitTable();
+} = useInitTable({
+  getlist:getManagerList,
+});
 
 // 删除
 const handleDelete = (id) => {
