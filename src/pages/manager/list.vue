@@ -117,7 +117,7 @@
         <el-form-item label="头像" prop="avatar">
           <ChooseImage v-model="form.avatar" />
         </el-form-item>
-        <el-form-item label="所属色" prop="role_id">
+        <el-form-item label="所属角色" prop="role_id">
           <el-select
             v-model="form.role_id"
             class="m-2"
