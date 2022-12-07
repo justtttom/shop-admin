@@ -173,6 +173,9 @@ const {
   limit,
   getData,
 } = useInitTable({
+  searchForm: {
+    keyword: "",
+  },
   getlist: getManagerList,
   onGetListSuccess: (res) => {
     tableData.value = res.list.map((o) => {

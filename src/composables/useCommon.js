@@ -2,12 +2,16 @@ import { ref, reactive } from 'vue'
 
 
 export function useInitTable(opt = {}) {
-  const searchForm = reactive({
-    keyword: ''
-  })
-  const resetSearchForm = () => {
-    searchForm.keyword = ''
-    getData()
+  let searchForm = null
+  let resetSearchForm = null
+  if(opt.searchForm){
+    searchForm = reactive({...opt.searchForm})
+    resetSearchForm = ()=>{
+      for (const key in searchForm) {
+        searchForm[key] = opt.searchForm[key]
+      }
+      getData()
+    }
   }
 
   const tableData = ref([])
