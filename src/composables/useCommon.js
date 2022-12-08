@@ -1,4 +1,5 @@
 import { ref, reactive } from 'vue'
+import { toast } from "~/composables/util.js";
 
 // 列表、分页、搜索
 export function useInitTable(opt = {}) {
