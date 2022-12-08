@@ -60,7 +60,7 @@ const handleDelete = (id) => {
 // 修改状态
 const handleStatusChange = (status, row) => {
   row.statusLoading = true
-  opt.status(row.id, status)
+  opt.updateStatus(row.id, status)
     .then((res) => {
       toast('修改状态成功！')
       row.status = status

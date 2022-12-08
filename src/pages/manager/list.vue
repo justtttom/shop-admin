@@ -173,7 +173,7 @@ import { useInitTable, useInitForm } from '~/composables/useCommon'
 
 const roles = ref([])
 
-//列表、分页、搜索
+//列表、分页、搜索、删除、状态更新
 const {
   searchForm,
   resetSearchForm,
@@ -188,6 +188,8 @@ const {
     keyword: ''
   },
   getlist: getManagerList,
+  delete:deleteManager,
+  updateStatus:updateManagerStatus,
   onGetListSuccess: (res) => {
     tableData.value = res.list.map((o) => {
       o.statusLoading = false
@@ -236,8 +238,6 @@ const {
   },
   getData,
   update: updateManager,
-  add: addManager,
-  delete:deleteManager,
-  status:updateManagerStatus
+  add: addManager
 })
 </script>

@@ -84,10 +84,11 @@ import {
 import { toast } from '~/composables/util.js'
 import { useInitTable, useInitForm } from '~/composables/useCommon'
 
-// 列表、分页
+// 列表、分页、删除
 const { tableData, loading, currentPage, total, limit, getData } = useInitTable(
   {
-    getlist: getNoticeList
+    getlist: getNoticeList,
+    delete:deleteNoticeList
   }
 )
 
@@ -124,8 +125,7 @@ const {
   },
   getData,
   update: updateNoticeList,
-  add: addNoticeList,
-  delete:deleteNoticeList
+  add: addNoticeList
 })
 
 </script>
