@@ -1,6 +1,5 @@
 import { ref, reactive } from 'vue'
 
-
 export function useInitTable(opt = {}) {
   let searchForm = null
   let resetSearchForm = null
