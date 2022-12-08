@@ -83,32 +83,21 @@ import {
   deleteNoticeList
 } from '~/api/notice.js'
 import { toast } from '~/composables/util.js'
+import { useInitTable, useInitForm } from '~/composables/useCommon'
 
-const tableData = ref([])
-const loading = ref(false)
+// 列表、分页
+const {
+  tableData,
+  loading,
+  currentPage,
+  total,
+  limit,
+  getData
+} = useInitTable({
+  getlist:getNoticeList
+})
 
-// 分页
-const currentPage = ref(1)
-const total = ref(0)
-const limit = ref(10)
-
-// 获取数据
-function getData(p = null) {
-  if (typeof p == 'number') {
-    currentPage.value = p
-  }
-  loading.value = true
-  getNoticeList(currentPage.value)
-    .then((res) => {
-      tableData.value = res.list
-      total.value = res.totalCount
-    })
-    .finally(() => {
-      loading.value = false
-    })
-}
-
-getData()
+// 新增、修改
 
 // 删除
 const handleDelete = (id) => {
