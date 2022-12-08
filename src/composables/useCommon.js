@@ -54,3 +54,8 @@ export function useInitTable(opt = {}) {
     getData
   }
 }
+
+// 新增
+export function useInitForm (){
+
+}
