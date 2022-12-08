@@ -81,7 +81,6 @@ import {
   updateNoticeList,
   deleteNoticeList
 } from '~/api/notice.js'
-import { toast } from '~/composables/util.js'
 import { useInitTable, useInitForm } from '~/composables/useCommon'
 
 // 列表、分页、删除
