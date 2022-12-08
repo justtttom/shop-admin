@@ -207,7 +207,9 @@ const {
   drawerTitle,
   handleSubmit,
   handleCreate,
-  handleEdit
+  handleEdit,
+  handleDelete,
+  handleStatusChange
 } = useInitForm({
   form: {
     username: '',
@@ -216,7 +218,7 @@ const {
     status: 1,
     avatar: ''
   },
-  rules:{
+  rules: {
     username: [
       {
         required: true,
@@ -234,32 +236,8 @@ const {
   },
   getData,
   update: updateManager,
-  add: addManager
+  add: addManager,
+  delete:deleteManager,
+  status:updateManagerStatus
 })
-
-// 删除
-const handleDelete = (id) => {
-  loading.value = true
-  deleteManager(id)
-    .then((res) => {
-      toast('删除成功')
-      getData()
-    })
-    .finally(() => {
-      loading.value = false
-    })
-}
-
-// 修改状态
-const handleStatusChange = (status, row) => {
-  row.statusLoading = true
-  updateManagerStatus(row.id, status)
-    .then((res) => {
-      toast('修改状态成功！')
-      row.status = status
-    })
-    .finally(() => {
-      row.statusLoading = false
-    })
-}
 </script>

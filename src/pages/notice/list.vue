@@ -124,19 +124,8 @@ const {
   },
   getData,
   update: updateNoticeList,
-  add: addNoticeList
+  add: addNoticeList,
+  delete:deleteNoticeList
 })
 
-// 删除
-const handleDelete = (id) => {
-  loading.value = true
-  deleteNoticeList(id)
-    .then((res) => {
-      toast('删除成功！')
-      getData()
-    })
-    .finally(() => {
-      loading.value = false
-    })
-}
 </script>
