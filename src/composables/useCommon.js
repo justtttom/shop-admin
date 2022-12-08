@@ -1,4 +1,4 @@
-import { ref, reactive,computed } from 'vue'
+import { ref, reactive, computed } from 'vue'
 import { toast } from '~/composables/util.js'
 
 // 列表、分页、搜索
@@ -63,6 +63,7 @@ export function useInitForm(opt = {}) {
   // 表单部分
   const formDrawerRef = ref(null)
   const formRef = ref(null)
+  const defaultForm = opt.form
   const form = reactive({})
   const rules = opt.rules || {}
   const editId = ref(0)
@@ -91,17 +92,15 @@ export function useInitForm(opt = {}) {
   // 重置表单
   function resetForm(row = false) {
     if (formRef.value) formRef.value.clearValidate()
-    if (row) {
-      for (const key in form) {
-        form[key] = row[key]
-      }
+    for (const key in defaultForm) {
+      form[key] = row[key]
     }
   }
 
   // 新增
   const handleCreate = () => {
     editId.value = 0
-    resetForm(opt.form)
+    resetForm(defaultForm)
     formDrawerRef.value.open()
   }
 
