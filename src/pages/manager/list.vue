@@ -22,7 +22,9 @@
 
     <!-- 新增 刷新 -->
     <div class="flex justify-between items-center mb-4">
-      <el-button type="success" size="small" @click="handleCreate">新增</el-button>
+      <el-button type="success" size="small" @click="handleCreate"
+        >新增</el-button
+      >
       <el-tooltip effect="dark" content="刷新数据" placement="top">
         <el-button text @click="getData">
           <el-icon :size="20">
@@ -31,7 +33,7 @@
         </el-button>
       </el-tooltip>
     </div>
-    <el-table :data="tableData" stripe style="width: 100%" v-loading="loading">
+    <el-table :data="tableData" stripe style="width: 100%;" v-loading="loading">
       <el-table-column label="管理员" width="200">
         <template #default="{ row }">
           <div class="flex items-center">
@@ -49,7 +51,7 @@
       </el-table-column>
       <el-table-column label="所属管理员" align="center">
         <template #default="{ row }">
-          {{ row.role?.name || "-" }}
+          {{ row.role?.name || '-' }}
         </template>
       </el-table-column>
       <el-table-column label="状态" width="380">
@@ -61,7 +63,7 @@
             :loading="row.statusLoading"
             :disabled="row.super == 1"
             @change="handleStatusChange($event, row)"
-            style="--el-switch-on-color: #13ce66"
+            style="--el-switch-on-color: #13ce66;"
           >
           </el-switch>
         </template>
@@ -72,7 +74,12 @@
             暂无操作
           </small>
           <div v-else>
-            <el-button size="small" type="primary" @click="handleEdit(scope.row)" text>
+            <el-button
+              size="small"
+              type="primary"
+              @click="handleEdit(scope.row)"
+              text
+            >
               修改
             </el-button>
             <el-popconfirm
@@ -109,7 +116,10 @@
         :inline="false"
       >
         <el-form-item label="用户名" prop="username">
-          <el-input v-model="form.username" placeholder="请输入用户名"></el-input>
+          <el-input
+            v-model="form.username"
+            placeholder="请输入用户名"
+          ></el-input>
         </el-form-item>
         <el-form-item label="密码" prop="password">
           <el-input v-model="form.password" placeholder="请输入密码"></el-input>
@@ -138,7 +148,7 @@
             :active-value="1"
             :inactive-value="0"
             @change=""
-            style="--el-switch-on-color: #13ce66"
+            style="--el-switch-on-color: #13ce66;"
           >
           </el-switch>
         </el-form-item>
@@ -148,20 +158,20 @@
 </template>
 
 <script setup>
-import { ref, reactive, computed } from "vue";
-import FormDrawer from "~/components/FormDrawer.vue";
-import ChooseImage from "~/components/ChooseImage.vue";
+import { ref } from 'vue'
+import FormDrawer from '~/components/FormDrawer.vue'
+import ChooseImage from '~/components/ChooseImage.vue'
 import {
   getManagerList,
   updateManagerStatus,
   addManager,
   updateManager,
-  deleteManager,
-} from "~/api/manager.js";
-import { toast } from "~/composables/util.js";
-import { useInitTable, useInitForm } from "~/composables/useCommon";
+  deleteManager
+} from '~/api/manager.js'
+import { toast } from '~/composables/util.js'
+import { useInitTable, useInitForm } from '~/composables/useCommon'
 
-const roles = ref([]);
+const roles = ref([])
 
 //列表、分页、搜索
 const {
@@ -172,21 +182,21 @@ const {
   currentPage,
   total,
   limit,
-  getData,
+  getData
 } = useInitTable({
   searchForm: {
-    keyword: "",
+    keyword: ''
   },
   getlist: getManagerList,
   onGetListSuccess: (res) => {
     tableData.value = res.list.map((o) => {
-      o.statusLoading = false;
-      return o;
-    });
-    total.value = res.totalCount;
-    roles.value = res.roles;
-  },
-});
+      o.statusLoading = false
+      return o
+    })
+    total.value = res.totalCount
+    roles.value = res.roles
+  }
+})
 
 //新增、修改
 const {
@@ -194,38 +204,46 @@ const {
   formRef,
   form,
   rules,
-  editId,
   drawerTitle,
   handleSubmit,
-  resetForm,
   handleCreate,
-  handleEdit,
-} = useInitForm()
-
+  handleEdit
+} = useInitForm({
+  form: {
+    username: '',
+    password: '',
+    role_id: null,
+    status: 1,
+    avatar: ''
+  },
+  getData,
+  update: updateManager,
+  add: addManager
+})
 
 // 删除
 const handleDelete = (id) => {
-  loading.value = true;
+  loading.value = true
   deleteManager(id)
     .then((res) => {
-      toast("删除成功");
-      getData();
+      toast('删除成功')
+      getData()
     })
     .finally(() => {
-      loading.value = false;
-    });
-};
+      loading.value = false
+    })
+}
 
 // 修改状态
 const handleStatusChange = (status, row) => {
-  row.statusLoading = true;
+  row.statusLoading = true
   updateManagerStatus(row.id, status)
     .then((res) => {
-      toast("修改状态成功！");
-      row.status = status;
+      toast('修改状态成功！')
+      row.status = status
     })
     .finally(() => {
-      row.statusLoading = false;
-    });
-};
+      row.statusLoading = false
+    })
+}
 </script>

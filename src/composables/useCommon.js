@@ -1,5 +1,5 @@
-import { ref, reactive } from 'vue'
-import { toast } from "~/composables/util.js";
+import { ref, reactive,computed } from 'vue'
+import { toast } from '~/composables/util.js'
 
 // 列表、分页、搜索
 export function useInitTable(opt = {}) {
@@ -59,17 +59,11 @@ export function useInitTable(opt = {}) {
 }
 
 // 新增、修改
-export function useInitForm() {
+export function useInitForm(opt = {}) {
   // 表单部分
   const formDrawerRef = ref(null)
   const formRef = ref(null)
-  const form = reactive({
-    username: '',
-    password: '',
-    role_id: null,
-    status: 1,
-    avatar: ''
-  })
+  const form = reactive({})
   const rules = {
     username: [
       {
@@ -94,15 +88,13 @@ export function useInitForm() {
       if (!valid) return
       formDrawerRef.value.showLoading()
 
-      const fun = editId.value
-        ? updateManager(editId.value, form)
-        : addManager(form)
+      const fun = editId.value ? opt.update(editId.value, form) : opt.add(form)
 
       fun
         .then((res) => {
           toast(drawerTitle.value + '成功!')
           // 修改刷新当前页，新增刷新第一页
-          getData(editId.value ? false : 1)
+          opt.getData(editId.value ? false : 1)
           formDrawerRef.value.close()
         })
         .finally(() => {
@@ -124,13 +116,7 @@ export function useInitForm() {
   // 新增
   const handleCreate = () => {
     editId.value = 0
-    resetForm({
-      username: '',
-      password: '',
-      role_id: null,
-      status: 1,
-      avatar: ''
-    })
+    resetForm(opt.form)
     formDrawerRef.value.open()
   }
 
@@ -141,7 +127,7 @@ export function useInitForm() {
     formDrawerRef.value.open()
   }
 
-  return{
+  return {
     formDrawerRef,
     formRef,
     form,
