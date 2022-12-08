@@ -111,6 +111,22 @@ const {
     title:'',
   content:''
   },
+  rules:{
+    title: [
+      {
+        required: true,
+        message: '公告标题不能为空',
+        trigger: 'blur'
+      }
+    ],
+    content: [
+      {
+        required: true,
+        message: '公告内容不能为空',
+        trigger: 'blur'
+      }
+    ]
+  },
   getData,
   update: updateNoticeList,
   add: addNoticeList
