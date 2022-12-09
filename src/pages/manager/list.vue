@@ -158,7 +158,6 @@ import {
   updateManager,
   deleteManager
 } from '~/api/manager.js'
-import { toast } from '~/composables/util.js'
 import { useInitTable, useInitForm } from '~/composables/useCommon'
 
 const roles = ref([])
