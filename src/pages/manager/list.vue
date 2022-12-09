@@ -148,9 +148,9 @@
 
 <script setup>
 import { ref } from 'vue'
+import ListHeader from '~/components/ListHeader.vue'
 import FormDrawer from '~/components/FormDrawer.vue'
 import ChooseImage from '~/components/ChooseImage.vue'
-import ListHeader from '~/components/ListHeader.vue'
 import {
   getManagerList,
   updateManagerStatus,
@@ -171,6 +171,8 @@ const {
   currentPage,
   total,
   limit,
+  handleDelete,
+  handleStatusChange,
   getData
 } = useInitTable({
   searchForm: {
@@ -199,8 +201,6 @@ const {
   handleSubmit,
   handleCreate,
   handleEdit,
-  handleDelete,
-  handleStatusChange
 } = useInitForm({
   form: {
     username: '',

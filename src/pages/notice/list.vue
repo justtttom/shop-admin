@@ -31,7 +31,7 @@
             @confirm="handleDelete(scope.row.id)"
           >
             <template #reference>
-              <el-button size="small" type="primary" @click="" text
+              <el-button size="small" type="primary" text
                 >删除</el-button
               >
             </template>
@@ -84,7 +84,14 @@ import {
 import { useInitTable, useInitForm } from '~/composables/useCommon'
 
 // 列表、分页、删除
-const { tableData, loading, currentPage, total, limit, getData } = useInitTable(
+const { 
+    tableData,
+    loading,
+    currentPage,
+    total,
+    limit,
+    handleDelete,
+    getData } = useInitTable(
   {
     getlist: getNoticeList,
     delete:deleteNoticeList
