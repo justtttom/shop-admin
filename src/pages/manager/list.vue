@@ -20,19 +20,7 @@
       </el-form-item>
     </el-form>
 
-    <!-- 新增 刷新 -->
-    <div class="flex justify-between items-center mb-4">
-      <el-button type="success" size="small" @click="handleCreate"
-        >新增</el-button
-      >
-      <el-tooltip effect="dark" content="刷新数据" placement="top">
-        <el-button text @click="getData">
-          <el-icon :size="20">
-            <Refresh />
-          </el-icon>
-        </el-button>
-      </el-tooltip>
-    </div>
+    
     <el-table :data="tableData" stripe style="width: 100%;" v-loading="loading">
       <el-table-column label="管理员" width="200">
         <template #default="{ row }">
