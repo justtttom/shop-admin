@@ -21,7 +21,7 @@
     </el-form>
 
     <!-- 新增 刷新 -->
-    <ListHeader/>
+    <ListHeader @create="handleCreate" @refresh="getData"/>
     <el-table :data="tableData" stripe style="width: 100%;" v-loading="loading">
       <el-table-column label="管理员" width="200">
         <template #default="{ row }">
