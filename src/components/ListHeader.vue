@@ -1,5 +1,4 @@
 <template>
-  <!-- 新增 刷新 -->
   <div class="flex justify-between items-center mb-4">
       <el-button type="success" size="small" @click="$emit('create')"
         >新增</el-button
@@ -15,5 +14,5 @@
 </template>
 
 <script setup >
-  defineEmits(['create','referesh'])
+  defineEmits(['create','refresh'])
 </script>

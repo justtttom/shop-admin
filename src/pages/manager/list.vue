@@ -20,7 +20,8 @@
       </el-form-item>
     </el-form>
 
-    
+    <!-- 新增 刷新 -->
+    <ListHeader/>
     <el-table :data="tableData" stripe style="width: 100%;" v-loading="loading">
       <el-table-column label="管理员" width="200">
         <template #default="{ row }">
@@ -149,6 +150,7 @@
 import { ref } from 'vue'
 import FormDrawer from '~/components/FormDrawer.vue'
 import ChooseImage from '~/components/ChooseImage.vue'
+import ListHeader from '~/components/ListHeader.vue'
 import {
   getManagerList,
   updateManagerStatus,
