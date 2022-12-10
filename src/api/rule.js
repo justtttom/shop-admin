@@ -1,5 +1,5 @@
 import axios from '~/axios'
 
-export function getInfo() {
-  return axios.get('/admin/rule/1')
+export function getRuleList(page) {
+  return axios.get(`/admin/rule/${page}`)
 }

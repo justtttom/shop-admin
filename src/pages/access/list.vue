@@ -8,4 +8,6 @@
 
 <script setup >
   import ListHeader from '~/components/ListHeader.vue'
+  import {getRuleList} from '~/api/rule.js'
+  import {useInitTable} from '~/composables/useCommon'
 </script>
