@@ -2,7 +2,7 @@
   <el-card shadow="never" class="border-0">
       <!-- 新增 刷新 -->
       <ListHeader @refresh="getData"/>
-      <!-- <el-tree :data="data" :props="defaultProps" @node-click="handleNodeClick" /> -->
+      <el-tree :data="tableData" :props="{}"/>
   </el-card>
 </template>
 
