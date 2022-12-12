@@ -2,7 +2,7 @@
   <el-card shadow="never" class="border-0">
       <!-- 新增 刷新 -->
       <ListHeader @refresh="getData"/>
-      <el-tree :data="tableData" :props="{}"/>
+      <el-tree :data="tableData" :props="{label:'name',children:'child'}"/>
   </el-card>
 </template>
 
