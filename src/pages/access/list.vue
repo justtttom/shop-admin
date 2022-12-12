@@ -7,8 +7,15 @@
       :props="{ label: 'name', children: 'child' }"
       v-loading="loading"
       node-key="id"
-      :default-expanded-keys ="defaultExpandedkeys"
-    />
+      :default-expanded-keys="defaultExpandedkeys"
+    >
+      <template #default="{ node, data }">
+      <div>
+      <el-tag type="success" size="small">{{data.name}}</el-tag>
+      
+      </div>
+      </template>
+    </el-tree>
   </el-card>
 </template>
 
@@ -21,10 +28,10 @@ import { useInitTable } from '~/composables/useCommon'
 const defaultExpandedkeys = ref([])
 const { loading, tableData, getData } = useInitTable({
   getlist: getRuleList,
-  onGetListSuccess:(res)=>{
+  onGetListSuccess: (res) => {
     tableData.value = res.list
-    defaultExpandedkeys.value = res.list.map(o=>o.id)
-    console.log(res);
+    defaultExpandedkeys.value = res.list.map((o) => o.id)
+    console.log(res)
   }
 })
 </script>
