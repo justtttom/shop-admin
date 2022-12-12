@@ -10,10 +10,11 @@
       :default-expanded-keys="defaultExpandedkeys"
     >
       <template #default="{ node, data }">
-      <div>
-      <el-tag type="success" size="small">{{data.name}}</el-tag>
-      
-      </div>
+        <div>
+          <el-tag :type="data.menu ? 'success' : 'info'" size="small">{{
+            data.menu ? '菜单' : '权限'
+          }}</el-tag>
+        </div>
       </template>
     </el-tree>
   </el-card>
