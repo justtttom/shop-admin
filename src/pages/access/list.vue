@@ -16,6 +16,6 @@
     tableData,
     getData,
   } = useInitTable({
-    getList:getRuleList,
+    getlist:getRuleList,
   })
 </script>
