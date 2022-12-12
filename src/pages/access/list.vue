@@ -7,7 +7,7 @@
       :props="{ label: 'name', children: 'child' }"
       v-loading="loading"
       node-key="id"
-      :default-checked-keys="defaultExpandedkeys"
+      :default-expanded-keys ="defaultExpandedkeys"
     />
   </el-card>
 </template>
@@ -22,6 +22,8 @@ const defaultExpandedkeys = ref([])
 const { loading, tableData, getData } = useInitTable({
   getlist: getRuleList,
   onGetListSuccess:(res)=>{
+    tableData.value = res.list
+    defaultExpandedkeys.value = res.list.map(o=>o.id)
     console.log(res);
   }
 })
