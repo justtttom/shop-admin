@@ -11,9 +11,12 @@
     >
       <template #default="{ node, data }">
         <div>
-          <el-tag :type="data.menu ? 'success' : 'info'" size="small">{{
-            data.menu ? '菜单' : '权限'
-          }}</el-tag>
+          <el-tag :type="data.menu ? 'success' : 'info'" size="small">
+            {{ data.menu ? '菜单' : '权限' }}
+          </el-tag>
+          <el-icon>
+          <component :is="data.icon"/>
+          </el-icon>
         </div>
       </template>
     </el-tree>
