@@ -21,24 +21,47 @@
 
           <div class="ml-auto">
           <el-switch :modelValue="data.status" :active-value="1" :inactive-value="0"/>
-          <el-button text type="primary" size="small" >修改</el-button>
-          <el-button text type="primary" size="small" >增加</el-button>
-          <el-button text type="primary" size="small" >删除</el-button>
+          <el-button text type="primary" size="small" @click="handleEdit">修改</el-button>
+          <el-button text type="primary" size="small" @click="handleCreate">增加</el-button>
+          <el-button text type="primary" size="small"  >删除</el-button>
           </div>
-
         </div>
       </template>
     </el-tree>
+
+    <FormDrawer ref="formDrawerRef" :title="drawerTitle" @submit="handleSubmit">
+      <el-form
+        :model="form"
+        ref="formRef"
+        :rules="rules"
+        label-width="80px"
+        :inline="false"
+      >
+        <el-form-item label="公告标题" prop="title">
+          <el-input v-model="form.title" placeholder="公告标题"></el-input>
+        </el-form-item>
+        <el-form-item label="公告内容" prop="content">
+          <el-input
+            v-model="form.content"
+            placeholder="公告内容"
+            type="textarea"
+            :rows="5"
+          ></el-input>
+        </el-form-item>
+      </el-form>
+    </FormDrawer>
   </el-card>
 </template>
 
 <script setup>
 import { ref } from 'vue'
 import ListHeader from '~/components/ListHeader.vue'
+import FormDrawer from '~/components/FormDrawer.vue'
 import { getRuleList,addRule,updateRule } from '~/api/rule.js'
-import { useInitTable } from '~/composables/useCommon'
+import { useInitTable,useInitForm } from '~/composables/useCommon'
 
 const defaultExpandedkeys = ref([])
+
 const { loading, tableData, getData } = useInitTable({
   getlist: getRuleList,
   onGetListSuccess: (res) => {
@@ -46,6 +69,20 @@ const { loading, tableData, getData } = useInitTable({
     defaultExpandedkeys.value = res.list.map((o) => o.id)
     console.log(res)
   }
+})
+
+const {formDrawerRef,
+    formRef,
+    form,
+    rules,
+    editId,
+    drawerTitle,
+    handleSubmit,
+    resetForm,
+    handleCreate,
+    handleEdit} = useInitForm({
+  add:addRule,
+  update:updateRule
 })
 </script>
 
