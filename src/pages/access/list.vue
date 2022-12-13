@@ -10,20 +10,28 @@
       :default-expanded-keys="defaultExpandedkeys"
     >
       <template #default="{ node, data }">
-        <div class="custom-tree-node ">
+        <div class="custom-tree-node">
           <el-tag :type="data.menu ? '' : 'info'" size="small">
             {{ data.menu ? '菜单' : '权限' }}
           </el-tag>
           <el-icon v-if="data.icon" :size="16" class="ml-2">
-          <component :is="data.icon"/>
+            <component :is="data.icon" />
           </el-icon>
-          <span>{{data.name}}</span>
+          <span>{{ data.name }}</span>
 
           <div class="ml-auto">
-          <el-switch :modelValue="data.status" :active-value="1" :inactive-value="0"/>
-          <el-button text type="primary" size="small" @click="handleEdit">修改</el-button>
-          <el-button text type="primary" size="small" @click="handleCreate">增加</el-button>
-          <el-button text type="primary" size="small"  >删除</el-button>
+            <el-switch
+              :modelValue="data.status"
+              :active-value="1"
+              :inactive-value="0"
+            />
+            <el-button text type="primary" size="small" @click="handleEdit"
+              >修改</el-button
+            >
+            <el-button text type="primary" size="small" @click="handleCreate"
+              >增加</el-button
+            >
+            <el-button text type="primary" size="small">删除</el-button>
           </div>
         </div>
       </template>
@@ -57,8 +65,8 @@
 import { ref } from 'vue'
 import ListHeader from '~/components/ListHeader.vue'
 import FormDrawer from '~/components/FormDrawer.vue'
-import { getRuleList,addRule,updateRule } from '~/api/rule.js'
-import { useInitTable,useInitForm } from '~/composables/useCommon'
+import { getRuleList, addRule, updateRule } from '~/api/rule.js'
+import { useInitTable, useInitForm } from '~/composables/useCommon'
 
 const defaultExpandedkeys = ref([])
 
@@ -71,30 +79,38 @@ const { loading, tableData, getData } = useInitTable({
   }
 })
 
-const {formDrawerRef,
-    formRef,
-    form,
-    rules,
-    editId,
-    drawerTitle,
-    handleSubmit,
-    resetForm,
-    handleCreate,
-    handleEdit} = useInitForm({
-  add:addRule,
-  update:updateRule
+const {
+  formDrawerRef,
+  formRef,
+  form,
+  rules,
+  editId,
+  drawerTitle,
+  handleSubmit,
+  resetForm,
+  handleCreate,
+  handleEdit
+} = useInitForm({
+  form: {
+    rule_id:0,
+    menu:0,
+  },
+  rules: {},
+  getData,
+  add: addRule,
+  update: updateRule
 })
 </script>
 
 <style>
-.custom-tree-node{
-  flex:1;
+.custom-tree-node {
+  flex: 1;
   display: flex;
   align-items: center;
   font-size: 14px;
   padding-right: 8px;
 }
-.el-tree-node__content{
-  padding: 20px 0;
+.el-tree-node__content {
+  padding: 25px 0;
 }
 </style>
