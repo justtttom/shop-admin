@@ -35,7 +35,7 @@
 <script setup>
 import { ref } from 'vue'
 import ListHeader from '~/components/ListHeader.vue'
-import { getRuleList } from '~/api/rule.js'
+import { getRuleList,addRule,updateRule } from '~/api/rule.js'
 import { useInitTable } from '~/composables/useCommon'
 
 const defaultExpandedkeys = ref([])
