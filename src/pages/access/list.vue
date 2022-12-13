@@ -11,12 +11,13 @@
     >
       <template #default="{ node, data }">
         <div>
-          <el-tag :type="data.menu ? 'success' : 'info'" size="small">
+          <el-tag :type="data.menu ? '' : 'info'" size="small">
             {{ data.menu ? '菜单' : '权限' }}
           </el-tag>
-          <el-icon v-if="data.icon">
+          <el-icon v-if="data.icon" :size="16" class="ml-2">
           <component :is="data.icon"/>
           </el-icon>
+          <span>{{data.name}}</span>
         </div>
       </template>
     </el-tree>
