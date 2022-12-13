@@ -10,7 +10,7 @@
       :default-expanded-keys="defaultExpandedkeys"
     >
       <template #default="{ node, data }">
-        <div class="custom-tree-node">
+        <div class="custom-tree-node ">
           <el-tag :type="data.menu ? '' : 'info'" size="small">
             {{ data.menu ? '菜单' : '权限' }}
           </el-tag>
@@ -21,9 +21,9 @@
 
           <div class="ml-auto">
           <el-switch :modelValue="data.status" :active-value="1" :inactive-value="0"/>
-          <el-button type="success" size="small" >修改</el-button>
-          <el-button type="success" size="small" >增加</el-button>
-          <el-button type="success" size="small" >删除</el-button>
+          <el-button text type="primary" size="small" >修改</el-button>
+          <el-button text type="primary" size="small" >增加</el-button>
+          <el-button text type="primary" size="small" >删除</el-button>
           </div>
 
         </div>
@@ -48,3 +48,16 @@ const { loading, tableData, getData } = useInitTable({
   }
 })
 </script>
+
+<style>
+.custom-tree-node{
+  flex:1;
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  padding-right: 8px;
+}
+.el-tree-node__content{
+  padding: 20px 0;
+}
+</style>
