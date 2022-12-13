@@ -45,16 +45,32 @@
         label-width="80px"
         :inline="false"
       >
-        <el-form-item label="公告标题" prop="title">
-          <el-input v-model="form.title" placeholder="公告标题"></el-input>
+        <el-form-item label="上级菜单" prop="rule_id">
+          <el-input v-model="form.rule_id" ></el-input>
         </el-form-item>
-        <el-form-item label="公告内容" prop="content">
-          <el-input
-            v-model="form.content"
-            placeholder="公告内容"
-            type="textarea"
-            :rows="5"
-          ></el-input>
+        <el-form-item label="菜单/规则" prop="menu">
+          <el-input v-model="form.menu" ></el-input>
+        </el-form-item>
+        <el-form-item label="菜单/权限名称" prop="name">
+          <el-input v-model="form.name" ></el-input>
+        </el-form-item>
+        <el-form-item label="菜单图标" prop="icon">
+          <el-input v-model="form.icon" ></el-input>
+        </el-form-item>
+        <el-form-item label="前端路由" prop="rule_id">
+          <el-input v-model="form.rule_id" ></el-input>
+        </el-form-item>
+        <el-form-item label="上级菜单" prop="rule_id">
+          <el-input v-model="form.rule_id" ></el-input>
+        </el-form-item>
+        <el-form-item label="上级菜单" prop="rule_id">
+          <el-input v-model="form.rule_id" ></el-input>
+        </el-form-item>
+        <el-form-item label="上级菜单" prop="rule_id">
+          <el-input v-model="form.rule_id" ></el-input>
+        </el-form-item>
+        <el-form-item label="上级菜单" prop="rule_id">
+          <el-input v-model="form.rule_id" ></el-input>
         </el-form-item>
       </el-form>
     </FormDrawer>
@@ -94,6 +110,13 @@ const {
   form: {
     rule_id:0,
     menu:0,
+    name:'',
+    condition:'',
+    method:'GET',
+    status:1,
+    order:20,
+    icon:'',
+    frontpath:''
   },
   rules: {},
   getData,
