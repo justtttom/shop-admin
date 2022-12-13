@@ -14,7 +14,7 @@
           <el-tag :type="data.menu ? 'success' : 'info'" size="small">
             {{ data.menu ? '菜单' : '权限' }}
           </el-tag>
-          <el-icon>
+          <el-icon v-if="data.icon">
           <component :is="data.icon"/>
           </el-icon>
         </div>
