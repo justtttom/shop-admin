@@ -1,7 +1,7 @@
 <template>
   <el-card shadow="never" class="border-0">
     <!-- 新增 刷新 -->
-    <ListHeader @refresh="getData" />
+    <ListHeader @create="handleCreate" @refresh="getData" />
     <el-tree
       :data="tableData"
       :props="{ label: 'name', children: 'child' }"
@@ -25,7 +25,7 @@
               :active-value="1"
               :inactive-value="0"
             />
-            <el-button text type="primary" size="small" @click="handleEdit"
+            <el-button text type="primary" size="small" @click="handleEdit(data)"
               >修改</el-button
             >
             <el-button text type="primary" size="small" @click="handleCreate"
@@ -57,17 +57,17 @@
         <el-form-item label="菜单图标" prop="icon">
           <el-input v-model="form.icon" ></el-input>
         </el-form-item>
-        <el-form-item label="前端路由" prop="frontpath">
+        <el-form-item label="前端路由路径" prop="frontpath">
           <el-input v-model="form.frontpath" ></el-input>
         </el-form-item>
         <el-form-item label="后端规则" prop="condition">
           <el-input v-model="form.condition" ></el-input>
         </el-form-item>
-        <el-form-item label="上级菜单" prop="rule_id">
-          <el-input v-model="form.rule_id" ></el-input>
+        <el-form-item label="请求方式" prop="method">
+          <el-input v-model="form.method" ></el-input>
         </el-form-item>
-        <el-form-item label="上级菜单" prop="rule_id">
-          <el-input v-model="form.rule_id" ></el-input>
+        <el-form-item label="排序" prop="order">
+          <el-input v-model="form.order" ></el-input>
         </el-form-item>
         <el-form-item label="上级菜单" prop="rule_id">
           <el-input v-model="form.rule_id" ></el-input>
