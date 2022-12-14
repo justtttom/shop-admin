@@ -62,27 +62,42 @@
         </el-form-item>
         <el-form-item label="菜单/规则" prop="menu">
           <el-radio-group v-model="form.menu">
-          <el-radio label="1" size="large" border>菜单</el-radio>
-          <el-radio label="2" size="large" border>权限</el-radio>
-        </el-radio-group>
+            <el-radio :label="1" size="medium" border>菜单</el-radio>
+            <el-radio :label="0" size="medium" border>规则</el-radio>
+          </el-radio-group>
         </el-form-item>
-        <el-form-item label="菜单/权限名称" prop="name">
-          <el-input v-model="form.name"></el-input>
+        <el-form-item label="名称" prop="name">
+          <el-input
+            v-model="form.name"
+            style="width: 30%;"
+            placeholder="名称"
+          ></el-input>
         </el-form-item>
         <el-form-item label="菜单图标" prop="icon">
           <el-input v-model="form.icon"></el-input>
         </el-form-item>
-        <el-form-item label="前端路由路径" prop="frontpath">
+        <el-form-item label="前端路由" prop="frontpath">
           <el-input v-model="form.frontpath"></el-input>
         </el-form-item>
         <el-form-item label="后端规则" prop="condition">
           <el-input v-model="form.condition"></el-input>
         </el-form-item>
         <el-form-item label="请求方式" prop="method">
-          <el-input v-model="form.method"></el-input>
+          <el-select
+            v-model="form.method"
+            placeholder="请选择请求方式"
+            size="medium"
+          >
+            <el-option
+              v-for="item in ['GET','POST','PUT','DELETE']"
+              :key="item"
+              :label="item"
+              :value="item"
+            />
+          </el-select>
         </el-form-item>
         <el-form-item label="排序" prop="order">
-          <el-input v-model="form.order"></el-input>
+          <el-input-number v-model="form.order" :min="1" :max="1000" />
         </el-form-item>
         <el-form-item label="上级菜单" prop="rule_id">
           <el-input v-model="form.rule_id"></el-input>

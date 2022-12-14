@@ -119,7 +119,6 @@
         <el-form-item label="所属角色" prop="role_id">
           <el-select
             v-model="form.role_id"
-            class="m-2"
             placeholder="选择所属角色"
             size="small"
           >
