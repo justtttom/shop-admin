@@ -25,12 +25,14 @@
               :active-value="1"
               :inactive-value="0"
             />
-            <el-button text type="primary" size="small" @click="handleEdit(data)"
+            <el-button
+              text
+              type="primary"
+              size="small"
+              @click.stop="handleEdit(data)"
               >修改</el-button
             >
-            <el-button text type="primary" size="small" @click="handleCreate"
-              >增加</el-button
-            >
+            <el-button text type="primary" size="small">增加</el-button>
             <el-button text type="primary" size="small">删除</el-button>
           </div>
         </div>
@@ -46,31 +48,31 @@
         :inline="false"
       >
         <el-form-item label="上级菜单" prop="rule_id">
-          <el-input v-model="form.rule_id" ></el-input>
+          <el-input v-model="form.rule_id"></el-input>
         </el-form-item>
         <el-form-item label="菜单/规则" prop="menu">
-          <el-input v-model="form.menu" ></el-input>
+          <el-input v-model="form.menu"></el-input>
         </el-form-item>
         <el-form-item label="菜单/权限名称" prop="name">
-          <el-input v-model="form.name" ></el-input>
+          <el-input v-model="form.name"></el-input>
         </el-form-item>
         <el-form-item label="菜单图标" prop="icon">
-          <el-input v-model="form.icon" ></el-input>
+          <el-input v-model="form.icon"></el-input>
         </el-form-item>
         <el-form-item label="前端路由路径" prop="frontpath">
-          <el-input v-model="form.frontpath" ></el-input>
+          <el-input v-model="form.frontpath"></el-input>
         </el-form-item>
         <el-form-item label="后端规则" prop="condition">
-          <el-input v-model="form.condition" ></el-input>
+          <el-input v-model="form.condition"></el-input>
         </el-form-item>
         <el-form-item label="请求方式" prop="method">
-          <el-input v-model="form.method" ></el-input>
+          <el-input v-model="form.method"></el-input>
         </el-form-item>
         <el-form-item label="排序" prop="order">
-          <el-input v-model="form.order" ></el-input>
+          <el-input v-model="form.order"></el-input>
         </el-form-item>
         <el-form-item label="上级菜单" prop="rule_id">
-          <el-input v-model="form.rule_id" ></el-input>
+          <el-input v-model="form.rule_id"></el-input>
         </el-form-item>
       </el-form>
     </FormDrawer>
@@ -108,15 +110,15 @@ const {
   handleEdit
 } = useInitForm({
   form: {
-    rule_id:0,
-    menu:0,
-    name:'',
-    condition:'',
-    method:'GET',
-    status:1,
-    order:20,
-    icon:'',
-    frontpath:''
+    rule_id: 0,
+    menu: 0,
+    name: '',
+    condition: '',
+    method: 'GET',
+    status: 1,
+    order: 20,
+    icon: '',
+    frontpath: ''
   },
   rules: {},
   getData,
