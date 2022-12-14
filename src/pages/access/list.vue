@@ -51,7 +51,7 @@
           <el-cascader
             v-model="form.rule_id"
             :options="options"
-            :props="{ label: 'name', children: 'child' }"
+            :props="{ label: 'name', children: 'child', checkStrictly:true }"
             placeholder="请选择上级菜单"
           />
         </el-form-item>
