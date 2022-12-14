@@ -51,12 +51,20 @@
           <el-cascader
             v-model="form.rule_id"
             :options="options"
-            :props="{ label: 'name', children: 'child', checkStrictly:true }"
+            :props="{
+              label: 'name',
+              children: 'child',
+              checkStrictly: true,
+              emitPath: false
+            }"
             placeholder="请选择上级菜单"
           />
         </el-form-item>
         <el-form-item label="菜单/规则" prop="menu">
-          <el-input v-model="form.menu"></el-input>
+          <el-radio-group v-model="form.menu">
+          <el-radio label="1" size="large" border>菜单</el-radio>
+          <el-radio label="2" size="large" border>权限</el-radio>
+        </el-radio-group>
         </el-form-item>
         <el-form-item label="菜单/权限名称" prop="name">
           <el-input v-model="form.name"></el-input>
