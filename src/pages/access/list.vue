@@ -48,7 +48,7 @@
         :inline="false"
       >
         <el-form-item label="上级菜单" prop="rule_id">
-          <el-input v-model="form.rule_id"></el-input>
+          <el-cascader v-model="form.rule_id" :options="options" :props="props1" clearable />
         </el-form-item>
         <el-form-item label="菜单/规则" prop="menu">
           <el-input v-model="form.menu"></el-input>
@@ -86,11 +86,13 @@ import FormDrawer from '~/components/FormDrawer.vue'
 import { getRuleList, addRule, updateRule } from '~/api/rule.js'
 import { useInitTable, useInitForm } from '~/composables/useCommon'
 
+const options = ref([])
 const defaultExpandedkeys = ref([])
 
 const { loading, tableData, getData } = useInitTable({
   getlist: getRuleList,
   onGetListSuccess: (res) => {
+    options.value = res.rules
     tableData.value = res.list
     defaultExpandedkeys.value = res.list.map((o) => o.id)
     console.log(res)
