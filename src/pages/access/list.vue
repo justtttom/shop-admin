@@ -57,11 +57,11 @@
         <el-form-item label="菜单图标" prop="icon">
           <el-input v-model="form.icon" ></el-input>
         </el-form-item>
-        <el-form-item label="前端路由" prop="rule_id">
-          <el-input v-model="form.rule_id" ></el-input>
+        <el-form-item label="前端路由" prop="frontpath">
+          <el-input v-model="form.frontpath" ></el-input>
         </el-form-item>
-        <el-form-item label="上级菜单" prop="rule_id">
-          <el-input v-model="form.rule_id" ></el-input>
+        <el-form-item label="后端规则" prop="condition">
+          <el-input v-model="form.condition" ></el-input>
         </el-form-item>
         <el-form-item label="上级菜单" prop="rule_id">
           <el-input v-model="form.rule_id" ></el-input>
