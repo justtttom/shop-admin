@@ -48,7 +48,7 @@
         :inline="false"
       >
         <el-form-item label="上级菜单" prop="rule_id">
-          <el-cascader v-model="form.rule_id" :options="options" :props="props1" clearable />
+          <el-cascader v-model="form.rule_id" :options="options" :props="{ label: 'name', children: 'child' }" clearable />
         </el-form-item>
         <el-form-item label="菜单/规则" prop="menu">
           <el-input v-model="form.menu"></el-input>
