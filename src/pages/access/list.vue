@@ -99,9 +99,6 @@
         <el-form-item label="排序" prop="order">
           <el-input-number v-model="form.order" :min="1" :max="1000" />
         </el-form-item>
-        <el-form-item label="上级菜单" prop="rule_id">
-          <el-input v-model="form.rule_id"></el-input>
-        </el-form-item>
       </el-form>
     </FormDrawer>
   </el-card>
