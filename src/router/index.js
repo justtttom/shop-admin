@@ -1,4 +1,4 @@
-import { createRouter, createWebHashHistory } from 'vue-router';
+import { createRouter, createWebHashHistory } from 'vue-router'
 
 import Admin from '~/layouts/admin.vue'
 import Index from '~/pages/index.vue'
@@ -15,21 +15,23 @@ import SettingBase from '~/pages/setting/base.vue'
 import CouponList from '~/pages/coupon/list.vue'
 import ManagerList from '~/pages/manager/list.vue'
 import AccessList from '~/pages/access/list.vue'
-
+import RoleList from '~/pages/role/list.vue'
 
 //默认路由，所有用户共享
 const routes = [
   {
-    path: "/",
+    path: '/',
     name: 'admin',
-    component: Admin,
-  }, {
+    component: Admin
+  },
+  {
     path: '/login',
     component: Login,
     meta: {
       title: '登录页'
     }
-  }, {
+  },
+  {
     path: '/:pathMatch(.*)*',
     name: 'NotFound',
     component: NotFound,
@@ -43,90 +45,107 @@ const routes = [
 const asyncRoutes = [
   {
     path: '/',
-    name:'/',
+    name: '/',
     component: Index,
     meta: {
       title: '首页'
     }
   },
   {
-    path: "/goods/list",
-    name:'/goods/list',
+    path: '/goods/list',
+    name: '/goods/list',
     component: GoodList,
     meta: {
       title: '商品管理页'
     }
-  },{
+  },
+  {
     path: '/category/list',
-    name:'/category/list',
+    name: '/category/list',
     component: CategoryList,
     meta: {
       title: '分类管理页'
     }
-  }, {
+  },
+  {
     path: '/user/list',
-    name:'/user/list',
+    name: '/user/list',
     component: UserList,
     meta: {
       title: '用户列表'
     }
-  }, {
+  },
+  {
     path: '/order/list',
-    name:'/order/list',
+    name: '/order/list',
     component: OrderList,
     meta: {
       title: '订单列表'
     }
-  }, {
+  },
+  {
     path: '/comment/list',
-    name:'/comment/list',
+    name: '/comment/list',
     component: CommentList,
     meta: {
       title: '评价列表'
     }
-  }, {
+  },
+  {
     path: '/image/list',
-    name:'/image/list',
+    name: '/image/list',
     component: ImageList,
     meta: {
       title: '图库管理'
     }
-  }, {
+  },
+  {
     path: '/notice/list',
-    name:'/notice/list',
+    name: '/notice/list',
     component: NoticeList,
     meta: {
       title: '公告列表'
     }
-  }, {
+  },
+  {
     path: '/setting/base',
-    name:'/setting/base',
+    name: '/setting/base',
     component: SettingBase,
     meta: {
       title: '配置列表'
     }
-  }, {
+  },
+  {
     path: '/coupon/list',
-    name:'/coupon/list',
+    name: '/coupon/list',
     component: CouponList,
     meta: {
       title: '优惠券列表'
     }
-  },{
+  },
+  {
     path: '/manager/list',
-    name:'/manger/list',
+    name: '/manger/list',
     component: ManagerList,
     meta: {
       title: '管理员管理'
     }
-  },{
+  },
+  {
     path: '/access/list',
-    name:'/access/list',
+    name: '/access/list',
     component: AccessList,
     meta: {
       title: '菜单权限管理'
     }
-  },
+  },{
+    path: '/role/list',
+    name: '/role/list',
+    component: RoleList,
+    meta: {
+      title: '角色管理'
+    }
+  }
 ]
 
 export const router = createRouter({
@@ -138,17 +157,17 @@ export const router = createRouter({
 export function addRoutes(menus) {
   // 是否有新的路由
   let hasNewRoutes = false
-  const findAndRoutesByMenus = (arr) =>{
-   arr.forEach(e=> {
-      let item = asyncRoutes.find(o=>o.path == e.frontpath)
-      if(item && !router.hasRoute(item.path)){
-        router.addRoute("admin",item)
+  const findAndRoutesByMenus = (arr) => {
+    arr.forEach((e) => {
+      let item = asyncRoutes.find((o) => o.path == e.frontpath)
+      if (item && !router.hasRoute(item.path)) {
+        router.addRoute('admin', item)
         hasNewRoutes = true
       }
-      if(e.child && e.child.length > 0){
+      if (e.child && e.child.length > 0) {
         findAndRoutesByMenus(e.child)
       }
-    });
+    })
   }
 
   findAndRoutesByMenus(menus)
