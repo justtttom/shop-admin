@@ -7,11 +7,11 @@
       :props="{ label: 'name', children: 'child' }"
       v-loading="loading"
       node-key="id"
-      :default-expanded-keys="defaultExpandedkeys"
+      :default-expanded-keys="defaultExpandedKeys"
     >
       <template #default="{ node, data }">
         <div class="custom-tree-node">
-          <el-tag :type="data.menu ? '' : 'info'" size="small">
+          <el-tag size="small" :type="data.menu ? '' : 'info'" >
             {{ data.menu ? '菜单' : '权限' }}
           </el-tag>
           <el-icon v-if="data.icon" :size="16" class="ml-2">
@@ -48,12 +48,11 @@
         :inline="false"
       >
         <el-form-item label="上级菜单" prop="rule_id">
-        {{form.rule_id}}
           <el-cascader
             v-model="form.rule_id"
             :options="options"
             :props="{
-              value:'id',
+              value: 'id',
               label: 'name',
               children: 'child',
               checkStrictly: true,
@@ -64,8 +63,8 @@
         </el-form-item>
         <el-form-item label="菜单/规则" prop="menu">
           <el-radio-group v-model="form.menu">
-            <el-radio :label="1" size="medium" border>菜单</el-radio>
-            <el-radio :label="0" size="medium" border>规则</el-radio>
+            <el-radio :label="1" border>菜单</el-radio>
+            <el-radio :label="0" border>规则</el-radio>
           </el-radio-group>
         </el-form-item>
         <el-form-item label="名称" prop="name">
@@ -76,20 +75,13 @@
           ></el-input>
         </el-form-item>
         <el-form-item label="菜单图标" prop="icon" v-if="form.menu == 1">
-          <el-select
-            v-model="form.icon"
-            placeholder="请选择请图标"
-            size="medium"
-          >
-            <el-option
-              v-for="item in options"
-              :key="item.id"
-              :label="item.icon"
-              :value="item"
-            />
-          </el-select>
+          <el-input v-model="form.icon"></el-input>
         </el-form-item>
-        <el-form-item label="前端路由" prop="frontpath" v-if="form.menu == 1 && form.rule_id > 0">
+        <el-form-item
+          label="前端路由"
+          prop="frontpath"
+          v-if="form.menu == 1 && form.rule_id > 0"
+        >
           <el-input v-model="form.frontpath" placeholder="前端路由"></el-input>
         </el-form-item>
         <el-form-item label="后端规则" prop="condition" v-if="form.menu == 0">
@@ -99,7 +91,6 @@
           <el-select
             v-model="form.method"
             placeholder="请选择请求方式"
-            size="medium"
           >
             <el-option
               v-for="item in ['GET', 'POST', 'PUT', 'DELETE']"
@@ -125,14 +116,14 @@ import { getRuleList, addRule, updateRule } from '~/api/rule.js'
 import { useInitTable, useInitForm } from '~/composables/useCommon'
 
 const options = ref([])
-const defaultExpandedkeys = ref([])
+const defaultExpandedKeys = ref([])
 
 const { loading, tableData, getData } = useInitTable({
   getlist: getRuleList,
   onGetListSuccess: (res) => {
     options.value = res.rules
     tableData.value = res.list
-    defaultExpandedkeys.value = res.list.map((o) => o.id)
+    defaultExpandedKeys.value = res.list.map((o) => o.id)
     console.log(res)
   }
 })
