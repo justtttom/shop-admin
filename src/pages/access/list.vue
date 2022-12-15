@@ -32,8 +32,8 @@
               @click.stop="handleEdit(data)"
               >修改</el-button
             >
-            <el-button text type="primary" size="small">增加</el-button>
-            <el-button text type="primary" size="small">删除</el-button>
+            <el-button text type="primary" size="small" @click.stop="addChild(data.id)">增加</el-button>
+            <el-button text type="primary" size="small" @click="handleDelete(data.id)">删除</el-button>
           </div>
         </div>
       </template>
@@ -113,14 +113,15 @@ import { ref } from 'vue'
 import ListHeader from '~/components/ListHeader.vue'
 import FormDrawer from '~/components/FormDrawer.vue'
 import IconSelect from '~/components/IconSelect.vue'
-import { getRuleList, addRule, updateRule } from '~/api/rule.js'
+import { getRuleList, addRule, updateRule ,deleteRule} from '~/api/rule.js'
 import { useInitTable, useInitForm } from '~/composables/useCommon'
 
 const options = ref([])
 const defaultExpandedKeys = ref([])
 
-const { loading, tableData, getData } = useInitTable({
+const { loading, tableData, getData ,handleDelete,} = useInitTable({
   getlist: getRuleList,
+  delete:deleteRule,
   onGetListSuccess: (res) => {
     options.value = res.rules
     tableData.value = res.list
@@ -134,10 +135,8 @@ const {
   formRef,
   form,
   rules,
-  editId,
   drawerTitle,
   handleSubmit,
-  resetForm,
   handleCreate,
   handleEdit
 } = useInitForm({
@@ -157,6 +156,13 @@ const {
   add: addRule,
   update: updateRule
 })
+
+// 添加子分类
+const  addChild = (id)=>{
+  handleCreate()
+  form.rule_id = id
+  form.status = 1
+}
 </script>
 
 <style>

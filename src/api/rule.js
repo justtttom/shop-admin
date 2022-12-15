@@ -11,3 +11,8 @@ export function addRule(data){
 export function updateRule(id,data){
   return axios.post(`/admin/rule/${id}`,data)
 }
+
+
+export function deleteRule(id){
+  return axios.post(`/admin/rule/${id}/delete`)
+}
