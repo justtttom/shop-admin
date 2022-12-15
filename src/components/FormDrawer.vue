@@ -24,7 +24,7 @@
       title:String,
       size:{
           type:String,
-          default:"40%"
+          default:"30%"
       },
       destroyOnClose:{
           type:Boolean,
