@@ -74,7 +74,18 @@
           ></el-input>
         </el-form-item>
         <el-form-item label="菜单图标" prop="icon">
-          <el-input v-model="form.icon"></el-input>
+          <el-select
+            v-model="form.icon"
+            placeholder="请选择请图标"
+            size="medium"
+          >
+            <el-option
+              v-for="item in options"
+              :key="item.id"
+              :label="item.icon"
+              :value="item"
+            />
+          </el-select>
         </el-form-item>
         <el-form-item label="前端路由" prop="frontpath">
           <el-input v-model="form.frontpath"></el-input>
