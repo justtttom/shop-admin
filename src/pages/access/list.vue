@@ -75,7 +75,7 @@
           ></el-input>
         </el-form-item>
         <el-form-item label="菜单图标" prop="icon" v-if="form.menu == 1">
-          <el-input v-model="form.icon"></el-input>
+        <IconSelect  v-model="form.icon"/>
         </el-form-item>
         <el-form-item
           label="前端路由"
