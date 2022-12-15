@@ -48,10 +48,12 @@
         :inline="false"
       >
         <el-form-item label="上级菜单" prop="rule_id">
+        {{form.rule_id}}
           <el-cascader
             v-model="form.rule_id"
             :options="options"
             :props="{
+              value:'id',
               label: 'name',
               children: 'child',
               checkStrictly: true,
@@ -87,11 +89,11 @@
             />
           </el-select>
         </el-form-item>
-        <el-form-item label="前端路由" prop="frontpath" v-if="form.menu == 1 && rule_id > 0">
-          <el-input v-model="form.frontpath"></el-input>
+        <el-form-item label="前端路由" prop="frontpath" v-if="form.menu == 1 && form.rule_id > 0">
+          <el-input v-model="form.frontpath" placeholder="前端路由"></el-input>
         </el-form-item>
         <el-form-item label="后端规则" prop="condition" v-if="form.menu == 0">
-          <el-input v-model="form.condition"></el-input>
+          <el-input v-model="form.condition" placeholder="后端规则"></el-input>
         </el-form-item>
         <el-form-item label="请求方式" prop="method" v-if="form.menu == 0">
           <el-select
