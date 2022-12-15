@@ -24,6 +24,7 @@
               :modelValue="data.status"
               :active-value="1"
               :inactive-value="0"
+              @change="handleStatusChange($event,data)"
             />
             <el-button
               text
@@ -113,15 +114,17 @@ import { ref } from 'vue'
 import ListHeader from '~/components/ListHeader.vue'
 import FormDrawer from '~/components/FormDrawer.vue'
 import IconSelect from '~/components/IconSelect.vue'
-import { getRuleList, addRule, updateRule ,deleteRule} from '~/api/rule.js'
+import { getRuleList, addRule, updateRule ,deleteRule,updateRuleStatus} from '~/api/rule.js'
 import { useInitTable, useInitForm } from '~/composables/useCommon'
 
 const options = ref([])
 const defaultExpandedKeys = ref([])
 
-const { loading, tableData, getData ,handleDelete,} = useInitTable({
+//获取列表、删除、状态更新
+const { loading, tableData, getData ,handleDelete,handleStatusChange} = useInitTable({
   getlist: getRuleList,
   delete:deleteRule,
+  updateStatus:updateRuleStatus,
   onGetListSuccess: (res) => {
     options.value = res.rules
     tableData.value = res.list
@@ -130,6 +133,8 @@ const { loading, tableData, getData ,handleDelete,} = useInitTable({
   }
 })
 
+
+//新增、修改
 const {
   formDrawerRef,
   formRef,
