@@ -73,7 +73,7 @@
             placeholder="名称"
           ></el-input>
         </el-form-item>
-        <el-form-item label="菜单图标" prop="icon">
+        <el-form-item label="菜单图标" prop="icon" v-if="form.menu == 1">
           <el-select
             v-model="form.icon"
             placeholder="请选择请图标"
@@ -87,20 +87,20 @@
             />
           </el-select>
         </el-form-item>
-        <el-form-item label="前端路由" prop="frontpath">
+        <el-form-item label="前端路由" prop="frontpath" v-if="form.menu == 1 && rule_id > 0">
           <el-input v-model="form.frontpath"></el-input>
         </el-form-item>
-        <el-form-item label="后端规则" prop="condition">
+        <el-form-item label="后端规则" prop="condition" v-if="form.menu == 0">
           <el-input v-model="form.condition"></el-input>
         </el-form-item>
-        <el-form-item label="请求方式" prop="method">
+        <el-form-item label="请求方式" prop="method" v-if="form.menu == 0">
           <el-select
             v-model="form.method"
             placeholder="请选择请求方式"
             size="medium"
           >
             <el-option
-              v-for="item in ['GET','POST','PUT','DELETE']"
+              v-for="item in ['GET', 'POST', 'PUT', 'DELETE']"
               :key="item"
               :label="item"
               :value="item"
