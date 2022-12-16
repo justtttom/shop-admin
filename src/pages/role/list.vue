@@ -3,7 +3,22 @@
       <!-- 新增|刷新 -->
       <ListHeader @create="handleCreate" @refresh="getData"/>
     <el-table :data="tableData" stripe style="width: 100%;" v-loading="loading">
-      <el-table-column prop="title" label="公告标题" />
+      <el-table-column prop="name" label="角色名称" />
+      <el-table-column prop="desc" label="角色描述" />
+      <el-table-column label="状态" width="380">
+        <template #default="{ row }">
+          <el-switch
+            :modelValue="row.status"
+            :active-value="1"
+            :inactive-value="0"
+            :loading="row.statusLoading"
+            :disabled="row.super == 1"
+            @change="handleStatusChange($event, row)"
+            style="--el-switch-on-color: #13ce66;"
+          >
+          </el-switch>
+        </template>
+      </el-table-column>
       <el-table-column prop="create_time" label="发布时间" width="380" />
       <el-table-column label="操作" width="180" align="center">
         <template #default="scope">
@@ -83,6 +98,7 @@ const {
     total,
     limit,
     handleDelete,
+    handleStatusChange,
     getData } = useInitTable(
   {
     getlist: getRoleList,
