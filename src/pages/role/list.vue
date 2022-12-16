@@ -68,11 +68,11 @@
 import ListHeader from '~/components/ListHeader.vue'
 import FormDrawer from '~/components/FormDrawer.vue'
 import {
-  getNoticeList,
-  addNoticeList,
-  updateNoticeList,
-  deleteNoticeList
-} from '~/api/notice.js'
+  getRoleList,
+  addRole,
+  updateRole,
+  deleteRole
+} from '~/api/role.js'
 import { useInitTable, useInitForm } from '~/composables/useCommon'
 
 // 列表、分页、删除
@@ -85,8 +85,8 @@ const {
     handleDelete,
     getData } = useInitTable(
   {
-    getlist: getNoticeList,
-    delete:deleteNoticeList
+    getlist: getRoleList,
+    delete:deleteRole
   }
 )
 
@@ -122,8 +122,8 @@ const {
     ]
   },
   getData,
-  update: updateNoticeList,
-  add: addNoticeList
+  update: updateRole,
+  add: addRole
 })
 
 </script>
