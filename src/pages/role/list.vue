@@ -91,9 +91,30 @@
       </el-form>
     </FormDrawer>
 
-<!-- 权限配置 -->
-    <FormDrawer ref="setRuleFormDrawerRef" title="权限配置" @submit="handleSetRuleSubmit">
-      11
+    <!-- 权限配置 -->
+    <FormDrawer
+      ref="setRuleFormDrawerRef"
+      title="权限配置"
+      @submit="handleSetRuleSubmit"
+    >
+      <el-tree-v2
+        :data="ruleList"
+        :props="{ label: 'name', children: 'child' }"
+        show-checkbox
+        :height="treeHeight"
+      >
+      <template #default="{ node, data }">
+        <div class="custom-tree-node">
+          <el-tag size="small" :type="data.menu ? '' : 'info'" >
+            {{ data.menu ? '菜单' : '权限' }}
+          </el-tag>
+          <el-icon v-if="data.icon" :size="16" class="ml-2">
+            <component :is="data.icon" />
+          </el-icon>
+          <span>{{ data.name }}</span>
+        </div>
+      </template>
+    </el-tree-v2>
     </FormDrawer>
   </el-card>
 </template>
@@ -109,9 +130,7 @@ import {
   deleteRole,
   updateRoleStatus
 } from '~/api/role.js'
-import {
-  getRuleList,
-} from '~/api/rule.js'
+import { getRuleList } from '~/api/rule.js'
 import { useInitTable, useInitForm } from '~/composables/useCommon'
 
 // 列表、分页、删除
@@ -161,16 +180,18 @@ const {
 })
 
 const setRuleFormDrawerRef = ref(null)
-const openSetRule = (row)=>{
-  setRuleFormDrawerRef.value.open()
-  getRuleList(1).then(res=>{
-    console.log(res);
-  }).finally(res=>{
-    
-  })
+const ruleList = ref([])
+const treeHeight = ref(0)
+const roleId = ref(0)
+const openSetRule = (row) => {
+  roleId.value = row.id
+  treeHeight.value = window.innerHeight - 170
+  getRuleList(1)
+    .then((res) => {
+      ruleList.value = res.list
+      setRuleFormDrawerRef.value.open()
+    })
+    .finally((res) => {})
 }
-const handleSetRuleSubmit = ()=>{
-
-}
-
+const handleSetRuleSubmit = () => {}
 </script>
