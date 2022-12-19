@@ -5,7 +5,7 @@
     <el-table :data="tableData" stripe style="width: 100%;" v-loading="loading">
       <el-table-column prop="name" label="角色名称" />
       <el-table-column prop="desc" label="角色描述" width="380" />
-      <el-table-column label="状态" width="280">
+      <el-table-column label="状态" width="120">
         <template #default="{ row }">
           <el-switch
             :modelValue="row.status"
@@ -92,7 +92,7 @@
     </FormDrawer>
 
 <!-- 权限配置 -->
-    <FormDrawer ref="setRuleFormDrawerRef" :title="权限配置" @submit="handleSetRuleSubmit">
+    <FormDrawer ref="setRuleFormDrawerRef" title="权限配置" @submit="handleSetRuleSubmit">
       11
     </FormDrawer>
   </el-card>
