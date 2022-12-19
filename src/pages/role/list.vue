@@ -5,7 +5,7 @@
     <el-table :data="tableData" stripe style="width: 100%;" v-loading="loading">
       <el-table-column prop="name" label="角色名称" />
       <el-table-column prop="desc" label="角色描述" width="380" />
-      <el-table-column label="状态" width="380">
+      <el-table-column label="状态" width="280">
         <template #default="{ row }">
           <el-switch
             :modelValue="row.status"
@@ -19,8 +19,15 @@
           </el-switch>
         </template>
       </el-table-column>
-      <el-table-column label="操作" width="180" align="center">
+      <el-table-column label="操作" width="280" align="center">
         <template #default="scope">
+          <el-button
+            size="small"
+            type="primary"
+            @click="openSetRule(scope.row)"
+            text
+            >配置权限</el-button
+          >
           <el-button
             size="small"
             type="primary"
@@ -92,6 +99,7 @@
 </template>
 
 <script setup>
+import { ref } from 'vue'
 import ListHeader from '~/components/ListHeader.vue'
 import FormDrawer from '~/components/FormDrawer.vue'
 import {
@@ -148,4 +156,13 @@ const {
   update: updateRole,
   add: addRole
 })
+
+const setRuleFormDrawerRef = ref(null)
+const openSetRule = (row)=>{
+  setRuleFormDrawerRef.value.open()
+}
+const handleSetRuleSubmit = ()=>{
+
+}
+
 </script>
