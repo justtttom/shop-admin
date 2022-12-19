@@ -129,7 +129,6 @@ const { loading, tableData, getData ,handleDelete,handleStatusChange} = useInitT
     options.value = res.rules
     tableData.value = res.list
     defaultExpandedKeys.value = res.list.map((o) => o.id)
-    console.log(res)
   }
 })
 
