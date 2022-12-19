@@ -1,11 +1,11 @@
 <template>
   <el-card shadow="never" class="border-0">
-      <!-- 新增|刷新 -->
-      <ListHeader @create="handleCreate" @refresh="getData"/>
+    <!-- 新增|刷新 -->
+    <ListHeader @create="handleCreate" @refresh="getData" />
     <el-table :data="tableData" stripe style="width: 100%;" v-loading="loading">
       <el-table-column prop="name" label="角色名称" />
       <el-table-column prop="desc" label="角色描述" />
-      <el-table-column label="状态" width="380">
+      <el-table-column label="状态" width="120">
         <template #default="{ row }">
           <el-switch
             :modelValue="row.status"
@@ -19,7 +19,6 @@
           </el-switch>
         </template>
       </el-table-column>
-      <el-table-column prop="create_time" label="发布时间" width="380" />
       <el-table-column label="操作" width="180" align="center">
         <template #default="scope">
           <el-button
@@ -37,9 +36,7 @@
             @confirm="handleDelete(scope.row.id)"
           >
             <template #reference>
-              <el-button size="small" type="primary" text
-                >删除</el-button
-              >
+              <el-button size="small" type="primary" text>删除</el-button>
             </template>
           </el-popconfirm>
         </template>
@@ -86,25 +83,26 @@ import {
   getRoleList,
   addRole,
   updateRole,
-  deleteRole
+  deleteRole,
+  updateRoleStatus
 } from '~/api/role.js'
 import { useInitTable, useInitForm } from '~/composables/useCommon'
 
 // 列表、分页、删除
-const { 
-    tableData,
-    loading,
-    currentPage,
-    total,
-    limit,
-    handleDelete,
-    handleStatusChange,
-    getData } = useInitTable(
-  {
-    getlist: getRoleList,
-    delete:deleteRole
-  }
-)
+const {
+  tableData,
+  loading,
+  currentPage,
+  total,
+  limit,
+  handleDelete,
+  handleStatusChange,
+  getData
+} = useInitTable({
+  getlist: getRoleList,
+  delete: deleteRole,
+  updateStatus: updateRoleStatus
+})
 
 // 新增、修改
 const {
@@ -118,18 +116,19 @@ const {
   handleEdit
 } = useInitForm({
   form: {
-    title: '',
-    content: ''
+    name: '',
+    staus: '',
+    desc: ''
   },
   rules: {
-    title: [
+    name: [
       {
         required: true,
         message: '公告标题不能为空',
         trigger: 'blur'
       }
     ],
-    content: [
+    staus: [
       {
         required: true,
         message: '公告内容不能为空',
@@ -141,5 +140,4 @@ const {
   update: updateRole,
   add: addRole
 })
-
 </script>
