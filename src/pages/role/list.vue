@@ -104,14 +104,11 @@
         :height="treeHeight"
       >
       <template #default="{ node, data }">
-        <div class="custom-tree-node">
+        <div class="flex items-center justify-center">
           <el-tag size="small" :type="data.menu ? '' : 'info'" >
             {{ data.menu ? '菜单' : '权限' }}
           </el-tag>
-          <el-icon v-if="data.icon" :size="16" class="ml-2">
-            <component :is="data.icon" />
-          </el-icon>
-          <span>{{ data.name }}</span>
+          <span class="ml-2 text-sm">{{ data.name }}</span>
         </div>
       </template>
     </el-tree-v2>
