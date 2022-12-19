@@ -60,16 +60,25 @@
         label-width="80px"
         :inline="false"
       >
-        <el-form-item label="公告标题" prop="title">
-          <el-input v-model="form.title" placeholder="公告标题"></el-input>
+        <el-form-item label="角色名称" prop="name">
+          <el-input v-model="form.name" placeholder="角色名称"></el-input>
         </el-form-item>
-        <el-form-item label="公告内容" prop="content">
+        <el-form-item label="角色描述" prop="desc">
           <el-input
-            v-model="form.content"
-            placeholder="公告内容"
+            v-model="form.desc"
+            placeholder="角色描述"
             type="textarea"
             :rows="5"
           ></el-input>
+        </el-form-item>
+        <el-form-item label="状态" prop="status">
+          <el-switch
+            v-model="form.status"
+            :active-value="1"
+            :inactive-value="0"
+            style="--el-switch-on-color: #13ce66;"
+          >
+          </el-switch>
         </el-form-item>
       </el-form>
     </FormDrawer>
@@ -117,21 +126,14 @@ const {
 } = useInitForm({
   form: {
     name: '',
-    staus: '',
+    staus: 1,
     desc: ''
   },
   rules: {
     name: [
       {
         required: true,
-        message: '公告标题不能为空',
-        trigger: 'blur'
-      }
-    ],
-    staus: [
-      {
-        required: true,
-        message: '公告内容不能为空',
+        message: '角色名称不能为空',
         trigger: 'blur'
       }
     ]
