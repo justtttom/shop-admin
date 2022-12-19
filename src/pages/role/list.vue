@@ -109,6 +109,9 @@ import {
   deleteRole,
   updateRoleStatus
 } from '~/api/role.js'
+import {
+  getRuleList,
+} from '~/api/rule.js'
 import { useInitTable, useInitForm } from '~/composables/useCommon'
 
 // 列表、分页、删除
@@ -160,6 +163,11 @@ const {
 const setRuleFormDrawerRef = ref(null)
 const openSetRule = (row)=>{
   setRuleFormDrawerRef.value.open()
+  getRuleList(1).then(res=>{
+    console.log(res);
+  }).finally(res=>{
+    
+  })
 }
 const handleSetRuleSubmit = ()=>{
 
