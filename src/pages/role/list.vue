@@ -213,6 +213,7 @@ const handleSetRuleSubmit = () => {
   setRoleRules(roleId.value,ruleIds.value)
   .then(res=>{
     toast("修改权限成功")
+    getData()
     setRuleFormDrawerRef.value.close()
   }).finally(() => {
     setRuleFormDrawerRef.value.hideLoading()
