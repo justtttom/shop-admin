@@ -105,6 +105,7 @@
         :props="{ label: 'name', children: 'child' }"
         show-checkbox 
         :height="treeHeight"
+        @check="handleTreeCheck"
       >
         <template #default="{ node, data }">
           <div class="flex items-center">
@@ -128,7 +129,8 @@ import {
   addRole,
   updateRole,
   deleteRole,
-  updateRoleStatus
+  updateRoleStatus,
+  setRoleRules
 } from '~/api/role.js'
 import { getRuleList } from '~/api/rule.js'
 import { useInitTable, useInitForm } from '~/composables/useCommon'
@@ -206,6 +208,10 @@ const openSetRule = (row) => {
     .finally((res) => {})
 }
 const handleSetRuleSubmit = () => {}
+
+const handleTreeCheck = (...e)=>{
+  console.log(e);
+}
 </script>
 
 <style>
