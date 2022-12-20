@@ -23,6 +23,6 @@ export function updateRoleStatus(id, status) {
   })
 }
 
-export function setRole(id){
-  return axios.post(`/dmin/role/set_rules`,id)
+export function setRoleRules(id,rule_id){
+  return axios.post(`/dmin/role/set_rules`,{id,rule_id})
 }
