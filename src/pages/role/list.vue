@@ -124,6 +124,7 @@
 import { ref } from 'vue'
 import ListHeader from '~/components/ListHeader.vue'
 import FormDrawer from '~/components/FormDrawer.vue'
+import { toast } from '~/composables/util.js'
 import {
   getRoleList,
   addRole,
@@ -205,9 +206,18 @@ const openSetRule = (row) => {
         elTreeRef.value.setCheckedKeys(ruleIds.value)
       }, 150)
     })
-    .finally((res) => {})
+    .finally(() => {})
 }
-const handleSetRuleSubmit = () => {}
+const handleSetRuleSubmit = () => {
+  setRuleFormDrawerRef.value.showLoading()
+  setRoleRules(roleId.value,ruleIds.value)
+  .then(res=>{
+    toast("修改权限成功")
+    setRuleFormDrawerRef.value.close()
+  }).finally(() => {
+    setRuleFormDrawerRef.value.hideLoading()
+  })
+}
 
 const handleTreeCheck = (...e)=>{
   const {checkedKeys,halfCheckedKeys} = e[1]
