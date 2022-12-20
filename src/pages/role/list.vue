@@ -210,7 +210,8 @@ const openSetRule = (row) => {
 const handleSetRuleSubmit = () => {}
 
 const handleTreeCheck = (...e)=>{
-  console.log(e);
+  const {checkedKeys,halfCheckedKeys} = e[1]
+  ruleIds.value = [...checkedKeys,...halfCheckedKeys]
 }
 </script>
 
