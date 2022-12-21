@@ -100,10 +100,11 @@
       <el-tree-v2
         ref="elTreeRef"
         node-key="id"
+        :check-strictly="checkStrictly"
         :default-expanded-keys="defaultExpandedKeys"
         :data="ruleList"
         :props="{ label: 'name', children: 'child' }"
-        show-checkbox 
+        show-checkbox
         :height="treeHeight"
         @check="handleTreeCheck"
       >
@@ -190,10 +191,12 @@ const defaultExpandedKeys = ref([])
 const elTreeRef = ref(null)
 // 当前用户拥有的权限ID
 const ruleIds = ref([])
+const checkStrictly = ref(false)
 
 const openSetRule = (row) => {
   roleId.value = row.id
   treeHeight.value = window.innerHeight - 180
+  checkStrictly.value = true
   getRuleList(1)
     .then((res) => {
       ruleList.value = res.list
@@ -204,30 +207,32 @@ const openSetRule = (row) => {
       ruleIds.value = row.rules.map((o) => o.id)
       setTimeout(() => {
         elTreeRef.value.setCheckedKeys(ruleIds.value)
+        checkStrictly.value = false
       }, 150)
     })
     .finally(() => {})
 }
 const handleSetRuleSubmit = () => {
   setRuleFormDrawerRef.value.showLoading()
-  setRoleRules(roleId.value,ruleIds.value)
-  .then(res=>{
-    toast("权限配置成功")
-    getData()
-    setRuleFormDrawerRef.value.close()
-  }).finally(() => {
-    setRuleFormDrawerRef.value.hideLoading()
-  })
+  setRoleRules(roleId.value, ruleIds.value)
+    .then((res) => {
+      toast('权限配置成功')
+      getData()
+      setRuleFormDrawerRef.value.close()
+    })
+    .finally(() => {
+      setRuleFormDrawerRef.value.hideLoading()
+    })
 }
 
-const handleTreeCheck = (...e)=>{
-  const {checkedKeys,halfCheckedKeys} = e[1]
-  ruleIds.value = [...checkedKeys,...halfCheckedKeys]
+const handleTreeCheck = (...e) => {
+  const { checkedKeys, halfCheckedKeys } = e[1]
+  ruleIds.value = [...checkedKeys, ...halfCheckedKeys]
 }
 </script>
 
 <style>
-.el-tree-node__content{
+.el-tree-node__content {
   padding: 0;
 }
 </style>
