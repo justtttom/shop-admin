@@ -4,7 +4,7 @@ import Admin from '~/layouts/admin.vue'
 import Index from '~/pages/index.vue'
 import NotFound from '~/pages/404.vue'
 import Login from '~/pages/login.vue'
-import GoodList from '~/pages/goods/list.vue'
+import GoodsList from '~/pages/goods/list.vue'
 import CategoryList from '~/pages/category/list.vue'
 import UserList from '~/pages/user/list.vue'
 import OrderList from '~/pages/order/list.vue'
@@ -54,7 +54,7 @@ const asyncRoutes = [
   {
     path: '/goods/list',
     name: '/goods/list',
-    component: GoodList,
+    component: GoodsList,
     meta: {
       title: '商品管理页'
     }
