@@ -9,12 +9,12 @@ export function addSkus(data){
 }
 
 export function updateSkus(id,data){
-  return axios.post(`/admin/skus/updateskus/${id}`,data)
+  return axios.post(`/admin/skus/+id`,data)
 }
 
 
 export function deleteSkus(ids){
-  return axios.post(`/admin/skus/${ids}/delete_all`)
+  return axios.post(`/admin/skus/delete_all`,ids)
 }
 
 export function updateSkusStatus(id, status) {
