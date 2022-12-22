@@ -21,12 +21,6 @@
       </el-table-column>
       <el-table-column label="操作" width="280" align="center">
         <template #default="scope">
-          <el-button
-            size="small"
-            type="primary"
-            @click="openSetRule(scope.row)"
-            text
-            >配置权限</el-button
           >
           <el-button
             size="small"
@@ -68,13 +62,13 @@
         label-width="80px"
         :inline="false"
       >
-        <el-form-item label="角色名称" prop="name">
-          <el-input v-model="form.name" placeholder="角色名称"></el-input>
+        <el-form-item label="规格名称" prop="name">
+          <el-input v-model="form.name" placeholder="规格名称"></el-input>
         </el-form-item>
-        <el-form-item label="角色描述" prop="desc">
+        <el-form-item label="规格值" prop="desc">
           <el-input
             v-model="form.desc"
-            placeholder="角色描述"
+            placeholder="规格值"
             type="textarea"
             :rows="5"
           ></el-input>
@@ -89,34 +83,6 @@
           </el-switch>
         </el-form-item>
       </el-form>
-    </FormDrawer>
-
-    <!-- 权限配置 -->
-    <FormDrawer
-      ref="setRuleFormDrawerRef"
-      title="权限配置"
-      @submit="handleSetRuleSubmit"
-    >
-      <el-tree-v2
-        ref="elTreeRef"
-        node-key="id"
-        :check-strictly="checkStrictly"
-        :default-expanded-keys="defaultExpandedKeys"
-        :data="ruleList"
-        :props="{ label: 'name', children: 'child' }"
-        show-checkbox
-        :height="treeHeight"
-        @check="handleTreeCheck"
-      >
-        <template #default="{ node, data }">
-          <div class="flex items-center">
-            <el-tag size="small" :type="data.menu ? '' : 'info'">
-              {{ data.menu ? '菜单' : '权限' }}
-            </el-tag>
-            <span class="ml-2 text-sm">{{ data.name }}</span>
-          </div>
-        </template>
-      </el-tree-v2>
     </FormDrawer>
   </el-card>
 </template>
