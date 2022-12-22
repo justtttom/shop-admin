@@ -3,9 +3,10 @@
     <!-- 新增|刷新 -->
     <ListHeader @create="handleCreate" @refresh="getData" />
     <el-table :data="tableData" stripe style="width: 100%;" v-loading="loading">
-      <el-table-column prop="name" label="角色名称" />
-      <el-table-column prop="desc" label="角色描述" width="380" />
-      <el-table-column label="状态" width="120">
+      <el-table-column prop="name" label="规格名称" width="180" />
+      <el-table-column prop="desc" label="规格值" width="280" />
+      <el-table-column prop="desc" label="排序" width="180" />
+      <el-table-column label="状态" width="280">
         <template #default="{ row }">
           <el-switch
             :modelValue="row.status"
@@ -21,7 +22,6 @@
       </el-table-column>
       <el-table-column label="操作" width="280" align="center">
         <template #default="scope">
-          >
           <el-button
             size="small"
             type="primary"
