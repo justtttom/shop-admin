@@ -4,8 +4,8 @@
     <ListHeader @create="handleCreate" @refresh="getData" />
     <el-table :data="tableData" stripe style="width: 100%;" v-loading="loading">
       <el-table-column prop="name" label="规格名称" width="180" />
-      <el-table-column prop="desc" label="规格值" width="280" />
-      <el-table-column prop="desc" label="排序" width="180" />
+      <el-table-column prop="default" label="规格值" width="280" />
+      <el-table-column prop="order" label="排序" width="180" />
       <el-table-column label="状态" width="280">
         <template #default="{ row }">
           <el-switch
@@ -65,9 +65,9 @@
         <el-form-item label="规格名称" prop="name">
           <el-input v-model="form.name" placeholder="规格名称"></el-input>
         </el-form-item>
-        <el-form-item label="规格值" prop="desc">
+        <el-form-item label="规格值" prop="default">
           <el-input
-            v-model="form.desc"
+            v-model="form.default"
             placeholder="规格值"
             type="textarea"
             :rows="5"
@@ -93,10 +93,10 @@ import ListHeader from '~/components/ListHeader.vue'
 import FormDrawer from '~/components/FormDrawer.vue'
 import { toast } from '~/composables/util.js'
 import {
-  getskusList,
-  addskus,
-  updateskus,
-  deleteskus,
+  getSkusList,
+  addSkus,
+  updateSkus,
+  deleteSkus,
   updateSkusStatus,
 } from '~/api/skus.js'
 import { useInitTable, useInitForm } from '~/composables/useCommon'
@@ -112,9 +112,9 @@ const {
   handleStatusChange,
   getData
 } = useInitTable({
-  getlist: getRoleList,
-  delete: deleteRole,
-  updateStatus: updateRoleStatus
+  getlist: getSkusList,
+  delete: deleteSkus,
+  updateStatus: updateSkusStatus
 })
 
 // 新增、修改
@@ -144,7 +144,7 @@ const {
   },
   getData,
   update: updateSkus,
-  add: addRole
+  add: addSkus
 })
 </script>
 

@@ -1,7 +1,7 @@
 import axios from '~/axios'
 
 export function getSkusList(page) {
-  return axios.get(`/admin/goods/skus/${page}`)
+  return axios.get(`/admin/skus/${page}`)
 }
 
 export function addSkus(data){
