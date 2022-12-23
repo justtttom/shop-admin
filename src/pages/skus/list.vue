@@ -5,7 +5,7 @@
     <el-table :data="tableData" stripe style="width: 100%;" v-loading="loading">
       <el-table-column prop="name" label="规格名称" width="180" />
       <el-table-column prop="default" label="规格值" width="280" />
-      <el-table-column prop="order" label="排序" width="180" />
+      <el-table-column prop="id" label="排序" width="180" />
       <el-table-column label="状态" width="280">
         <template #default="{ row }">
           <el-switch
@@ -131,7 +131,7 @@ const {
   form: {
     name: '',
     staus: 1,
-    desc: ''
+    default: ''
   },
   rules: {
     name: [
