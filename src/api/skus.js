@@ -14,7 +14,8 @@ export function updateSkus(id,data){
 
 
 export function deleteSkus(ids){
-  return axios.post(`/admin/skus/delete_all`,ids)
+  ids = !Array.isArray(ids) ? [ids] : ids
+  return axios.post(`/admin/skus/delete_all`,{ids})
 }
 
 export function updateSkusStatus(id, status) {
