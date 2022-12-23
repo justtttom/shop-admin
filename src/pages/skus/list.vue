@@ -131,13 +131,21 @@ const {
   form: {
     name: '',
     staus: 1,
-    default: ''
+    default: '',
+    oedre:50
   },
   rules: {
     name: [
       {
         required: true,
-        message: '角色名称不能为空',
+        message: '规格名称不能为空',
+        trigger: 'blur'
+      }
+    ],
+    default: [
+      {
+        required: true,
+        message: '规格值不能为空',
         trigger: 'blur'
       }
     ]
