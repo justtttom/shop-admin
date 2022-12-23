@@ -65,13 +65,8 @@
         <el-form-item label="规格名称" prop="name">
           <el-input v-model="form.name" placeholder="规格名称"></el-input>
         </el-form-item>
-        <el-form-item label="规格值" prop="default">
-          <el-input
-            v-model="form.default"
-            placeholder="规格值"
-            type="textarea"
-            :rows="5"
-          ></el-input>
+        <el-form-item label="排序" prop="order">
+          <el-input-number v-model="form.order" :min="1" :max="1000" />
         </el-form-item>
         <el-form-item label="状态" prop="status">
           <el-switch
@@ -81,6 +76,14 @@
             style="--el-switch-on-color: #13ce66;"
           >
           </el-switch>
+        </el-form-item>
+        <el-form-item label="规格值" prop="default">
+          <el-input
+            v-model="form.default"
+            placeholder="规格值"
+            type="textarea"
+            :rows="5"
+          ></el-input>
         </el-form-item>
       </el-form>
     </FormDrawer>
@@ -132,7 +135,7 @@ const {
     name: '',
     staus: 1,
     default: '',
-    oedre:50
+    order:50
   },
   rules: {
     name: [
