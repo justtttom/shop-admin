@@ -81,8 +81,6 @@
           <el-input
             v-model="form.default"
             placeholder="规格值"
-            type="textarea"
-            :rows="5"
           ></el-input>
         </el-form-item>
       </el-form>
