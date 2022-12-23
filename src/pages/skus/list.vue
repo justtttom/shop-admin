@@ -93,14 +93,12 @@ import ListHeader from '~/components/ListHeader.vue'
 import FormDrawer from '~/components/FormDrawer.vue'
 import { toast } from '~/composables/util.js'
 import {
-  getRoleList,
-  addRole,
-  updateRole,
-  deleteRole,
-  updateRoleStatus,
-  setRoleRules
-} from '~/api/role.js'
-import { getRuleList } from '~/api/rule.js'
+  getskusList,
+  addskus,
+  updateskus,
+  deleteskus,
+  updateSkusStatus,
+} from '~/api/skus.js'
 import { useInitTable, useInitForm } from '~/composables/useCommon'
 
 // 列表、分页、删除
@@ -145,7 +143,7 @@ const {
     ]
   },
   getData,
-  update: updateRole,
+  update: updateSkus,
   add: addRole
 })
 </script>
