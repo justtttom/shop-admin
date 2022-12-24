@@ -33,7 +33,7 @@ const emit = defineEmits(['update:modelValue'])
 
 const inputValue = ref('')
 const dynamicTags = ref(props.modelValue ? props.modelValue.split(',') : [])
-const inputVisible = ref(false)
+const inputVisible = ref(false)  
 const InputRef = ref()
 
 const handleClose = (tag) => {
