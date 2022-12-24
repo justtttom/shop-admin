@@ -89,10 +89,8 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
 import ListHeader from '~/components/ListHeader.vue'
 import FormDrawer from '~/components/FormDrawer.vue'
-import { toast } from '~/composables/util.js'
 import {
   getSkusList,
   addSkus,
