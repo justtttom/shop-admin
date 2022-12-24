@@ -78,6 +78,7 @@
           </el-switch>
         </el-form-item>
         <el-form-item label="规格值" prop="default">
+        <TagInput/>
           <el-input
             v-model="form.default"
             placeholder="规格值"
@@ -91,6 +92,7 @@
 <script setup>
 import ListHeader from '~/components/ListHeader.vue'
 import FormDrawer from '~/components/FormDrawer.vue'
+import TagInput from '~/components/TagInput.vue'
 import {
   getSkusList,
   addSkus,
