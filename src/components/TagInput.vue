@@ -29,15 +29,16 @@ import { nextTick, ref } from 'vue'
 const props = defineProps({
   modelValue: String
 })
-const emit = defineEmits("update:modelValue")
+const emit = defineEmits(['update:modelValue'])
 
 const inputValue = ref('')
 const dynamicTags = ref(props.modelValue ? props.modelValue.split(',') : [])
 const inputVisible = ref(false)
 const InputRef = ref()
 
-const handleClose = () => {
+const handleClose = (tag) => {
   dynamicTags.value.splice(dynamicTags.value.indexOf(tag), 1)
+  emit('update:modelValue', dynamicTags.value.join(','))
 }
 
 const showInput = () => {
@@ -50,7 +51,7 @@ const showInput = () => {
 const handleInputConfirm = () => {
   if (inputValue.value) {
     dynamicTags.value.push(inputValue.value)
-    emit("update:modelValue",dynamicTags.value.join(','))
+    emit('update:modelValue', dynamicTags.value.join(','))
   }
   inputVisible.value = false
   inputValue.value = ''
