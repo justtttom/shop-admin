@@ -78,11 +78,8 @@
           </el-switch>
         </el-form-item>
         <el-form-item label="规格值" prop="default">
-        <TagInput/>
-          <el-input
-            v-model="form.default"
-            placeholder="规格值"
-          ></el-input>
+          <TagInput v-model="form.default" />
+          {{ form.default }}
         </el-form-item>
       </el-form>
     </FormDrawer>
@@ -98,7 +95,7 @@ import {
   addSkus,
   updateSkus,
   deleteSkus,
-  updateSkusStatus,
+  updateSkusStatus
 } from '~/api/skus.js'
 import { useInitTable, useInitForm } from '~/composables/useCommon'
 
@@ -133,7 +130,7 @@ const {
     name: '',
     staus: 1,
     default: '',
-    order:50
+    order: 50
   },
   rules: {
     name: [

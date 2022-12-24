@@ -26,8 +26,13 @@
 <script setup>
 import { nextTick, ref } from 'vue'
 
+const props = defineProps({
+  modelValue: String
+})
+const emit = defineEmits("update:modelValue")
+
 const inputValue = ref('')
-const dynamicTags = ref(['Tag 1', 'Tag 2', 'Tag 3'])
+const dynamicTags = ref(props.modelValue ? props.modelValue.split(',') : [])
 const inputVisible = ref(false)
 const InputRef = ref()
 
@@ -45,6 +50,7 @@ const showInput = () => {
 const handleInputConfirm = () => {
   if (inputValue.value) {
     dynamicTags.value.push(inputValue.value)
+    emit("update:modelValue",dynamicTags.value.join(','))
   }
   inputVisible.value = false
   inputValue.value = ''
