@@ -19,18 +19,17 @@
     @blur="handleInputConfirm"
   />
   <el-button v-else class="button-new-tag ml-1" size="small" @click="showInput">
-    + New Tag
+    + 添加值
   </el-button>
 </template>
 
 <script setup>
 import { nextTick, ref } from 'vue'
-import { ElInput } from 'element-plus'
 
 const inputValue = ref('')
 const dynamicTags = ref(['Tag 1', 'Tag 2', 'Tag 3'])
 const inputVisible = ref(false)
-const InputRef = ref<InstanceType<typeof ElInput>>()
+const InputRef = ref()
 
 const handleClose = () => {
   dynamicTags.value.splice(dynamicTags.value.indexOf(tag), 1)
