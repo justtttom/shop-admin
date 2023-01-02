@@ -11,7 +11,7 @@
       </el-button>
       <el-popconfirm
       v-if="btns.includes('delete')"
-        title="是否要删除全部规格？"
+        title="是否要删除选中规格？"
         confirm-button-text="确定"
         cancel-button-text="取消"
         width="20"
