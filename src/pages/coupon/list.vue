@@ -3,11 +3,11 @@
     <!-- 新增|刷新 -->
     <ListHeader @create="handleCreate" @refresh="getData" />
     <el-table :data="tableData" stripe style="width: 100%;" v-loading="loading">
-      <el-table-column prop="title" label="优惠券名称" width="350"/>
-      <el-table-column prop="title" label="状态" />
-      <el-table-column prop="title" label="优惠" />
-      <el-table-column prop="title" label="发放数量" />
-      <el-table-column prop="create_time" label="已使用" width="180" />
+      <el-table-column prop="name" label="优惠券名称" width="350"/>
+      <el-table-column prop="type" label="状态"/> 
+      <el-table-column prop="value" label="优惠" />
+      <el-table-column prop="total" label="发放数量" />
+      <el-table-column prop="used" label="已使用" width="180" />
       <el-table-column label="操作" width="180" align="center">
         <template #default="scope">
           <el-button
@@ -69,11 +69,11 @@
 import ListHeader from '~/components/ListHeader.vue'
 import FormDrawer from '~/components/FormDrawer.vue'
 import {
-  getNoticeList,
-  addNoticeList,
-  updateNoticeList,
-  deleteNoticeList
-} from '~/api/notice.js'
+  getCouponList,
+  addCoupon,
+  updateCoupon,
+  deleteCoupon
+} from '~/api/coupon.js'
 import { useInitTable, useInitForm } from '~/composables/useCommon'
 
 // 列表、分页、删除
@@ -86,8 +86,8 @@ const {
   handleDelete,
   getData
 } = useInitTable({
-  getlist: getNoticeList,
-  delete: deleteNoticeList
+  getlist: getCouponList,
+  delete: deleteCoupon
 })
 
 // 新增、修改
@@ -122,7 +122,7 @@ const {
     ]
   },
   getData,
-  update: updateNoticeList,
-  add: addNoticeList
+  update: updateCoupon,
+  add: addCoupon
 })
 </script>
