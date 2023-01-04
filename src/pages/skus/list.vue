@@ -8,6 +8,7 @@
       @delete="handleMutiDelete"
     />
     <el-table
+      ref="mutipleTableRef"
       :data="tableData"
       stripe
       style="width: 100%;"
@@ -104,7 +105,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref } from 'vue'
 import ListHeader from '~/components/ListHeader.vue'
 import FormDrawer from '~/components/FormDrawer.vue'
 import TagInput from '~/components/TagInput.vue'
@@ -179,17 +180,21 @@ const handleSelectionChange = (e) => {
 }
 
 // 批量删除
+const mutipleTableRef = ref(null)
 const handleMutiDelete = () => {
   loading.value = true
   deleteSkus(multiSelecttionIds.value)
-  .then(res=>{
-    toast('删除成功')
-    // 清空选中
-
-  })
-  .finally(()=>{
-    loading.value = false
-  })
+    .then((res) => {
+      toast('删除成功')
+      // 清空选中
+      if(mutipleTableRef.value){
+        mutipleTableRef.value.clearSelection()
+      }
+      getData()
+    })
+    .finally(() => {
+      loading.value = false
+    })
 }
 </script>
 
