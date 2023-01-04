@@ -44,34 +44,60 @@ export function useInitTable(opt = {}) {
       })
   }
 
-  // 删除
-const handleDelete = (id) => {
-  loading.value = true
-  opt.delete(id)
-    .then((res) => {
-      toast('删除成功')
-      getData()
-    })
-    .finally(() => {
-      loading.value = false
-    })
-}
-
-// 修改状态
-const handleStatusChange = (status, row) => {
-  row.statusLoading = true
-  opt.updateStatus(row.id, status)
-    .then((res) => {
-      toast('修改状态成功！')
-      row.status = status
-    })
-    .finally(() => {
-      row.statusLoading = false
-    })
-}
-
   getData()
 
+  // 删除
+  const handleDelete = (id) => {
+    loading.value = true
+    opt
+      .delete(id)
+      .then((res) => {
+        toast('删除成功')
+        getData()
+      })
+      .finally(() => {
+        loading.value = false
+      })
+  }
+
+  // 修改状态
+  const handleStatusChange = (status, row) => {
+    row.statusLoading = true
+    opt
+      .updateStatus(row.id, status)
+      .then((res) => {
+        toast('修改状态成功！')
+        row.status = status
+      })
+      .finally(() => {
+        row.statusLoading = false
+      })
+  }
+
+  // 多选选中ID
+  const multiSelecttionIds = ref([])
+  const handleSelectionChange = (e) => {
+    multiSelecttionIds.value = e.map((o) => o.id)
+  }
+
+  // 批量删除
+  const mutipleTableRef = ref(null)
+  const handleMutiDelete = () => {
+    loading.value = true
+    opt
+      .delete(multiSelecttionIds.value)
+      .then((res) => {
+        toast('删除成功')
+        // 清空选中
+        if (mutipleTableRef.value) {
+          mutipleTableRef.value.clearSelection()
+        }
+        getData()
+      })
+      .finally(() => {
+        loading.value = false
+      })
+  }
   return {
     searchForm,
     resetSearchForm,
@@ -82,7 +108,9 @@ const handleStatusChange = (status, row) => {
     limit,
     handleDelete,
     handleStatusChange,
-    getData
+    getData,
+    handleSelectionChange,
+    handleMutiDelete
   }
 }
 

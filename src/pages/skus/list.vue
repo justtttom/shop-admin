@@ -128,7 +128,9 @@ const {
   limit,
   handleDelete,
   handleStatusChange,
-  getData
+  getData,
+  handleSelectionChange,
+  handleMutiDelete
 } = useInitTable({
   getlist: getSkusList,
   delete: deleteSkus,
@@ -172,30 +174,6 @@ const {
   update: updateSkus,
   add: addSkus
 })
-
-// 多选选中ID
-const multiSelecttionIds = ref([])
-const handleSelectionChange = (e) => {
-  multiSelecttionIds.value = e.map((o) => o.id)
-}
-
-// 批量删除
-const mutipleTableRef = ref(null)
-const handleMutiDelete = () => {
-  loading.value = true
-  deleteSkus(multiSelecttionIds.value)
-    .then((res) => {
-      toast('删除成功')
-      // 清空选中
-      if(mutipleTableRef.value){
-        mutipleTableRef.value.clearSelection()
-      }
-      getData()
-    })
-    .finally(() => {
-      loading.value = false
-    })
-}
 </script>
 
 <style>
