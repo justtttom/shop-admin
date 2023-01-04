@@ -9,7 +9,7 @@ export function addCoupon(data){
 }
 
 export function updateCoupon(id,data){
-  return axios.post(`/admin/coupon/+id`,data)
+  return axios.post(`/admin/coupon/`+id,data)
 }
 
 
