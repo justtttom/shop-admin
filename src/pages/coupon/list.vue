@@ -3,11 +3,11 @@
     <!-- 新增|刷新 -->
     <ListHeader @create="handleCreate" @refresh="getData" />
     <el-table :data="tableData" stripe style="width: 100%;" v-loading="loading">
-      <el-table-column prop="title" label="优惠券名称" />
+      <el-table-column prop="title" label="优惠券名称" width="350"/>
       <el-table-column prop="title" label="状态" />
       <el-table-column prop="title" label="优惠" />
       <el-table-column prop="title" label="发放数量" />
-      <el-table-column prop="create_time" label="已使用" width="380" />
+      <el-table-column prop="create_time" label="已使用" width="180" />
       <el-table-column label="操作" width="180" align="center">
         <template #default="scope">
           <el-button
