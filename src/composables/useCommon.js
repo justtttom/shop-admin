@@ -32,7 +32,6 @@ export function useInitTable(opt = {}) {
     opt
       .getlist(currentPage.value, searchForm)
       .then((res) => {
-        console.log(res);
         if (opt.onGetListSuccess && typeof opt.onGetListSuccess == 'function') {
           opt.onGetListSuccess(res)
         } else {

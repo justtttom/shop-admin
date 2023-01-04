@@ -104,6 +104,7 @@
 </template>
 
 <script setup>
+import { ref } from 'vue';
 import ListHeader from '~/components/ListHeader.vue'
 import FormDrawer from '~/components/FormDrawer.vue'
 import TagInput from '~/components/TagInput.vue'
@@ -115,6 +116,7 @@ import {
   updateSkusStatus
 } from '~/api/skus.js'
 import { useInitTable, useInitForm } from '~/composables/useCommon'
+import { toast } from '~/composables/util.js'
 
 // 列表、分页、删除
 const {
@@ -174,6 +176,20 @@ const {
 const multiSelecttionIds = ref([])
 const handleSelectionChange = (e) => {
   multiSelecttionIds.value = e.map((o) => o.id)
+}
+
+// 批量删除
+const handleMutiDelete = () => {
+  loading.value = true
+  deleteSkus(multiSelecttionIds.value)
+  .then(res=>{
+    toast('删除成功')
+    // 清空选中
+
+  })
+  .finally(()=>{
+    loading.value = false
+  })
 }
 </script>
 
