@@ -5,6 +5,7 @@
       layout="create,delete,refresh"
       @create="handleCreate"
       @refresh="getData"
+      @delete="handleMutiDelete"
     />
     <el-table
       :data="tableData"
