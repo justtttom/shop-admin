@@ -2,7 +2,7 @@
   <el-card shadow="never" class="border-0">
     <!-- 新增|刷新 -->
     <ListHeader layout="create,delete,refresh" @create="handleCreate" @refresh="getData" />
-    <el-table :data="tableData" stripe style="width: 100%;" v-loading="loading">
+    <el-table :data="tableData" stripe style="width: 100%;" v-loading="loading" @selection-change="handleSelectionChange">
       <el-table-column type="selection" width="55" />
       <el-table-column prop="name" label="规格名称" width="180" />
       <el-table-column prop="default" label="规格值" width="280" />
@@ -153,6 +153,11 @@ const {
   update: updateSkus,
   add: addSkus
 })
+
+// 多选数据记录
+const handleSelectionChange = (e)=>{
+console.log(e.map(o=>o.id));
+}
 </script>
 
 <style>
