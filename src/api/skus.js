@@ -9,7 +9,7 @@ export function addSkus(data){
 }
 
 export function updateSkus(id,data){
-  return axios.post(`/admin/skus/`+id,data)
+  return axios.post(`/admin/skus/${id}`,data)
 }
 
 
