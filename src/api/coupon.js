@@ -14,12 +14,11 @@ export function updateCoupon(id,data){
 
 
 export function deleteCoupon(ids){
-  ids = !Array.isArray(ids) ? [ids] : ids
   return axios.post(`/admin/coupon/delete_all`,{ids})
 }
 
-export function updateCouponStatus(id, status) {
+export function updateCouponStatus(id) {
   return axios.post(`/admin/coupon/${id}/update_status`, {
-    status
+    status:0
   })
 }
