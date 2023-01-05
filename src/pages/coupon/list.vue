@@ -97,6 +97,8 @@ function formatStatus(row) {
     s = '未开始'
   }else if(end_time < now){
     s = '已结束'
+  }else if(row.status == 0){
+    s = '已失效'
   }
 }
 
