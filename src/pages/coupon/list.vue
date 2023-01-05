@@ -88,6 +88,16 @@ import {
 } from '~/api/coupon.js'
 import { useInitTable, useInitForm } from '~/composables/useCommon'
 
+function formatStatus(row) {
+  let s = '领取中'
+  let start_time = (new Date(row.start_time)).getTime()
+  let now = (new Date()).getTime()
+  let end_time = (new Date(row.end_time)).getTime()
+  if(start_time > now){
+    s = '未开始'
+  }
+}
+
 // 列表、分页、删除
 const {
   tableData,
