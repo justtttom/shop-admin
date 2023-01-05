@@ -21,8 +21,8 @@
         </template>
       </el-table-column>
       <el-table-column prop="total" label="发放数量" />
-      <el-table-column prop="used" label="已使用" width="180" />
-      <el-table-column label="操作" width="180" align="center">
+      <el-table-column prop="used" label="已使用" />
+      <el-table-column label="操作" align="center">
         <template #default="scope">
           <el-button
             size="small"
