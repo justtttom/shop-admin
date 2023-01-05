@@ -95,7 +95,7 @@ function formatStatus(row) {
   let end_time = (new Date(row.end_time)).getTime()
   if(start_time > now){
     s = '未开始'
-  }else if(end_time > now){
+  }else if(end_time < now){
     s = '已结束'
   }
 }
