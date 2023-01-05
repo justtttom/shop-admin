@@ -100,6 +100,7 @@ function formatStatus(row) {
   }else if(row.status == 0){
     s = '已失效'
   }
+  return s
 }
 
 // 列表、分页、删除
