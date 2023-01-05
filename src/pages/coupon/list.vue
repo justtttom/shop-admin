@@ -7,16 +7,14 @@
         <template #default="{row}">
           <div class="border bortder-dashed py-2 px-4 rounded">
             <h5 class="font-bold text-md">{{ row.name }}</h5>
-            <small class="text-gray-400"
-              >{{ row.start_time }} ~ {{ row.end_time }}</small
-            >
+            <small> {{ row.start_time }} ~ {{ row.end_time }} </small>
           </div>
         </template>
       </el-table-column>
       <el-table-column prop="status" label="状态" />
       <el-table-column prop="value" label="优惠">
         <template #default="{row}">
-          {{ row.type ? '满减' : '折扣'}} 
+          {{ row.type ? '满减' : '折扣' }}
           {{ row.type ? '¥' + row.value : row.value + '折' }}
         </template>
       </el-table-column>
