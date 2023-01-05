@@ -4,14 +4,16 @@
     <ListHeader @create="handleCreate" @refresh="getData" />
     <el-table :data="tableData" stripe style="width: 100%;" v-loading="loading">
       <el-table-column label="优惠券名称" width="350">
-      <template #default="{row}">
-        <div class="border bortder-dashed py-2 px-4 rounded">
-        <h5 class="text-gray-500">{{row.name}}</h5>
-        <small>{{row.start_time}}~{{row.end_time}}</small>
-        </div>
-      </template>
+        <template #default="{row}">
+          <div class="border bortder-dashed py-2 px-4 rounded">
+            <h5 class="text-red-500">{{ row.name }}</h5>
+            <small class="text-gray-400"
+              >{{ row.start_time }} ~ {{ row.end_time }}</small
+            >
+          </div>
+        </template>
       </el-table-column>
-      <el-table-column prop="type" label="状态"/> 
+      <el-table-column prop="type" label="状态" />
       <el-table-column prop="value" label="优惠" />
       <el-table-column prop="total" label="发放数量" />
       <el-table-column prop="used" label="已使用" width="180" />
