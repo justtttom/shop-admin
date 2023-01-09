@@ -85,7 +85,6 @@ getStatistics2().then((res) => {
   goods.value = res.goods;
   order.value = res.order;
 });
-</script>
 
-<style>
-</style>
+
+</script>
