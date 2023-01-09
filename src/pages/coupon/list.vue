@@ -103,6 +103,8 @@ function formatStatus(row) {
   return s
 }
 
+// formatStatus()
+
 // 列表、分页、删除
 const {
   tableData,
@@ -114,6 +116,9 @@ const {
   getData
 } = useInitTable({
   getlist: getCouponList,
+  onGetListSuccess:(res)=>{
+    console.log(res);
+  },
   delete: deleteCoupon
 })
 
