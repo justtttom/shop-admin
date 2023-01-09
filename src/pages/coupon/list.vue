@@ -5,7 +5,10 @@
     <el-table :data="tableData" stripe style="width: 100%;" v-loading="loading">
       <el-table-column label="优惠券名称" width="350">
         <template #default="{row}">
-          <div class="border bortder-dashed py-2 px-4 rounded" :class="row.statusText == '领取中' ? 'active' : 'inactive'">
+          <div
+            class="border bortder-dashed py-2 px-4 rounded"
+            :class="row.statusText == '领取中' ? 'active' : 'inactive'"
+          >
             <h5 class="font-bold text-md">{{ row.name }}</h5>
             <small> {{ row.start_time }} ~ {{ row.end_time }} </small>
           </div>
@@ -61,16 +64,14 @@
         label-width="80px"
         :inline="false"
       >
-        <el-form-item label="公告标题" prop="title">
-          <el-input v-model="form.title" placeholder="公告标题"></el-input>
+        <el-form-item label="优惠券名" prop="name" class="mr-2">
+          <el-input v-model="form.name" placeholder="优惠券名称"></el-input>
         </el-form-item>
-        <el-form-item label="公告内容" prop="content">
-          <el-input
-            v-model="form.content"
-            placeholder="公告内容"
-            type="textarea"
-            :rows="5"
-          ></el-input>
+        <el-form-item label="类型" prop="type">
+          <el-radio-group v-model="form.type">
+            <el-radio :label="1" border>满减</el-radio>
+            <el-radio :label="0" border>折扣</el-radio>
+          </el-radio-group>
         </el-form-item>
       </el-form>
     </FormDrawer>
@@ -143,7 +144,12 @@ const {
   form: {
     name: '',
     type: 0,
-
+    value: 0,
+    total: 100,
+    min_price: 0,
+    start_time: null,
+    end_time: null,
+    order: 50
   },
   rules: {
     title: [
@@ -168,10 +174,13 @@ const {
 </script>
 
 <style scoped>
+el-form-item__label {
+  padding-right: 20px !important;
+}
 .active {
   @apply border-red-200 bg-rose-50 text-red-400;
 }
-.inactive{
+.inactive {
   @apply border-gray-200 bg-gray-50 text-gray-400;
 }
 </style>
