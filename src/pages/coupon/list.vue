@@ -174,9 +174,6 @@ const {
 </script>
 
 <style scoped>
-el-form-item__label {
-  padding-right: 20px !important;
-}
 .active {
   @apply border-red-200 bg-rose-50 text-red-400;
 }
