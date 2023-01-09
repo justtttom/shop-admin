@@ -11,7 +11,7 @@
           </div>
         </template>
       </el-table-column>
-      <el-table-column prop="status" label="状态" />
+      <el-table-column prop="statusText" label="状态" />
       <el-table-column prop="value" label="优惠">
         <template #default="{row}">
           {{ row.type ? '满减' : '折扣' }}
@@ -87,6 +87,7 @@ import {
   deleteCoupon
 } from '~/api/coupon.js'
 import { useInitTable, useInitForm } from '~/composables/useCommon'
+import { toArray } from 'lodash';
 
 function formatStatus(row) {
   let s = '领取中'
@@ -117,6 +118,12 @@ const {
 } = useInitTable({
   getlist: getCouponList,
   onGetListSuccess:(res)=>{
+    tableData.value = res.list.map(o=>{
+      // 转化优惠券转态
+      o.statusText = formatStatus(o)
+      return o
+    })
+    total.value = res.totalCount
     console.log(res);
   },
   delete: deleteCoupon
