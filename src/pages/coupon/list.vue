@@ -5,7 +5,7 @@
     <el-table :data="tableData" stripe style="width: 100%;" v-loading="loading">
       <el-table-column label="优惠券名称" width="350">
         <template #default="{row}">
-          <div class="border bortder-dashed py-2 px-4 rounded">
+          <div class="border bortder-dashed py-2 px-4 rounded" :class="row.statusText == '领取中' ? 'active' : 'inactive'">
             <h5 class="font-bold text-md">{{ row.name }}</h5>
             <small> {{ row.start_time }} ~ {{ row.end_time }} </small>
           </div>
@@ -87,18 +87,18 @@ import {
   deleteCoupon
 } from '~/api/coupon.js'
 import { useInitTable, useInitForm } from '~/composables/useCommon'
-import { toArray } from 'lodash';
+import { toArray } from 'lodash'
 
 function formatStatus(row) {
   let s = '领取中'
-  let start_time = (new Date(row.start_time)).getTime()
-  let now = (new Date()).getTime()
-  let end_time = (new Date(row.end_time)).getTime()
-  if(start_time > now){
+  let start_time = new Date(row.start_time).getTime()
+  let now = new Date().getTime()
+  let end_time = new Date(row.end_time).getTime()
+  if (start_time > now) {
     s = '未开始'
-  }else if(end_time < now){
+  } else if (end_time < now) {
     s = '已结束'
-  }else if(row.status == 0){
+  } else if (row.status == 0) {
     s = '已失效'
   }
   return s
@@ -117,14 +117,14 @@ const {
   getData
 } = useInitTable({
   getlist: getCouponList,
-  onGetListSuccess:(res)=>{
-    tableData.value = res.list.map(o=>{
+  onGetListSuccess: (res) => {
+    tableData.value = res.list.map((o) => {
       // 转化优惠券转态
       o.statusText = formatStatus(o)
       return o
     })
     total.value = res.totalCount
-    console.log(res);
+    console.log(res)
   },
   delete: deleteCoupon
 })
@@ -165,3 +165,12 @@ const {
   add: addCoupon
 })
 </script>
+
+<style scoped>
+.active {
+  @apply border-red-200 bg-rose-50 text-red-400;
+}
+.inactive{
+  @apply border-gray-200 bg-gray-50 text-gray-400;
+}
+</style>
