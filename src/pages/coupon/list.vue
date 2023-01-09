@@ -14,8 +14,8 @@
       <el-table-column prop="statusText" label="状态" />
       <el-table-column prop="value" label="优惠">
         <template #default="{row}">
-          {{ row.type ? '满减' : '折扣' }}
-          {{ row.type ? '¥' + row.value : row.value + '折' }}
+          {{ row.type == 0 ? '满减' : '折扣' }}
+          {{ row.type == 0 ? '¥' + row.value : row.value + '折' }}
         </template>
       </el-table-column>
       <el-table-column prop="total" label="发放数量" />
@@ -141,8 +141,9 @@ const {
   handleEdit
 } = useInitForm({
   form: {
-    title: '',
-    content: ''
+    name: '',
+    type: 0,
+
   },
   rules: {
     title: [
