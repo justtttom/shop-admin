@@ -64,13 +64,13 @@
         label-width="80px"
         :inline="false"
       >
-        <el-form-item label="优惠券名" prop="name" class="mr-2">
+        <el-form-item label="优惠券名称" prop="name" style="width: 60%;">
           <el-input v-model="form.name" placeholder="优惠券名称"></el-input>
         </el-form-item>
         <el-form-item label="类型" prop="type">
           <el-radio-group v-model="form.type">
-            <el-radio :label="1" border>满减</el-radio>
-            <el-radio :label="0" border>折扣</el-radio>
+            <el-radio :label="0" border>满减</el-radio>
+            <el-radio :label="1" border>折扣</el-radio>
           </el-radio-group>
         </el-form-item>
       </el-form>
