@@ -6,24 +6,22 @@ import path from 'path'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  resolve:{
-    alias:{
-      "~":path.resolve(__dirname,"src")
+  resolve: {
+    alias: {
+      '~': path.resolve(__dirname, 'src')
     }
   },
-  server:{
-    proxy:{
+  server: {
+    host:'0.0.0.0' ,//ip地址
+    port: 3000, // 设置服务启动端口号
+    open: true, // 设置服务启动时是否自动打开浏览器
+    proxy: {
       '/api': {
         target: 'http://ceshi13.dishait.cn',
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, '')
-      },
+      }
     }
   },
-  plugins: [
-    vue(),
-    WindiCSS(),
-  ]
+  plugins: [vue(), WindiCSS()]
 })
-
-
