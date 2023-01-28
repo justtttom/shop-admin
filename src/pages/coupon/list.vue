@@ -77,19 +77,19 @@
           <el-input v-model="form.value" placeholder="面值"></el-input>
         </el-form-item>
         <el-form-item label="发行量" prop="total" style="width: 60%;">
-          <el-input v-model="form.total" placeholder="优惠券名称"></el-input>
+          <el-input v-model="form.total" placeholder="发行量"></el-input>
         </el-form-item>
         <el-form-item label="最低使用价格" prop="mini_price" style="width: 60%;">
-          <el-input v-model="form.mini_price" placeholder="优惠券名称"></el-input>
+          <el-input v-model="form.mini_price" placeholder="最低使用价格"></el-input>
         </el-form-item>
         <el-form-item label="排序" prop="order" style="width: 60%;">
-          <el-input v-model="form.order" placeholder="优惠券名称"></el-input>
+          <el-input v-model="form.order" placeholder="排序"></el-input>
         </el-form-item>
         <el-form-item label="活动时间"  style="width: 60%;">
-          <el-input v-model="form.name" placeholder="优惠券名称"></el-input>
+          <el-input v-model="form.name" placeholder="活动时间"></el-input>
         </el-form-item>
         <el-form-item label="描述" prop="desc" style="width: 60%;">
-          <el-input v-model="form.desc" placeholder="优惠券名称"></el-input>
+          <el-input v-model="form.desc" placeholder="描述"></el-input>
         </el-form-item>
       </el-form>
     </FormDrawer>
