@@ -88,8 +88,8 @@
         <el-form-item label="活动时间"  style="width: 60%;">
           <el-input v-model="form.name" placeholder="优惠券名称"></el-input>
         </el-form-item>
-        <el-form-item label="描述" prop="name" style="width: 60%;">
-          <el-input v-model="form.name" placeholder="优惠券名称"></el-input>
+        <el-form-item label="描述" prop="desc" style="width: 60%;">
+          <el-input v-model="form.desc" placeholder="优惠券名称"></el-input>
         </el-form-item>
       </el-form>
     </FormDrawer>
@@ -167,7 +167,8 @@ const {
     min_price: 0,
     start_time: null,
     end_time: null,
-    order: 50
+    order: 50,
+    desc:''
   },
   rules: {
     title: [
