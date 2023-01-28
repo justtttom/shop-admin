@@ -85,7 +85,7 @@
         <el-form-item label="排序" prop="order" style="width: 60%;">
           <el-input v-model="form.order" placeholder="优惠券名称"></el-input>
         </el-form-item>
-        <el-form-item label="活动时间" prop="name" style="width: 60%;">
+        <el-form-item label="活动时间"  style="width: 60%;">
           <el-input v-model="form.name" placeholder="优惠券名称"></el-input>
         </el-form-item>
         <el-form-item label="描述" prop="name" style="width: 60%;">
