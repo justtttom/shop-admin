@@ -78,11 +78,7 @@
           <el-input-number v-model="form.total" :min="0" :max="10000"></el-input-number>
         </el-form-item>
         <el-form-item label="最低使用价格" prop="mini_price" style="width: 60%">
-          <el-input
-            v-model="form.mini_price"
-            placeholder="最低使用价格"
-            type="number"
-          ></el-input>
+          <el-input v-model="form.min_price" placeholder="最低使用价格" type="number"></el-input>
         </el-form-item>
         <el-form-item label="排序" prop="order">
           <el-input-number v-model="form.order" :min="0" :max="1000"></el-input-number>
