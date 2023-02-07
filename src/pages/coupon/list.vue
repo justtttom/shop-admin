@@ -87,10 +87,11 @@
         <el-form-item label="排序" prop="order">
           <el-input-number v-model="form.order" :min="0" :max="1000"></el-input-number>
         </el-form-item>
-        <el-form-item label="活动时间" style="width: 60%">
+        <el-form-item label="活动时间" :rows="5">
           <el-date-picker
-            v-model="value1"
+            v-model="timerange"
             type="datetimerange"
+            value-format="YYYY-MM-DD HH:mm:ss"
             range-separator="To"
             start-placeholder="开始时间 date"
             end-placeholder="结束时间"
@@ -105,11 +106,11 @@
 </template>
 
 <script setup>
+import { computed } from "vue";
 import ListHeader from "~/components/ListHeader.vue";
 import FormDrawer from "~/components/FormDrawer.vue";
 import { getCouponList, addCoupon, updateCoupon, deleteCoupon } from "~/api/coupon.js";
 import { useInitTable, useInitForm } from "~/composables/useCommon";
-import { toArray } from "lodash";
 
 function formatStatus(row) {
   let s = "领取中";
@@ -192,6 +193,25 @@ const {
   getData,
   update: updateCoupon,
   add: addCoupon,
+  beforeSbumit:(f)=>{
+    if(typeof f.start_time != 'number'){
+      f.start_time = (new Date(f.start_time)).getTime
+    }
+    if(typeof f.end_time != 'number'){
+      f.end_time = (new Date(f.end_time)).getTime
+    }
+    return f
+  }
+});
+
+const timerange = computed({
+  get() {
+    return form.start_time, form.end_time ? [form.start_time, form.end_time] : [];
+  },
+  set(val){
+    form.start_time = val[0]
+    form.end_time = val[1]
+  }
 });
 </script>
 
