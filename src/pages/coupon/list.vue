@@ -75,7 +75,6 @@
         </el-form-item>
         <el-form-item label="面值" prop="value" style="width: 60%;">
           <el-input v-model="form.value" placeholder="面值">
-            <template #append>{{ form.type ? '折扣' : '满减' }}</template>
           </el-input>
         </el-form-item>
         <el-form-item label="发行量" prop="total" style="width: 60%;">
