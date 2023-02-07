@@ -94,7 +94,7 @@
           <el-input v-model="form.order" placeholder="排序"></el-input>
         </el-form-item>
         <el-form-item label="活动时间" style="width: 60%;">
-          <el-input v-model="form.name" placeholder="活动时间"></el-input>
+          <el-input v-model="form.content" placeholder="活动时间"></el-input>
         </el-form-item>
         <el-form-item label="描述" prop="desc" style="width: 60%;">
           <el-input v-model="form.desc" placeholder="描述"></el-input>
