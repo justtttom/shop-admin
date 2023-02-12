@@ -29,7 +29,7 @@
             >修改</el-button
           >
           <el-popconfirm
-            title="是否要删除该公告？"
+            title="是否要删除该优惠？"
             confirm-button-text="确定"
             cancel-button-text="取消"
             width="20"
