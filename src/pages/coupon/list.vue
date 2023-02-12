@@ -46,10 +46,10 @@
             confirm-button-text="失效"
             cancel-button-text="取消"
             width="20"
-            @confirm="handleDelete(scope.row.id)"
+            @confirm="handleStatusChange(0,scope.row)"
           >
             <template #reference>
-              <el-button size="small" type="danger" text>失效</el-button>
+              <el-button size="small" type="danger">失效</el-button>
             </template>
           </el-popconfirm>
         </template>
@@ -118,7 +118,7 @@
 import { computed } from "vue";
 import ListHeader from "~/components/ListHeader.vue";
 import FormDrawer from "~/components/FormDrawer.vue";
-import { getCouponList, addCoupon, updateCoupon, deleteCoupon } from "~/api/coupon.js";
+import { getCouponList, addCoupon, updateCoupon, deleteCoupon,updateCouponStatus } from "~/api/coupon.js";
 import { useInitTable, useInitForm } from "~/composables/useCommon";
 
 function formatStatus(row) {
@@ -147,6 +147,7 @@ const {
   limit,
   handleDelete,
   getData,
+  handleStatusChange
 } = useInitTable({
   getlist: getCouponList,
   onGetListSuccess: (res) => {
@@ -159,6 +160,7 @@ const {
     console.log(res);
   },
   delete: deleteCoupon,
+  updateStatus:updateCouponStatus
 });
 
 // 新增、修改
