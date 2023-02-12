@@ -46,10 +46,10 @@
             confirm-button-text="失效"
             cancel-button-text="取消"
             width="20"
-            @confirm="handleDelete(6)"
+            @confirm="handleDelete(scope.row.id)"
           >
             <template #reference>
-              <el-button size="small" type="primary" text>失效</el-button>
+              <el-button size="small" type="danger" text>失效</el-button>
             </template>
           </el-popconfirm>
         </template>
