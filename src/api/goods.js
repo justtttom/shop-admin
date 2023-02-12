@@ -1,24 +1,32 @@
 import axios from '~/axios'
 
-export function getCouponList(page) {
-  return axios.get(`/admin/coupon/${page}`)
+
+export function getGoodsList(page, query = {}) {
+  let q = []
+  for (const key in query) {
+    if (query[key]) {
+      q.push(`${key}=${encodeURIComponent(query[key])}`)
+    }
+  }
+  let r = q.join('&')
+  r = r ? '?' + r : ''
+  return axios.get(`admin/goods/${page}${r}`)
 }
 
-export function addCoupon(data){
-  return axios.post(`/admin/coupon`,data)
-}
-
-export function updateCoupon(id,data){
-  return axios.post(`/admin/coupon/`+id,data)
-}
-
-
-export function deleteCoupon(id){
-  return axios.post(`/admin/coupon/${id}/delete`)
-}
-
-export function updateCouponStatus(id) {
-  return axios.post(`/admin/coupon/${id}/update_status`, {
-    status:0
+export function updateGoodsStatus(id, status) {
+  return axios.post(`/admin/goods/${id}/update_status`, {
+    status
   })
+}
+
+export function addGods(data) {
+  return axios.post(`/admin/goods`, data)
+}
+
+export function updateGoods(id,data) {
+  return axios.post(`/admin/goods${id}`, data)
+}
+
+export function deleteGoods(id){
+  return axios.post(`/admin/goods/${id}/delete`)
 }
