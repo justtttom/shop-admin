@@ -9,12 +9,12 @@ export function addCoupon(data){
 }
 
 export function updateCoupon(id,data){
-  return axios.post(`/admin/coupon/${id}`,data)
+  return axios.post(`/admin/coupon/`+id,data)
 }
 
 
-export function deleteCoupon(ids){
-  return axios.post(`/admin/coupon/delete_all`,{ids})
+export function deleteCoupon(id){
+  return axios.post(`/admin/coupon/${id}/delete`)
 }
 
 export function updateCouponStatus(id) {
