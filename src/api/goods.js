@@ -12,8 +12,9 @@ export function getGoodsList(page, query = {}) {
   return axios.get(`admin/goods/${page}${r}`)
 }
 
-export function updateGoodsStatus(id, status) {
-  return axios.post(`/admin/goods/${id}/update_status`, {
+export function updateGoodsStatus(ids, status) {
+  return axios.post(`/admin/goods/changestatus`, {
+    ids,
     status
   })
 }
