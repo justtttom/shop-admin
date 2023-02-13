@@ -1,6 +1,5 @@
 import axios from '~/axios'
 
-
 export function getGoodsList(page, query = {}) {
   let q = []
   for (const key in query) {
@@ -23,10 +22,10 @@ export function addGods(data) {
   return axios.post(`/admin/goods`, data)
 }
 
-export function updateGoods(id,data) {
+export function updateGoods(id, data) {
   return axios.post(`/admin/goods${id}`, data)
 }
 
-export function deleteGoods(id){
+export function deleteGoods(id) {
   return axios.post(`/admin/goods/${id}/delete`)
 }
