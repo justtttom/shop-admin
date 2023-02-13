@@ -1,14 +1,8 @@
 import axios from '~/axios'
+import { querParams } from '../composables/util'
 
 export function getGoodsList(page, query = {}) {
-  let q = []
-  for (const key in query) {
-    if (query[key]) {
-      q.push(`${key}=${encodeURIComponent(query[key])}`)
-    }
-  }
-  let r = q.join('&')
-  r = r ? '?' + r : ''
+  let r = querParams(query)
   return axios.get(`admin/goods/${page}${r}`)
 }
 
